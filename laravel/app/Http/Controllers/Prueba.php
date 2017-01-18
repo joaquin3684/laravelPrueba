@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\PruebaModel;
 class Prueba extends Controller
 {
     /**
@@ -34,8 +34,12 @@ class Prueba extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $prueba = new PruebaModel;
+        $prueba->nombre = $request->name;
+        $prueba->email = $request->email;
+        $prueba->save();
+        return $request->all();
     }
 
     /**
