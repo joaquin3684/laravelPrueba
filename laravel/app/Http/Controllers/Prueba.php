@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PruebaModel;
+use App\PruebaModel as PruebaModel;
+use App\Http\Requests\PruebaValidacion;
+
 class Prueba extends Controller
 {
     /**
@@ -12,7 +14,8 @@ class Prueba extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $registros = PruebaModel::all();
         return view('ABMprueba');
         //
     }
@@ -33,13 +36,10 @@ class Prueba extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PruebaValidacion $request)
     {   
-        $prueba = new PruebaModel;
-        $prueba->nombre = $request->name;
-        $prueba->email = $request->email;
-        $prueba->save();
-        return $request->all();
+        PruebaModel::create($request->all());
+        return response()->json(['nombre' => 'pun']);
     }
 
     /**
@@ -85,5 +85,12 @@ class Prueba extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // muestra todos los registros de la base
+    public function mostrarRegistros()
+    {
+        $registros = PruebaModel::all();
+        return $registros;
     }
 }

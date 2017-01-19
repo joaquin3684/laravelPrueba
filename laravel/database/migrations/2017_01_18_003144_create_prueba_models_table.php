@@ -15,7 +15,7 @@ class CreatePruebaModelsTable extends Migration
     {
         Schema::create('prueba_models', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('name');
             $table->string('email');
             $table->timestamps();
         });

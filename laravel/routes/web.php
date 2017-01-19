@@ -14,4 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('abm/mostrarRegistros', 'Prueba@mostrarRegistros');
 Route::resource('abm', 'Prueba');

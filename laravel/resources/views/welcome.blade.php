@@ -23,6 +23,9 @@
   <link href="css/icheck/flat/green.css" rel="stylesheet" />
   <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
 
+
+
+
   <script src="js/jquery.min.js"></script>
   <script src="js/nprogress.js"></script>
   <script src="js/angular.min.js"></script>
@@ -441,7 +444,7 @@
       }
     });
   </script>
-
+  
   <!-- worldmap -->
   <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
   <script type="text/javascript" src="js/maps/gdp-data.js"></script>
