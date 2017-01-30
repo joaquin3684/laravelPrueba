@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePruebaModelsTable extends Migration
+class CreateProovedoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreatePruebaModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prueba_models', function (Blueprint $table) {
+        Schema::create('proovedores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->integer('porcentaje_retencion');
+            $table->integer('porcentaje_gastos_administrativos');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreatePruebaModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prueba_models');
+        Schema::dropIfExists('proovedores');
     }
 }

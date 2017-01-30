@@ -8,27 +8,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Gentallela Alela! | </title>
+  <title> Mutual </title>
 
   <!-- Bootstrap core CSS -->
-
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/animate.min.css" rel="stylesheet">
+  {!! Html::style('css/bootstrap.min.css') !!}
+  {!! Html::style('fonts/css/font-awesome.min.css') !!}
+  
+  {!! Html::style('css/animate.min.css') !!}
 
   <!-- Custom styling plus plugins -->
-  <link href="css/custom.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.3.css" />
-  <link href="css/icheck/flat/green.css" rel="stylesheet" />
-  <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
+ 
+  {!! Html::style('css/custom.css') !!}
+  {!! Html::style('css/icheck/flat/green.css') !!}
+  {!! Html::style('css/floatexamples.css') !!}
+
+  {!! Html::script('js/jquery.min.js') !!}
+    {!! Html::script('js/nprogress.js') !!}
+    {!! Html::script('js/angular.min.js') !!}
+  {!! Html::script('js/misFunciones.js') !!}
 
 
-
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/nprogress.js"></script>
-  <script src="js/angular.min.js"></script>
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -212,7 +211,7 @@
       <!-- top navigation -->
       <div class="top_nav">
 
-        <div class="nav_menu">
+        <div class="nav_menu" style="border:none;">
           <nav class="" role="navigation">
             <div class="nav toggle">
               <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -323,7 +322,7 @@
 
 
       <!-- page content -->
-      <div class="right_col" role="main">
+      <div class="right_col" role="main" >
         @yield('contenido')
       </div>
       <!-- /page content -->
@@ -338,36 +337,39 @@
     <div class="clearfix"></div>
     <div id="notif-group" class="tabbed_notifications"></div>
   </div>
+  
+    {!! Html::script('js/bootstrap.min.js') !!}
 
-  <script src="js/bootstrap.min.js"></script>
 
   <!-- gauge js -->
-  <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
-  <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
-  <!-- bootstrap progress js -->
-  <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-  <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
-  <!-- icheck -->
-  <script src="js/icheck/icheck.min.js"></script>
-  <!-- daterangepicker -->
-  <script type="text/javascript" src="js/moment/moment.min.js"></script>
-  <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
-  <!-- chart js -->
-  <script src="js/chartjs/chart.min.js"></script>
+    {!! Html::script('js/gauge/gauge.min.js') !!}
+    {!! Html::script('js/gauge/gauge_demo.js') !!}
 
-  <script src="js/custom.js"></script>
+  <!-- bootstrap progress js -->
+  {!! Html::script('js/progressbar/bootstrap-progressbar.min.js') !!}
+    {!! Html::script('js/nicescroll/jquery.nicescroll.min.js') !!}
+  <!-- icheck -->
+      {!! Html::script('js/icheck/icheck.min.js') !!}
+
+  <!-- daterangepicker -->
+        {!! Html::script('js/moment/moment.min.js') !!}
+        {!! Html::script('js/datepicker/daterangepicker.js') !!}
+
+  <!-- chart js -->
+          {!! Html::script('js/chartjs/chart.min.js') !!}
+ {!! Html::script('js/custom.js') !!}
 
   <!-- flot js -->
   <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-  <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
-  <script type="text/javascript" src="js/flot/jquery.flot.pie.js"></script>
-  <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
-  <script type="text/javascript" src="js/flot/jquery.flot.time.min.js"></script>
-  <script type="text/javascript" src="js/flot/date.js"></script>
-  <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
-  <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
-  <script type="text/javascript" src="js/flot/curvedLines.js"></script>
-  <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
+  {!! Html::script('js/flot/jquery.flot.js') !!}
+  {!! Html::script('js/flot/jquery.flot.pie.js') !!}
+  {!! Html::script('js/flot/jquery.flot.orderBars.js') !!}
+  {!! Html::script('js/flot/jquery.flot.time.min.js') !!}
+  {!! Html::script('js/flot/date.js') !!}
+  {!! Html::script('js/flot/jquery.flot.spline.js') !!}
+  {!! Html::script('js/flot/jquery.flot.stack.js') !!}
+  {!! Html::script('js/flot/curvedLines.js') !!}
+  {!! Html::script('js/flot/jquery.flot.resize.js') !!}
   <script>
     $(document).ready(function() {
       // [17, 74, 6, 39, 20, 85, 7]
@@ -446,12 +448,12 @@
   </script>
   
   <!-- worldmap -->
-  <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
-  <script type="text/javascript" src="js/maps/gdp-data.js"></script>
-  <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
-  <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
+  {!! Html::script('js/maps/jquery-jvectormap-2.0.3.min.js') !!}
+  {!! Html::script('js/maps/gdp-data.js') !!}
+  {!! Html::script('js/maps/jquery-jvectormap-world-mill-en.js') !!}
+  {!! Html::script('js/maps/jquery-jvectormap-us-aea-en.js') !!}
   <!-- pace -->
-  <script src="js/pace/pace.min.js"></script>
+  {!! Html::script('js/pace/pace.min.js') !!}
   <script>
     $(function() {
       $('#world-map-gdp').vectorMap({

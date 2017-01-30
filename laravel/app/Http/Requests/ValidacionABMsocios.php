@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 
-class PruebaValidacion extends FormRequest
+class ValidacionABMsocios extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,17 +24,7 @@ class PruebaValidacion extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'unique:prueba_models,email',
-            'name' => 'required'
+            //
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'unique' => 'el :attribute ya existe'
-        ];
-    }
-   
-    
 }

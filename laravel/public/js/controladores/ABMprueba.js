@@ -1,44 +1,87 @@
 var app = angular.module('Mutual', []).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
-app.controller('ABMprueba', function($scope, $http) {
+app.controller('ABM', function($scope, $http, $compile) {
    
-   $scope.enviarFormulario = function()
+  // manda las solicitud http necesarias para manejar los requerimientos de un abm
+   $scope.enviarFormulario = function(tipoSolicitud, id = '')
    {
-   		var form = $("#formulario").serializeArray();
-   		var json = JSON.stringify(form);
-   		$http({
-            url: 'abm',
-            method: 'post',
+
+         var form = '';
+         var abm = $("#tipo_tabla").val();
+         switch(tipoSolicitud)
+         {
+            case 'Editar':
+               var metodo = 'put';
+               var form = $("#formularioEditar").serializeArray();
+               var id = $('input[name=id]').val();
+
+               break;
+            case 'Alta':
+               var metodo = 'post';
+               var form = $("#formulario").serializeArray();
+               break;
+            case 'Borrar':
+               var metodo = 'delete';
+               break;
+            case 'Mostrar':
+               var metodo = 'get';
+               break;
+            default:
+               console.log("el tipo de solicitud no existe");
+               break;
+         }
+         console.log(tipoSolicitud);
+         var url = id == '' ? abm : abm+'/'+id;
+         console.log(url);
+         $http({
+            url: url,
+            method: metodo,
             data: $.param(form),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function successCallback(response)
             {
+               if(tipoSolicitud == 'Mostrar')
+                  {
+                     console.log("entra");
+                     llenarFormulario('formularioEditar',response.data);
+                  } 
                $scope.mensaje = response;
                $('#formulario')[0].reset();
                $scope.errores = '';
-               console.log(response);
+               console.log(response.data);
             }, function errorCallback(data)
             {
+               console.log(data);
                $scope.errores = data.data;
             });
    }
 
-   $scope.buscarRegistros = function()
-   {
-      $http({
-         url: 'abm/mostrarRegistros',
-         method: 'get'
-      }).then(function successCallback(response)
+   $scope.traerRelaciones = function(relaciones)
+   {  
+     
+      for(x in relaciones)
       {
-         $scope.registros = response.data;
-         console.log(response);
-      },
-      function errorCallback(data)
-      {
-         console.log(response);
-      });
+       
+         var url = relaciones[x].tabla + '/traerRelacion'+relaciones[x].tabla;
+         $http({
+            url: url,
+            method: 'get',
+         }).then(function successCallback(response)
+         {
+          
+            $.each(response.data, function(val, text) {
+               
+               $(relaciones[x].select).append($("<option />").val(text.id).text(text.nombre));
+               $(relaciones[x].select+'_Editar').append($("<option />").val(text.id).text(text.nombre));
+            });
+         }, function errorCallback(data)
+         {
+            console.log(data);
+         });
+      }
    }
 
-   $scope.buscarRegistros();
+   
 });
+
