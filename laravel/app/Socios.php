@@ -16,6 +16,6 @@ class Socios extends Model
 
     public function organismo()
     {
-    	return $this->belongsTo('App\Organismos', 'id_organismo', 'id');
+    	return $this->belongsTo('App\Organismos', 'id_organismo', 'id')->withTrashed();
     }
 }

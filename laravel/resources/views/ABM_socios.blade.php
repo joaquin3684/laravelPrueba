@@ -285,7 +285,7 @@
 
                       </div>
                     </div>
-                    <button ng-click="puto()">pepe</button>
+                   
                   </div>
       <!-- /page content -->
     </div>
