@@ -1,14 +1,67 @@
 @extends('welcome')
 
 @section('contenido')
+  {!! Html::script('js/controladores/ABMprueba.js') !!}
 
-{!! Html::script('js/controladores/ABMprueba.js') !!}
   <!-- CSS TABLAS -->
   <link href="js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
   <link href="js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script>
+   function enviarFormulario(tipoSolicitud, id = ''){
+        var form = '';
+         var abm = $("#tipo_tabla").val();
+         switch(tipoSolicitud)
+         {
+            case 'Editar':
+               var metodo = 'put';
+               var form = $("#formularioEditar").serialize();
+               var id = $('input[name=id]').val();
+               break;
+            case 'Alta':
+               var metodo = 'post';
+               var form = $("#formulario").serialize();
+               break;
+            case 'Borrar':
+               var metodo = 'delete';
+               break;
+            case 'Mostrar':
+               var metodo = 'get';
+               break;
+            default:
+               console.log("el tipo de solicitud no existe");
+               break;
+         }
+         var url = id == '' ? abm : abm+'/'+id;
+         
+         $.ajax({
+            url: url,
+            method: metodo,
+            data: form,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            success: function (response)
+            {
+               if(tipoSolicitud == 'Mostrar')
+                  {
+                     console.log(response);
+                     llenarFormulario('formularioEditar',response);
+                  } 
+               
+               $('#formulario')[0].reset();
+               $scope.errores = '';
+               console.log(response.data);
+            },
+            error: function (data)
+            {
+               console.log(data);
+               $scope.errores = data.data;
+            }
+          });
+            
+   }
+  </script>
 <div class="nav-md" ng-controller="ABM" >
 
   <div class="container body" >
@@ -136,15 +189,15 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">Organismo <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="forro" name="id_organismo" class="form-control col-md-7 col-xs-12" ></select>{[{errores.dni[0]}]}
+                        <select id="forro" name="id_organismo" class="form-control col-md-7 col-xs-12" ></select>
                       </div>
 
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button type="button" class="btn btn-primary">Cancel</button>
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" ng-click="puto()" class="btn btn-primary">Cancel</button>
+                        <button id="send" type="submit" class="btn btn-success">Alta</button>
                       </div>
                     </div>
                   </form>
@@ -219,10 +272,11 @@
                                 <td>{{ $registro->organismo->nombre }}</td>
                                 
 
-                                <td><button type="button" data-toggle="modal" data-target="#editar" ng-click="$parent.$parent.enviarFormulario('Mostrar', {{$registro->id}})" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button>
-                                <button type="button" class="btn btn-danger" ng-click="$parent.enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>
+                                <td><button type="button" data-toggle="modal" data-target="#editar" onclick="enviarFormulario('Mostrar', {{$registro->id}})" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button>
+                                <button type="button" class="btn btn-danger" onclick="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>
+                               
                                 </td>
-                                
+                               
 
                               </tr>
                             @endforeach
@@ -231,6 +285,7 @@
 
                       </div>
                     </div>
+                    <button ng-click="puto()">pepe</button>
                   </div>
       <!-- /page content -->
     </div>
@@ -347,6 +402,7 @@
                       </div>
 
                     </div>
+                    <input type="hidden" name="id">
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
@@ -395,6 +451,9 @@
         </script>
         <script type="text/javascript">
           $( document ).ready(function() {
+            function puto(){
+              console.log('forro');
+            }
        $("#datatable-responsive").DataTable({
               /* ajax:{
                   method: "GET",
@@ -444,6 +503,7 @@
           });
           });
         </script>
+
 </div>
 
 

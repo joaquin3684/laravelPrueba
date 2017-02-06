@@ -12,8 +12,7 @@
 <div class="nav-md" ng-controller="ABM" >
 
   <div class="container body" >
-
-
+  
     <div class="main_container" >
 
       <input type="hidden" id="tipo_tabla" value="organismos">
@@ -79,8 +78,8 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" onclick="console.log('hola');" class="btn btn-primary">Cancel</button>
+                        <button id="send" type="submit" class="btn btn-success">Alta</button>
                       </div>
                     </div>
                   </form>
@@ -250,6 +249,8 @@
         </script>
         <script type="text/javascript">
           $(document).ready(function() {
+
+
             $("#datatable-responsive").DataTable({
               select: true,
               fixedHeader: true,

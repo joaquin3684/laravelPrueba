@@ -19,7 +19,7 @@ class ABM_proovedores extends Controller
     {   
         Proovedores::create($request->all());
         $registros = Proovedores::all();
-        return $request->all();
+        return ['created' => true];
     }
 
     public function show($id)
@@ -33,6 +33,7 @@ class ABM_proovedores extends Controller
     {
         $registro = Proovedores::find($id);
         $registro->fill($request->all())->save();
+        return ['updated' => true];
     }
 
 
@@ -40,6 +41,7 @@ class ABM_proovedores extends Controller
     {
         $registro = Proovedores::find($id);
         $registro->delete();
+        return ['deleted' => true];
     }
 
 }

@@ -21,7 +21,7 @@ class ABM_organismos extends Controller
     {   
         Organismos::create($request->all());
         $registros = Organismos::all();
-        return compact('registros');
+        return ['created' => true];
     }
 
     public function show($id)
@@ -35,6 +35,7 @@ class ABM_organismos extends Controller
     {
         $registro = Organismos::find($id);
         $registro->fill($request->all())->save();
+        return ['updated' => true];
     }
 
 
@@ -42,6 +43,7 @@ class ABM_organismos extends Controller
     {
         $registro = Organismos::find($id);
         $registro->delete();
+        return ['deleted' => true];
     }
 
     public function traerRelacionorganismos()

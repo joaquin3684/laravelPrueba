@@ -4,11 +4,6 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as F;
 class ProovedoresTablaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $faker = F::create('App\Proovedores');

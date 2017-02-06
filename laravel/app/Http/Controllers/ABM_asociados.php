@@ -19,7 +19,7 @@ class ABM_asociados extends Controller
         
         Socios::create($request->all());
         $registros = Socios::all();
-        return compact('registros');
+        return ['created' => true];
     }
 
     public function show($id)
@@ -33,6 +33,7 @@ class ABM_asociados extends Controller
     {
         $registro = Socios::find($id);
         $registro->fill($request->all())->save();
+        return ['updated' => true];
     }
 
 
@@ -40,6 +41,7 @@ class ABM_asociados extends Controller
     {
         $registro = Socios::find($id);
         $registro->delete();
+        return ['deleted' => true];
     }
 
     public function traerDatos()

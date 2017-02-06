@@ -6,7 +6,6 @@ app.controller('ABM', function($scope, $http, $compile) {
   // manda las solicitud http necesarias para manejar los requerimientos de un abm
    $scope.enviarFormulario = function(tipoSolicitud, id = '')
    {
-
          var form = '';
          var abm = $("#tipo_tabla").val();
          switch(tipoSolicitud)
@@ -15,7 +14,6 @@ app.controller('ABM', function($scope, $http, $compile) {
                var metodo = 'put';
                var form = $("#formularioEditar").serializeArray();
                var id = $('input[name=id]').val();
-
                break;
             case 'Alta':
                var metodo = 'post';
@@ -31,9 +29,9 @@ app.controller('ABM', function($scope, $http, $compile) {
                console.log("el tipo de solicitud no existe");
                break;
          }
-         console.log(tipoSolicitud);
+         
          var url = id == '' ? abm : abm+'/'+id;
-         console.log(url);
+         
          $http({
             url: url,
             method: metodo,
@@ -43,7 +41,7 @@ app.controller('ABM', function($scope, $http, $compile) {
             {
                if(tipoSolicitud == 'Mostrar')
                   {
-                     console.log("entra");
+                     console.log(response);
                      llenarFormulario('formularioEditar',response.data);
                   } 
                $scope.mensaje = response;
@@ -55,6 +53,7 @@ app.controller('ABM', function($scope, $http, $compile) {
                console.log(data);
                $scope.errores = data.data;
             });
+
    }
 
    $scope.traerRelaciones = function(relaciones)
@@ -82,6 +81,9 @@ app.controller('ABM', function($scope, $http, $compile) {
       }
    }
 
-   
+   $scope.puto = function()
+   {
+      alert('forro');
+   }
 });
 
