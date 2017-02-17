@@ -1,4 +1,4 @@
-var app = angular.module('Mutual', []).config(function($interpolateProvider){
+var app = angular.module('Mutual', ['ngMaterial']).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 app.controller('ABM', function($scope, $http, $compile) {

@@ -10,6 +10,7 @@
 
   <title> Mutual </title>
   <!-- Bootstrap core CSS -->
+{!! HTML::style('js/angular-material/angular-material.min.css') !!} 
   {!! Html::style('css/bootstrap.min.css') !!}
   {!! Html::style('fonts/css/font-awesome.min.css') !!}
   
@@ -25,8 +26,11 @@
     {!! Html::script('js/nprogress.js') !!}
     {!! Html::script('js/angular.min.js') !!}
   {!! Html::script('js/misFunciones.js') !!}
+  {!! Html::script('js/angular-animate/angular-animate.min.js') !!}
 
-
+  {!! Html::script('js/angular-aria/angular-aria.min.js') !!}
+{!! Html::script('js/angular-messages/angular-messages.min.js') !!}
+{!! Html::script('js/angular-material/angular-material.min.js') !!}
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -85,6 +89,15 @@
                     </li>
                     <li><a href="organismos">Organismos</a>
                     </li>
+                  </ul>
+                </li>
+                 <li><a><i class="fa fa-edit"></i> Operaciones <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="dar_servicio">Dar servicio</a>
+                    </li>
+                    <li><a href="proovedores">Cuentas corrientes</a>
+                    </li>
+                    
                   </ul>
                 </li>
               </ul>
