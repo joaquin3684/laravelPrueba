@@ -164,8 +164,7 @@ div.dataTables_scrollHead table.table-bordered {
 }
 
 
-
-
+table.dataTable tbody tr.selected{background-color:#B0BED9}
 /*
  * TableTools styles
  */

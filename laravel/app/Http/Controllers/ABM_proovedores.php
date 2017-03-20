@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Proovedores;
 use App\Http\Requests\ValidacionABMproovedores;
+use Yajra\Datatables\Facades\Datatables;
 
 class ABM_proovedores extends Controller
 {
     
   public function index()
   {
-    $registros = Proovedores::all();
-    return view('ABM_proovedores', compact('registros'));
+    
+    return view('ABM_proovedores');
   }
 
    public function store(ValidacionABMproovedores $request)
@@ -44,4 +45,8 @@ class ABM_proovedores extends Controller
         return ['deleted' => true];
     }
 
+    public function datos()
+    {
+        return Datatables::eloquent(Proovedores::query())->make(true);
+    }
 }

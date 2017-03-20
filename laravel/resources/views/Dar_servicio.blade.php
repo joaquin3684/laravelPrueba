@@ -32,7 +32,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
                 <div class="x_title">
-                  <h2>Form zapalin <small>sub title</small></h2>
+                  <h2>Otorgar servicio <small></small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -53,29 +53,44 @@
                 <div class="x_content">
             
             
-            <form class=" form-label-left">
-             <md-autocomplete class="" md-selected-item="socio" md-search-text="searchText" md-items="item in querySocios(searchText)" md-item-text="item.nombre" placeholder="Buscar afiliado..."  md-input-name="idafiliado">
+            <form class=" form-label-left" ng-submit="crearMovimiento()">
+             <md-autocomplete class="" md-selected-item="socio" md-search-text="searchText" md-items="item in query(searchText, 'filtroSocios')" md-item-text="item.nombre" placeholder="Buscar afiliado..."  md-input-name="idafiliado">
   <span md-highlight-text="searchText">{[{item.nombre}]}</span>
 </md-autocomplete>
             <hr></hr>
-            <md-autocomplete class="" md-selected-item="proovedor" md-search-text="searchText2" md-items="item in queryProovedores(searchText2)" md-item-text="item.nombre" placeholder="Buscar proovedor..."  md-input-name="idafiliado">
+            <md-autocomplete class="" md-selected-item="proovedor" md-selected-item-change="habilitar()"   md-search-text="searchText2" md-items="item in query(searchText2, 'filtroProovedores')" md-item-text="item.nombre" placeholder="Buscar proovedor..."  md-input-name="idafiliado">
   <span md-highlight-text="searchText">{[{item.nombre}]}</span>
 </md-autocomplete>
+
             <hr></hr>
+            <md-autocomplete class="" md-selected-item="producto" ng-disabled="habilitacion"  md-search-text="searchText3" md-items="item in traerProductos(searchText3)" md-item-text="item.nombre" placeholder="Buscar producto..."  md-input-name="idafiliado">
+  <span md-highlight-text="searchText">{[{item.nombre}]}</span>
+</md-autocomplete>
+
+            <hr></hr>
+            <div class="row">
             <div class="item form-group">
               <label for="capital" class="control-label col-md-1 col-sm-3 col-xs-12">Capital<span class="required">*</span></label>
               <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="text" name="capital" class="form-control col-md-7 col-xs-12">
+              <input type="text" name="capital" class="form-control col-md-7 col-xs-12" ng-model="importe">
               </div>
             </div>
             <div class="item form-group">
               <label for="cuotas" class="control-label col-md-offset-1 col-md-1 col-sm-3 col-xs-12">Cuotas<span class="required">*</span></label>
               <div class="col-md-4 col-sm-6 col-xs-12">
-              <input type="text" name="cuotas" class="form-control col-md-7 col-xs-12">
+              <input type="text" name="cuotas" class="form-control col-md-7 col-xs-12" ng-model="nro_cuotas">
               </div>
             </div>
-            
+            </div>
+            <div class="row">
+            <div class="item form-group" style="margin-top:20px;">
 
+                      <div class="">
+                       
+                        <button id="send" type="submit" class="btn btn-success">Alta</button>
+                      </div>
+            </div>
+            </div>
 
               </form>
                 </div>
@@ -102,125 +117,7 @@
     <div id="notif-group" class="tabbed_notifications"></div>
   </div>
 
- <!-- Modal -->
-<div id="editar" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Editar</h4>
-      </div>
-      <div class="modal-body">
-         <form class="form-horizontal form-label-left" ng-submit="enviarFormulario('Editar')" id="formularioEditar" >
-                   {{ csrf_field() }}
-                    <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
-                    </p>
-                    <span class="section">Personal Info</span>
-
-                    <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="nombre" placeholder="Ingrese nombre del organismo" type="text">{[{errores.nombre[0]}]}
-                      </div>
-                    </div>
-                    
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_nacimiento">Fecha de nacimiento <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control col-md-7 col-xs-12" >{[{errores.fecha_nacimiento[0]}]}
-                      </div>
-                    </div>
-                    <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cuit">Cuit <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="cuit" name="cuit" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el cuit">{[{errores.cuit[0]}]}
-                      </div>
-                    </div>
-                    <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">DNI <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="dni" name="dni" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.dni[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="domicilio">Domicilio <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.domicilio[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="localidad">Localidad <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="localidad" name="localidad" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.localidad[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="codigo_postal">Codigo Postal <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="codigo_postal" name="codigo_postal" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.codigo_postal[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="telefono" name="telefono" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.telefono[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legajo">Legajo <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="legajo" name="legajo" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.legajo[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha de ingreso <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.fecha_ingreso[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="grupo_familiar">Grupo Familiar <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="grupo_familiar" name="grupo_familiar" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.grupo_familiar[0]}]}
-                      </div>
-                      </div>
-                      <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">Organismo <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="forro_Editar" name="id_organismo" class="form-control col-md-7 col-xs-12" ></select>{[{errores.dni[0]}]}
-                      </div>
-
-                    </div>
-                    <input type="hidden" name="id">
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                      <div class="col-md-6 col-md-offset-3">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
-                      </div>
-                    </div>
-                  </form>
-      </div>
-      
-    </div>
-
-  </div>
-</div>
-<!-- Fin Modal -->
   <!-- bootstrap progress js -->
 
 

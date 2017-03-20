@@ -22,12 +22,12 @@
         <div class="" >
          
           <div class="clearfix"></div>
-
+@if(Sentinel::check()->hasAccess('organismos.crear'))
           <div class="row" >
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
                 <div class="x_title">
-                  <h2>Form validation <small>sub title</small></h2>
+                  <h2>Formulario de organismos <small>Dar de alta un organismo</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -49,9 +49,8 @@
 
                   <form class="form-horizontal form-label-left" ng-submit="enviarFormulario('Alta')" id="formulario" >
                    {{ csrf_field() }}
-                    <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
-                    </p>
-                    <span class="section">Personal Info</span>
+                    
+                    <span class="section">Datos del organismo</span>
 
                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span>
@@ -90,13 +89,14 @@
           </div>
         </div>
 
-       
+       @endif
+       @if(Sentinel::check()->hasAccess('organismos.visualizar'))
 
       </div>
       <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Titulo <small>Subtitulo</small></h2>
+                        <h2>Organismos <small>Todos los organismos disponibles</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -115,9 +115,7 @@
                         <div class="clearfix"></div>
                       </div>
                       <div class="x_content">
-                        <p class="text-muted font-13 m-b-30">
-                          Aca puede ir algun tipo de mensaje
-                        </p>
+                        
                         <table id="datatable-responsive" cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" cellspacing="0" width="100%">
                           <thead>
                             <tr>
@@ -135,8 +133,8 @@
                                 <td>{{ $registro->nombre }}</td>
                                 <td>{{ $registro->cuit }}</td>
                                 <td>{{ $registro->cuota_social }}</td>
-                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', {{$registro->id}})"><span class="glyphicon glyphicon-pencil"></span></button>
-                                <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>
+                                <td>@if(Sentinel::check()->hasAccess('organismos.editar'))<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', {{$registro->id}})"><span class="glyphicon glyphicon-pencil"></span></button>@endif
+                              @if(Sentinel::check()->hasAccess('organismos.borrar'))  <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>@endif
                                 </td>
                                 
 
@@ -148,6 +146,7 @@
                       </div>
                     </div>
                   </div>
+                  @endif
       <!-- /page content -->
     </div>
 
@@ -251,7 +250,7 @@
           $(document).ready(function() {
 
 
-            $("#datatable-responsive").DataTable({
+           $("#datatable-responsive").DataTable({
               select: true,
               fixedHeader: true,
                language: {

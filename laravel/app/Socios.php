@@ -18,4 +18,9 @@ class Socios extends Model
     {
     	return $this->belongsTo('App\Organismos', 'id_organismo', 'id')->withTrashed();
     }
+
+    public function movimientos()
+    {
+    	return $this->hasMany('App\Movimientos', 'id_asociado', 'id');
+    }
 }

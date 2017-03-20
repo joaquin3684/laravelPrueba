@@ -1,0 +1,84 @@
+dar_servicio
+
+- deberia ponerse automaticamente cuando selecciono cualquier proovedor el producto varios
+- si selecciono un proovedor y un producto y luego borro el proovedor deberia borrarse el producto y deshabilitarse el input del producto
+- emitir orden de descuento para imprimir
+- primero se tiene que imprimir la orden de descuento y luego manualmente se tiene que enviar el formulario
+- ajustar pagina para celular
+- cambiar titulo y subtiutlo
+- validaciones de capital y de cuotas
+- poner mensajes cuando se realiza una operacion
+- poner sentinel
+
+abm_usuarios
+
+- poner mostrar todos
+- poner mensajes cuando se realiza una operacion
+- poner validaciones
+- poner las funciones de editar y borrar
+- poner ajax a las dataTables
+- poner sentinel
+
+abm_roles
+
+- poner mostrar todos
+- poner mensajes cuando se realiza una operacion
+- poner validaciones
+- poner las funciones de editar y borrar
+- poner ajax a las dataTables
+- poner sentinel
+
+abm_organismos
+
+- poner mostrar todos
+- poner mensajes cuando se realiza una operacion
+- poner validaciones
+- poner ajax a las dataTables
+
+abm_proovedores
+
+- poner mensajes cuando se realiza una operacion
+- poner validaciones
+- poner ajax a las dataTables
+- poner mostrar todos
+
+abm_socios
+
+- poner mensajes cuando se realiza una operacion
+- poner validaciones
+- poner ajax a las dataTables
+- fixedHeader anda medio raro en las dataTables
+- poner mostrar todos
+
+Cuentas corrientes
+
+- poner mostrar todos
+- poner graficos 
+- que los maximos y minimos de las cuotas y los importes se seteen solos
+- poner la opcion de mostrar todos los registros
+- mejorar como se muestra el saldo
+- agregar filtro de que se pago y que no
+- no muestra los totales en pdf e impresion
+
+Cobranza
+
+-fixed header cuando se achica la pantalla se va todo al carajo
+-no muestra los totales en el pdf
+
+Pago Profesores
+
+-funcion pagar
+
+
+aplicacion tio
+
+- filtros cartilla no andan
+- no cargar todos los estudios, mandar solo foto
+- template
+- subir al playstore (prueba)
+
+
+- lupita error aumenta alrreves arreglala o sacala
+- revisar los reportes, creo que listaban mal
+- agarra la pagina entera y cargala al drive
+- subir al drive los datos de conexion el server blabla

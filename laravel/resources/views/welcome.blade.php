@@ -22,15 +22,19 @@
   {!! Html::style('css/icheck/flat/green.css') !!}
   {!! Html::style('css/floatexamples.css') !!}
 
+    {!! Html::script('js/angular.min.js') !!}
   {!! Html::script('js/jquery.min.js') !!}
     {!! Html::script('js/nprogress.js') !!}
-    {!! Html::script('js/angular.min.js') !!}
   {!! Html::script('js/misFunciones.js') !!}
   {!! Html::script('js/angular-animate/angular-animate.min.js') !!}
 
   {!! Html::script('js/angular-aria/angular-aria.min.js') !!}
 {!! Html::script('js/angular-messages/angular-messages.min.js') !!}
 {!! Html::script('js/angular-material/angular-material.min.js') !!}
+
+{!! Html::script('js/angular-sanitize/angular-sanitize.min.js') !!}
+{!! Html::script('js/Chart.min.js') !!}
+{!! Html::script('js//angular-chart.min.js') !!}
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -56,7 +60,7 @@
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Mutual</span></a>
           </div>
           <div class="clearfix"></div>
 
@@ -67,7 +71,7 @@
             </div>
             <div class="profile_info">
               <span>Bienvenido,</span>
-              <h2>John Doe</h2>
+              <h2>{{ucfirst(trans(Sentinel::check()->usuario))}}</h2>
             </div>
           </div>
           <!-- /menu prile quick info -->
@@ -83,22 +87,41 @@
                
                 <li><a><i class="fa fa-edit"></i> ABM <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
+                  @if(Sentinel::check()->hasAnyAccess(['asociados.visualizar', 'asociados.editar', 'asociados.borrar', 'asociados.crear']))
                     <li><a href="asociados">Socios</a>
                     </li>
+                    @endif
+                    @if(Sentinel::check()->hasAnyAccess(['proovedores.visualizar', 'proovedores.editar', 'proovedores.borrar', 'proovedores.crear']))
                     <li><a href="proovedores">Proovedores</a>
                     </li>
+                    @endif
+                    @if(Sentinel::check()->hasAnyAccess(['organismos.visualizar', 'organismos.editar', 'organismos.borrar', 'organismos.crear']))
                     <li><a href="organismos">Organismos</a>
                     </li>
+                    @endif
+                    @if(Sentinel::check()->hasAnyAccess(['usuarios.visualizar', 'usuarios.editar', 'usuarios.borrar', 'usuarios.crear']))
+                    <li><a href="usuarios">Usuarios</a>
+                    </li>
+                    @endif
+                    @if(Sentinel::check()->hasAnyAccess(['roles.visualizar', 'roles.editar', 'roles.borrar', 'roles.crear']))
+                    <li><a href="roles">Roles</a>
+                    </li>
+                    @endif
                   </ul>
                 </li>
                  <li><a><i class="fa fa-edit"></i> Operaciones <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="dar_servicio">Dar servicio</a>
                     </li>
-                    <li><a href="proovedores">Cuentas corrientes</a>
+                    <li><a href="movimientos">Cuentas corrientes</a>
                     </li>
+                    <li><a href="cobranza">Reporte Deudas</a></li>
+                    <li><a href="pago_proovedores">Pago Proovedores</a></li>
+                    <li><a href="cobrar">Cobranza organismos</a></li>
                     
                   </ul>
+                </li>
+               
                 </li>
               </ul>
             </div>
@@ -108,17 +131,17 @@
           <!-- /sidebar menu -->
 
           <!-- /menu footer buttons -->
-          <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
+          <div class="sidebar-footer hidden-small" style="background-color: #0f5ead;">
+            <a data-toggle="tooltip" data-placement="top" title="Settings"  style="background-color: #106cc8; color:#e4e5e7;">
               <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
             </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen" style="background-color: #106cc8; color:#e4e5e7;">
               <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
             </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
+            <a data-toggle="tooltip" data-placement="top" title="Lock" style="background-color: #106cc8; color:#e4e5e7;">
               <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout">
+            </a> 
+            <a data-toggle="tooltip" href="logout" data-placement="top" title="Salir" style="background-color: #106cc8; color:#e4e5e7;">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>
@@ -132,13 +155,13 @@
         <div class="nav_menu" style="border:none;">
           <nav class="" role="navigation">
             <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              <a id="menu_toggle" style="color:#0f5ead; "><i class="fa fa-bars"></i></a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">John Doe
+                  <img src="images/img.jpg" alt="">{{ucfirst(trans(Sentinel::check()->usuario))}}
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
