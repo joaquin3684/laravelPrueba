@@ -7,26 +7,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Movimientos extends Model
 {
-	use SoftDeletes;
+   	use SoftDeletes;
 
 	protected $fillable = [
-        'id_asociado', 'id_producto', 'descripcion', 'nro_cuotas', 'fecha'
+        'id_venta', 'entrada', 'salida', 'fecha'
     ];
 
     protected $dates = ['deleted_at'];
 
-    public function cuotas()
+    public function ventas()
     {
-    	return $this->hasMany('App\Cuotas', 'id_movimiento', 'id');
-    }
-
-    public function socio()
-    {
-    	return $this->belongsTo('App\Socios', 'id_asociado', 'id');
-    }
-
-    public function producto()
-    {
-    	return $this->belongsTo('App\Productos', 'id_producto', 'id');
+    	return $this->belongsTo('App\Ventas', 'id_venta', 'id');
     }
 }

@@ -238,34 +238,13 @@
                             </div>
                         </div>
                         <div class="x_content">
+                        <div id="paraBorrar">
                             <table cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" id="datatable-responsive" width="100%">
-                                <thead>
-                                    <tr>
-                                    <th>Organismo</th>
-                                        <th>
-                                            Asociado
-                                        </th>
-                                        <th>
-                                            Proovedor
-                                        </th>
-                                        <th>
-                                            Producto
-                                        </th>
-                                        <th>
-                                            Importe
-                                        </th>
-                                       
-                                        <th>
-                                            N° Cuota
-                                        </th>
-                                      
-                                        
-                                    </tr>
-                                </thead>
+
                                 <tfoot>
                                     <tr>
-                                        <th colspan="4" style="text-align:right">Total:</th>
-                                        <th colspan="2"></th>
+                                        <th style="text-align:right">Total:</th>
+                                        <th></th>
                                         
                                     </tr>
                                 </tfoot>

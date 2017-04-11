@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovimientosTable extends Migration
+class CreateVentasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateMovimientosTable extends Migration
      */
     public function up()
     {
-        Schema::create('movimientos', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('ventas', function (Blueprint $table) {
+              $table->increments('id');
             $table->timestamps();
             $table->integer('id_asociado')->unsigned();
             $table->integer('id_producto')->unsigned();
             $table->foreign('id_asociado')->references('id')->on('socios');
             $table->foreign('id_producto')->references('id')->on('productos');
+            $table->integer('alta')->unsigned();
+            $table->integer('aprobado')->unsigned();
+            $table->foreign('alta')->references('id')->on('users');
+            $table->foreign('aprobado')->references('id')->on('users');
             $table->string('descripcion');
             $table->integer('nro_cuotas');
             $table->date('fecha');
@@ -34,6 +38,6 @@ class CreateMovimientosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movimientos');
+        Schema::dropIfExists('ventas');
     }
 }

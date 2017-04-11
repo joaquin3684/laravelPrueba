@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Movimientos;
+use App\Ventas;
 use App\Cuotas;
 use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Support\Facades\DB;
 use App\Proovedores;
 use App\Productos;
 use App\Socios;
+use Carbon\Carbon;
 
 class CobranzaController extends Controller
 {
@@ -20,18 +21,91 @@ class CobranzaController extends Controller
 
     public function datos(Request $request)
     {
-        $movimientos = DB::table('movimientos')
-            ->join('cuotas', 'cuotas.id_movimiento', '=', 'movimientos.id')
-            ->join('socios', 'movimientos.id_asociado', '=', 'socios.id')
-            ->join('productos', 'movimientos.id_producto', '=', 'productos.id')
+        $fechaHoy = Carbon::today();
+        $ventas = DB::table('ventas')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->join('proovedores', function($join){
                 $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
             })
-            ->where('cuotas.cobro', '=', '0')
-            ->select('socios.nombre AS socio', 'proovedores.nombre AS proovedor', 'productos.nombre AS producto', 'cuotas.importe', 'cuotas.nro_cuota', 'organismos.nombre AS organismo');
+            ->groupBy('organismos.id')
+            ->select('organismos.nombre AS organismo', 'organismos.id AS id_organismo', DB::raw('SUM(cuotas.importe) - SUM(cuotas.cobro) AS importe'))
+            ->where(function($query) use ($fechaHoy){
+                $query->where('cuotas.fecha_vencimiento', '<', $fechaHoy)
+                      ->orWhere(function($query2) use ($fechaHoy){
+                            $query2->where('cuotas.fecha_vencimiento', '>', $fechaHoy)
+                                   ->where('cuotas.fecha_inicio', '<', $fechaHoy);
+                        });
+            })
+            ->whereColumn('cuotas.cobro', '<', 'cuotas.importe');
             
-     	return  $tabla =  Datatables::of($movimientos)
+     	return  $tabla =  Datatables::of($ventas)
+           ->filter(function ($query) use ($request){
+                
+                $this->filtros($request,$query);
+            
+            })
+        ->make(true);
+    }
+
+    public function mostrarPorSocio(Request $request)
+    {
+                $fechaHoy = Carbon::today();
+        $ventas = DB::table('ventas')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+            ->join('proovedores', function($join){
+                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
+            })
+            ->groupBy('socios.id')
+            ->select('socios.nombre AS socio', 'socios.id AS id_asociado', DB::raw('SUM(cuotas.importe) - SUM(cuotas.cobro) AS deuda'))
+            ->where(function($query) use ($fechaHoy){
+                $query->where('cuotas.fecha_vencimiento', '<', $fechaHoy)
+                      ->orWhere(function($query2) use ($fechaHoy){
+                            $query2->where('cuotas.fecha_vencimiento', '>', $fechaHoy)
+                                   ->where('cuotas.fecha_inicio', '<', $fechaHoy);
+                        });
+            })
+            ->whereColumn('cuotas.cobro', '<', 'cuotas.importe')
+            ->where('organismos.id', '=', $request['id']);
+            
+        return  $tabla =  Datatables::of($ventas)
+           ->filter(function ($query) use ($request){
+                
+                $this->filtros($request,$query);
+            
+            })
+        ->make(true);
+    }
+
+    public function mostrarPorSocio(Request $request)
+    {
+                $fechaHoy = Carbon::today();
+        $ventas = DB::table('ventas')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+            ->join('proovedores', function($join){
+                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
+            })
+            ->groupBy('socios.id')
+            ->select('socios.nombre AS socio', 'socios.id AS id_asociado', DB::raw('SUM(cuotas.importe) - SUM(cuotas.cobro) AS deuda'))
+            ->where(function($query) use ($fechaHoy){
+                $query->where('cuotas.fecha_vencimiento', '<', $fechaHoy)
+                      ->orWhere(function($query2) use ($fechaHoy){
+                            $query2->where('cuotas.fecha_vencimiento', '>', $fechaHoy)
+                                   ->where('cuotas.fecha_inicio', '<', $fechaHoy);
+                        });
+            })
+            ->whereColumn('cuotas.cobro', '<', 'cuotas.importe')
+            ->where('organismos.id', '=', $request['id']);
+            
+        return  $tabla =  Datatables::of($ventas)
            ->filter(function ($query) use ($request){
                 
                 $this->filtros($request,$query);
@@ -42,14 +116,14 @@ class CobranzaController extends Controller
 
     public function traerDatosAutocomplete(Request $request)
     {
-        $movimientos = DB::table('cuotas')
-            ->join('movimientos', 'cuotas.id_movimiento', '=', 'movimientos.id')
+        $ventas = DB::table('cuotas')
+            ->join('ventas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('socios', function($join){
-                $join->on('movimientos.id_asociado', '=', 'socios.id')->groupBy('socios.id');
+                $join->on('ventas.id_asociado', '=', 'socios.id')->groupBy('socios.id');
 
             })
             ->join('productos', function($join){
-                $join->on('movimientos.id_producto', '=', 'productos.id')->groupBy('productos.id');
+                $join->on('ventas.id_producto', '=', 'productos.id')->groupBy('productos.id');
             })
             ->join('proovedores', function($join){
                 $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
@@ -60,42 +134,20 @@ class CobranzaController extends Controller
                
             })
             ->where('cuotas.pago', '=', '0')
-            ->select('movimientos.*', 'socios.nombre AS socio', 'proovedores.nombre AS proovedor', 'productos.nombre AS producto', 'cuotas.importe', 'cuotas.nro_cuota', 'cuotas.pago', 'cuotas.fecha_pago', 'proovedores.id AS id_proovedor', 'organismos.nombre AS organismo', 'organismos.id AS id_organismo')
+            ->select('ventas.*', 'socios.nombre AS socio', 'proovedores.nombre AS proovedor', 'productos.nombre AS producto', 'cuotas.importe', 'cuotas.nro_cuota', 'cuotas.pago', 'cuotas.fecha_pago', 'proovedores.id AS id_proovedor', 'organismos.nombre AS organismo', 'organismos.id AS id_organismo')
      
             ->get();
 
-            $mov = $movimientos->unique($request['groupBy']);
-            if(sizeof($movimientos) == 0)
+            $mov = $ventas->unique($request['groupBy']);
+            if(sizeof($ventas) == 0)
             {
                 
                 dd($this->filtrosNoNulos($request));
             }else {
-        return ['movimientos' => $mov->values()->all(), 'pin' => $this->filtrosNoNulos($request)];
+        return ['ventas' => $mov->values()->all(), 'pin' => $this->filtrosNoNulos($request)];
                 
             }
     }
 
-     public function filtros($objeto, $query)
-    {
-        $objetoNuevo = $this->filtrosNoNulos($objeto);
-        foreach($objetoNuevo as $obj)
-        {
-            $query->where($obj['campo'], $obj['operador'], $obj['valor']);
-        }
-    }
-
-    public function filtrosNoNulos($objeto)
-    {
-        $array = [];
-        foreach($objeto['filtros'] as $obj)
-        {
-            if(!empty($obj['valor']))
-            {
-                array_push($array, $obj);
-            }
-        }
-
-        return $array;
-    }
 
 }

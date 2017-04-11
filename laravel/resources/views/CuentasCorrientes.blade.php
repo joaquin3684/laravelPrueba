@@ -2,14 +2,14 @@
 
 @section('contenido')
 
-{!! Html::script('js/controladores/movimientos.js') !!}
+{!! Html::script('js/controladores/ventas.js') !!}
 <!-- CSS TABLAS -->
 {!! Html::style('js/datatables/jquery.dataTables.min.css') !!}
   {!! Html::style('js/datatables/buttons.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/fixedHeader.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/responsive.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/scroller.bootstrap.min.css') !!}
-<div class="nav-md" ng-controller="movimientos">
+<div class="nav-md" ng-controller="ventas">
     <div class="container body">
         <div class="main_container">
             <input id="tipo_tabla" name="tipo_tabla" type="hidden" value="proovedores">
@@ -19,7 +19,7 @@
                     <div class="">
                         <div class="clearfix">
                         </div>
-                        @if(Sentinel::check()->hasAccess('proovedores.crear'))
+                
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
@@ -210,9 +210,9 @@
                         </div>
                     </div>
                 </div>
-                @endif
+          
 
-      @if(Sentinel::check()->hasAccess('proovedores.visualizar'))
+
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
@@ -259,23 +259,23 @@
                             </div>
                         </div>
                         <div class="x_content">
+                        <div id="paraBorrar">
                             <table cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" id="datatable-responsive" width="100%">
-                                <thead>
+                               
+                               <tfoot>
                                     <tr>
-                                        <th>Asociado</th>
-                                        <th>Organismo</th>
-                                        <th>Proovedor</th>
-                                        <th>Producto</th>
-                                        <th>Importe</th>
-                                        <th>N° Cuota</th>
-                                        <th>Fecha</th>
+                                        <th style="text-align:right">Total:</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
-                                </thead>
+                                </tfoot> 
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @endif
+            
                 <!-- /page content -->
             </input>
         </div>

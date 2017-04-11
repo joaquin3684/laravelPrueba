@@ -34,7 +34,6 @@ class OrganismosTest extends TestCase
         ->seeInDatabase('organismos', $data2)
         ->seeJson(['updated' => true]);
 
-     
         $this->get('/organismos/1')
         ->seeJson($data2);
 

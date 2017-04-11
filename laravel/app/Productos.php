@@ -19,4 +19,9 @@ class Productos extends Model
     {
     	return $this->hasMany('App\Movimientos', 'id_asociado', 'id');
     }
+
+    public function proovedores()
+    {
+        return $this->belongsTo('App\proovedores', 'id_proovedor', 'id');
+    }
 }

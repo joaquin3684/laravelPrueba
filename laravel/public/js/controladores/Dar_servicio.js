@@ -3,6 +3,7 @@ var app = angular.module('Mutual', ['ngMaterial']).config(function($interpolateP
 });
 app.controller('Dar_servicio', function($scope, $http, $compile, $q) {
 
+	$scope.mostrar = false;
 	// machea a los socios en base al searchText
 	$scope.query = function(searchText, ruta)
 	{
@@ -37,10 +38,12 @@ app.controller('Dar_servicio', function($scope, $http, $compile, $q) {
 
  	$scope.crearMovimiento = function()
  	{
+ 		console.log($('#vencimiento').val());
+ 		var vencimiento = $('#vencimiento').val();
  		$http({
-			url: 'movimientos',
+			url: 'ventas',
 			method: 'post',
-			data: {'id_asociado': $scope.socio.id, 'id_producto': $scope.producto.id, 'importe': $scope.importe, 'nro_cuotas': $scope.nro_cuotas}
+			data: {'id_asociado': $scope.socio.id, 'id_producto': $scope.producto.id, 'importe': $scope.importe, 'nro_cuotas': $scope.nro_cuotas, 'tipo':$scope.tipo_servicio, 'vencimiento':vencimiento, 'plata_recibida':$scope.$parent.plata_recibida}
 			}).then(function successCallback(response)
 				{
 					console.log(response);
@@ -61,6 +64,29 @@ app.controller('Dar_servicio', function($scope, $http, $compile, $q) {
  			$scope.habilitacion = false;
  			$scope.producto = '';
  		}
+ 	}
+ 	$scope.mostrarPlanDePago = function()
+ 	{
+ 		$scope.mostrar = true;
+ 		var planDePago = [];
+ 		var importe = $scope.importe / $scope.nro_cuotas;
+ 		var vto = moment($scope.vencimiento);
+ 		console.log(vto);
+ 		for(var i=0; i < $scope.nro_cuotas; i++){
+ 			
+ 			/*console.log($scope.vencimiento);
+ 			planDePago.push($scope.vencimiento);
+ 			console.log(planDePago);
+ 			$scope.vencimiento.addDays(30);
+ 			console.log($scope.vencimiento);*/
+ 		var j = vto.format("DD/MM/YYYY");
+ 			 			
+ 			var objeto = {'cuota': i, 'importe': importe, 'fecha': j};
+ 			planDePago.push(objeto);
+ 			vto.add(30, 'd');
+ 		}
+ 		$scope.planDePago = planDePago;
+ 		
  	}
 	
 });

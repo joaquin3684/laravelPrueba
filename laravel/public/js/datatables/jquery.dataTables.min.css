@@ -12,7 +12,10 @@ div.dataTables_length select {
 div.dataTables_filter {
 	text-align: right;
 }
-
+td.highlight {
+    font-weight: bold;
+    color: blue;
+}
 div.dataTables_filter label {
 	font-weight: normal;
 	white-space: nowrap;

@@ -15,15 +15,17 @@
   {!! Html::style('fonts/css/font-awesome.min.css') !!}
   
   {!! Html::style('css/animate.min.css') !!}
-
+{!! Html::script('js/moment/moment.min.js') !!}
   <!-- Custom styling plus plugins -->
  
   {!! Html::style('css/custom.css') !!}
   {!! Html::style('css/icheck/flat/green.css') !!}
   {!! Html::style('css/floatexamples.css') !!}
 
-    {!! Html::script('js/angular.min.js') !!}
   {!! Html::script('js/jquery.min.js') !!}
+   {!! Html::script('js/jquery-ui-1.12.1/jquery-ui.min.js') !!}
+   {!! Html::style('js/jquery-ui-1.12.1/jquery-ui.min.css') !!}
+    {!! Html::script('js/angular.min.js') !!}
     {!! Html::script('js/nprogress.js') !!}
   {!! Html::script('js/misFunciones.js') !!}
   {!! Html::script('js/angular-animate/angular-animate.min.js') !!}
@@ -35,6 +37,7 @@
 {!! Html::script('js/angular-sanitize/angular-sanitize.min.js') !!}
 {!! Html::script('js/Chart.min.js') !!}
 {!! Html::script('js//angular-chart.min.js') !!}
+
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -71,7 +74,7 @@
             </div>
             <div class="profile_info">
               <span>Bienvenido,</span>
-              <h2>{{ucfirst(trans(Sentinel::check()->usuario))}}</h2>
+              <h2></h2>
             </div>
           </div>
           <!-- /menu prile quick info -->
@@ -87,33 +90,15 @@
                
                 <li><a><i class="fa fa-edit"></i> ABM <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                  @if(Sentinel::check()->hasAnyAccess(['asociados.visualizar', 'asociados.editar', 'asociados.borrar', 'asociados.crear']))
-                    <li><a href="asociados">Socios</a>
-                    </li>
-                    @endif
-                    @if(Sentinel::check()->hasAnyAccess(['proovedores.visualizar', 'proovedores.editar', 'proovedores.borrar', 'proovedores.crear']))
-                    <li><a href="proovedores">Proovedores</a>
-                    </li>
-                    @endif
-                    @if(Sentinel::check()->hasAnyAccess(['organismos.visualizar', 'organismos.editar', 'organismos.borrar', 'organismos.crear']))
-                    <li><a href="organismos">Organismos</a>
-                    </li>
-                    @endif
-                    @if(Sentinel::check()->hasAnyAccess(['usuarios.visualizar', 'usuarios.editar', 'usuarios.borrar', 'usuarios.crear']))
-                    <li><a href="usuarios">Usuarios</a>
-                    </li>
-                    @endif
-                    @if(Sentinel::check()->hasAnyAccess(['roles.visualizar', 'roles.editar', 'roles.borrar', 'roles.crear']))
-                    <li><a href="roles">Roles</a>
-                    </li>
-                    @endif
+
+
                   </ul>
                 </li>
                  <li><a><i class="fa fa-edit"></i> Operaciones <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="dar_servicio">Dar servicio</a>
                     </li>
-                    <li><a href="movimientos">Cuentas corrientes</a>
+                    <li><a href="ventas">Cuentas corrientes</a>
                     </li>
                     <li><a href="cobranza">Reporte Deudas</a></li>
                     <li><a href="pago_proovedores">Pago Proovedores</a></li>
@@ -161,7 +146,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">{{ucfirst(trans(Sentinel::check()->usuario))}}
+                  <img src="images/img.jpg" alt="">
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">

@@ -10,7 +10,7 @@ class Cuotas extends Model
     use SoftDeletes;
 
 	protected $fillable = [
-        'id_movimiento', 'importe', 'pago', 'fecha_pago', 'nro_cuota'
+        'id_venta', 'importe', 'pago', 'fecha_pago', 'nro_cuota', 'fecha_vencimiento', 'fecha_inicio'
     ];
 
     protected $dates = ['deleted_at'];
@@ -18,5 +18,10 @@ class Cuotas extends Model
     public function movimiento()
     {
     	return $this->belongsTo('App\Movimientos', 'id_movimiento', 'id');
+    }
+
+     public function venta()
+    {
+    	return $this->belongsTo('App\Ventas', 'id_venta', 'id');
     }
 }

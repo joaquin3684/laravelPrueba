@@ -7,6 +7,10 @@ table.dataTable {
 	clear: both;
 	width: 100%;
 }
+td.highlight {
+    font-weight: bold;
+    color: blue;
+}
 
 table.dataTable thead th {
 	padding: 3px 18px 3px 10px;

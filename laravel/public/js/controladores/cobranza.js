@@ -139,11 +139,13 @@ app.controller('cobranza', function($scope, $http, $compile, $sce) {
       columns: 
       [
          {data: 'organismo', name: 'organismo'},
-         {data: 'socio', name: 'socio'},
-         {data: 'proovedor', name: 'proovedor'},
-         {data: 'producto', name: 'producto'},
-         {data: 'importe', name: 'cuotas.importe'},
-         {data: 'nro_cuota', name: 'cuotas.nro_cuota'},
+         {data: 'importe', name: 'importe'},
+      ],
+      columnDefs: 
+      [
+         { "title": "Organismo", "targets": 0 },
+         { "title": "Total a cobrar", "targets": 1 },
+
       ],
       footerCallback: function ( row, data, start, end, display )
       {
@@ -158,24 +160,16 @@ app.controller('cobranza', function($scope, $http, $compile, $sce) {
             i : 0;
          };
  
-         // Total over all pages
-         total = api
-            .column( 4 )
-            .data()
-            .reduce( function (a, b) {
-               return intVal(a) + intVal(b);
-            }, 0 );
- 
          // Total over this page
          pageTotal = api
-            .column( 4, { page: 'current'} )
+            .column( 1, { page: 'current'} )
             .data()
             .reduce( function (a, b) {
                return intVal(a) + intVal(b);
             }, 0 );
  
          // Update footer
-         $( api.column( 4 ).footer() ).html(
+         $( api.column( 1 ).footer() ).html(
             '$'+pageTotal
          );
       },
@@ -219,6 +213,124 @@ app.controller('cobranza', function($scope, $http, $compile, $sce) {
     ],
    });
    
+   $('#datatable-responsive tbody').on( 'click', 'tr', function () {
+         var id = tabla.row(this).data().id_organismo;
+         $('#datatable-responsive').dataTable().fnDestroy();
+         $('#datatable-responsive').remove();
+         var $div = $("<table>", {"class": "table table-striped table-bordered dt-responsive nowrap order-colum compact", id: "otro", });
+         $('#paraBorrar').append($div);
+         var tfoot = $("<tfoot>");
+         $('#otro').append(tfoot);
+         var html = '<tr><th style="text-align:right">Total:</th><th></tr>';
+         $('tfoot').append(html);
+         $scope.tabla2 =  $("#otro").DataTable({
+         processing: true,
+         serverSide: true,
+         ajax:
+         {
+            url:"cobranza/porSocio",
+            type: "POST",
+            headers:
+            {
+               'X-CSRF-TOKEN': $('#token').val()
+            },
+            data: function (d)
+            {
+               d.filtros = $scope.data;
+               d.id = id;
+            }
+         },
+         createdRow: function ( row, data, index ) {
+              
+            if ( parseFloat(data.deuda) * 1 > 0 ) {
+                $('td', row).eq(6).addClass('highlight');
+            }
+        },   
+         columnDefs: 
+         [
+
+            { "title": "Socio", "targets": 0 },
+            { "title": "Adeuda", "targets": 1 },
+         ],
+         columns: 
+         [
+
+            {data: 'socio', name: 'socio'},
+            {data: 'deuda', name: 'deuda'},
+            
+         ],
+         footerCallback: function ( row, data, start, end, display )
+         {
+            var api = this.api(), data;
+    
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) 
+            {
+               return typeof i === 'string' ?
+               i.replace(/[\$,]/g, '')*1 :
+               typeof i === 'number' ?
+               i : 0;
+            };
+    
+            // Total over this page
+              totalACobrars = api
+               .column( 1, { page: 'current'} )
+               .data()
+               .reduce( function (a, b) {
+                  return intVal(a) + intVal(b);
+               }, 0 );
+
+
+                 $( api.column( 1 ).footer() ).html(
+               '$'+totalACobrars
+            );
+
+          
+         },
+         select: true,
+         fixedHeader: 
+         {
+            header:true,
+            footer: true,
+         },
+         language: 
+         {
+            info: "Mostrando del _PAGE_ al _END_ de _TOTAL_ registros",
+            zeroRecords: "No se encontraron resultados",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            lengthMenu: "Mostrar _MENU_ registros",
+            paginate: 
+            {
+               next: "Siguiente",
+               previous: "Anterior"
+            },
+            search: "Buscar:"
+         },
+            dom: 'Blrtip',
+            buttons: 
+            [
+               {
+                  extend: 'pdf',
+                  text: 'Generar reporte',
+                  exportOptions: 
+                  {
+                     columns: ':visible',
+                     modifier:
+                     {
+                       page: 'current'
+                     }
+                  }
+               },
+               'print',
+            ],
+         lengthChange: true,
+         aLengthMenu: [
+           [25, 50, 100, 200, -1],
+           [25, 50, 100, 200, "Todos"]
+         ],
+      });
+
+   });
    // FORMEATEA LA FECHA DE UN FORMATO DD/MM/AAAA  A UN FORMATO AAAA-MM-DD     
    function formatearFecha(fecha)
    {

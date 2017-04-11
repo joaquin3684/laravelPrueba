@@ -86,29 +86,6 @@ class PagoProovedoresController extends Controller
             $cuota->save();
         }
     }
-    // me tengo que quedar con los que no estan vacios
-    // tengo que filtrar por lo que corresponde  {campo: 'proovedores.nombre', valor:'valor', operador:'='}
-    public function filtros($objeto, $query)
-    {
-        $objetoNuevo = $this->filtrosNoNulos($objeto);
-        foreach($objetoNuevo as $obj)
-        {
-            $query->where($obj['campo'], $obj['operador'], $obj['valor']);
-        }
-    }
 
-    public function filtrosNoNulos($objeto)
-    {
-        $array = [];
-        foreach($objeto['filtros'] as $obj)
-        {
-            if(!empty($obj['valor']))
-            {
-                array_push($array, $obj);
-            }
-        }
-
-        return $array;
-    }
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Socios;
 
+
 class Dar_Servicio extends Controller
 {
     public function index()

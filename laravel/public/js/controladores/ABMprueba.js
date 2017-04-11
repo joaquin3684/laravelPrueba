@@ -53,7 +53,7 @@ app.controller('ABM', function($scope, $http, $compile, $sce) {
                console.log(data);
                $scope.errores = data.data;
             });
-         var tabla =   $("#datatable-responsive").DataTable();
+        var tabla =   $("#datatable-responsive").DataTable();
          tabla.draw();
    }
 

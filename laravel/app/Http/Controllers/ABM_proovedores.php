@@ -49,4 +49,9 @@ class ABM_proovedores extends Controller
     {
         return Datatables::eloquent(Proovedores::query())->make(true);
     }
+
+    public function traerRelacion()
+    {
+        return Proovedores::all();
+    }
 }

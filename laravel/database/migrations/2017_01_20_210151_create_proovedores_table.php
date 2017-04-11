@@ -20,6 +20,8 @@ class CreateProovedoresTable extends Migration
             $table->integer('porcentaje_retencion');
             $table->integer('porcentaje_gastos_administrativos');
             $table->softDeletes();
+            $table->integer('id_prioridad')->unsigned();
+            $table->foreign('id_prioridad')->references('id')->on('prioridades');
             $table->timestamps();
         });
     }

@@ -16,13 +16,11 @@ class CreateCuotasTable extends Migration
         Schema::create('cuotas', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('id_movimiento')->unsigned();
-            $table->foreign('id_movimiento')->references('id')->on('movimientos');
-            $table->integer('importe');
-            $table->boolean('pago')->default(0);
-            $table->date('fecha_pago');
+            $table->integer('id_venta')->unsigned();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+            $table->double('importe');
+            $table->date('fecha_vencimiento');
             $table->integer('nro_cuota');
-            $table->boolean('cobro')->default(0);
             $table->softDeletes();
         });
     }

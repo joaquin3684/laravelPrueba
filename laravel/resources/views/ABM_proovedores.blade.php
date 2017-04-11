@@ -16,14 +16,14 @@
 
     <div class="main_container" >
 
-      <input type="hidden" id="tipo_tabla" name="tipo_tabla" value="proovedores">
+      <input type="hidden" id="tipo_tabla" name="tipo_tabla" value="proovedores" ng-init="traerRelaciones([{tabla:'prioridades',select:'#prioridad'}])">
       <!-- page content -->
       <div class="left-col" role="main" >
 
         <div class="" >
          
           <div class="clearfix"></div>
-@if(Sentinel::check()->hasAccess('proovedores.crear'))
+
           <div class="row" >
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
@@ -82,6 +82,14 @@
                         <input type="number" id="porcentaje_gastos_administrativos" name="porcentaje_gastos_administrativos" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.porcentaje_gastos_administrativos[0]}]}
                       </div>
                     </div>
+                     <div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">Prioridad <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select id="prioridad" name="id_prioridad" class="form-control col-md-7 col-xs-12" ></select>
+                      </div>
+
+                    </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
@@ -100,9 +108,9 @@
        
 
       </div>
-      @endif
+     
 
-      @if(Sentinel::check()->hasAccess('proovedores.visualizar'))
+  
       <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
@@ -143,7 +151,7 @@
                       </div>
                     </div>
                   </div>
-                  @endif
+      
       <!-- /page content -->
     </div>
 
@@ -202,7 +210,14 @@
                         <input type="number" id="porcentaje_gastos_administrativos" name="porcentaje_gastos_administrativos" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.porcentaje_gastos_administrativos[0]}]}
                       </div>
                     </div>
-                   
+                   <div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">Prioridad <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select id="prioridadEditar" name="id_prioridad" class="form-control col-md-7 col-xs-12" ></select>
+                      </div>
+
+                    </div>
                     <input type="hidden" name="id">
                     <div class="ln_solid"></div>
                     <div class="form-group">

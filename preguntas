@@ -1,3 +1,5 @@
+
+
 dar servicio
 
 el limite de la cuenta corriente es en cuotas o en el capital total ?? es decir el limite es por el total de lo que cuesta el servicio o por las cuotas? las cuotas tienen limite ?
@@ -40,3 +42,34 @@ General
 
 
 
+1590 * 670 
+76 * 88 y 55 * 66
+logo 44 * 
+
+
+
+
+//////////
+
+dar servicio agregar algun dato ???
+
+Cuenta corriente
+
+en la cuenta corriente las dos primeras abstracciones muestra el total de lo que debe, pero cuando es en cuotas se muestra que cuotas adeuda de antes con un color distinto;
+
+Cobranza organismos
+
+en la cobranza organismos se hizo un sistema de prioridades por proovedores, El sistema de distribucion de cobros maneja otra prioridad ?
+
+reporte de cobros y reporte de pagos
+
+- que campos tiene que tener?
+
+
+pantalla de cobros 
+tiene que estar la fecha del cobro 
+monto cobrado
+identeificador de servicio
+nro cuota
+diferencia 
+importe cuota

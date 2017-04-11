@@ -139,11 +139,12 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
       columns: 
       [
          {data: 'organismo', name: 'organismo'},
-         {data: 'socio', name: 'socio'},
-         {data: 'proovedor', name: 'proovedor'},
-         {data: 'producto', name: 'producto'},
-         {data: 'importe', name: 'cuotas.importe'},
-         {data: 'nro_cuota', name: 'cuotas.nro_cuota'},
+         {data: 'importe', name: 'importe'},
+      ],
+      columnDefs: 
+      [
+         { "title": "Organismo", "targets": 0 },
+         { "title": "Total a cobrar", "targets": 1 },
       ],
       footerCallback: function ( row, data, start, end, display )
       {
@@ -158,24 +159,17 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
             i : 0;
          };
  
-         // Total over all pages
-         total = api
-            .column( 4 )
-            .data()
-            .reduce( function (a, b) {
-               return intVal(a) + intVal(b);
-            }, 0 );
- 
+
          // Total over this page
          pageTotal = api
-            .column( 4, { page: 'current'} )
+            .column( 1, { page: 'current'} )
             .data()
             .reduce( function (a, b) {
                return intVal(a) + intVal(b);
             }, 0 );
  
          // Update footer
-         $( api.column( 4 ).footer() ).html(
+         $( api.column( 1 ).footer() ).html(
             '$'+pageTotal
          );
       },
@@ -218,16 +212,166 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
         [25, 50, 100, 200, "Todos"]
       ],
    });
-   
-   // FORMEATEA LA FECHA DE UN FORMATO DD/MM/AAAA  A UN FORMATO AAAA-MM-DD     
-   function formatearFecha(fecha)
-   {
-      var a = fecha.split('/');
-      a.reverse();
-      var j = a.join('-');
-      return j;         
-   }
 
+   $('#datatable-responsive tbody').on( 'click', 'tr', function () {
+         var id = tabla.row(this).data().id_organismo;
+         $('#datatable-responsive').dataTable().fnDestroy();
+         $('#datatable-responsive').remove();
+         var $div = $("<table>", {"class": "table table-striped table-bordered dt-responsive nowrap order-colum compact", id: "otro", });
+         $('#paraBorrar').append($div);
+         var tfoot = $("<tfoot>");
+         $('#otro').append(tfoot);
+         var html = '<tr><th style="text-align:right">Total:</th><th></th><th></th></tr>';
+         $('tfoot').append(html);
+         $scope.tabla2 =  $("#otro").DataTable({
+         processing: true,
+         serverSide: true,
+         ajax:
+         {
+            url:"cobrar/porSocio",
+            type: "POST",
+            headers:
+            {
+               'X-CSRF-TOKEN': $('#token').val()
+            },
+            data: function (d)
+            {
+               d.filtros = $scope.data;
+               d.id = id;
+            }
+         },
+         createdRow: function ( row, data, index ) {
+              
+            if ( parseFloat(data.deuda) * 1 > 0 ) {
+                $('td', row).eq(6).addClass('highlight');
+            }
+
+            $(row).find('input').attr('id', 'input'+data.id_asociado);
+      
+        },   
+         columnDefs: 
+         [
+            { "title": "Socio", "targets": 0 },
+            { "title": "Monto a cobrar", "targets": 1 },
+
+         ],
+         columns: 
+         [
+
+            {data: 'socio', name: 'socio'},
+
+            {data: 'importe', name: 'importe'},
+            {defaultContent: '<input type="number">'},
+            
+         ],
+         footerCallback: function ( row, data, start, end, display )
+         {
+            var api = this.api(), data;
+  
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) 
+            {
+               return typeof i === 'string' ?
+               i.replace(/[\$,]/g, '')*1 :
+               typeof i === 'number' ?
+               i : 0;
+            };
+    
+            // Total over this page
+              totalACobrars = api
+               .column( 1, { page: 'current'} )
+               .data()
+               .reduce( function (a, b) {
+                  return intVal(a) + intVal(b);
+               }, 0 );
+
+               total = api
+               .column( 2, { page: 'current'} )
+               .data()
+               .reduce( function (a, b) {
+                  return intVal(a) + intVal(b);
+               }, 0 );
+
+                 $( api.column( 1 ).footer() ).html(
+               '$'+totalACobrars
+            );
+
+
+          
+         },
+         select: true,
+         fixedHeader: 
+         {
+            header:true,
+            footer: true,
+         },
+         language: 
+         {
+            info: "Mostrando del _PAGE_ al _END_ de _TOTAL_ registros",
+            zeroRecords: "No se encontraron resultados",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            lengthMenu: "Mostrar _MENU_ registros",
+            paginate: 
+            {
+               next: "Siguiente",
+               previous: "Anterior"
+            },
+            search: "Buscar:"
+         },
+            dom: 'Blrtip',
+            buttons: 
+            [
+               {
+                  extend: 'pdf',
+                  text: 'Generar reporte',
+                  exportOptions: 
+                  {
+                     columns: ':visible',
+                     modifier:
+                     {
+                       page: 'current'
+                     }
+                  }
+               },
+               'print',
+            ],
+         lengthChange: true,
+         aLengthMenu: [
+           [25, 50, 100, 200, -1],
+           [25, 50, 100, 200, "Todos"]
+         ],
+      });
+
+   });
+
+   $scope.cobrar = function()
+   {
+      var p = $scope.tabla2.rows().data();
+   
+      var aux = [];
+      for(var i=0; p.length > i; i++)
+      {
+        var valorInput = $('#input'+p[i].id_asociado).val();
+         if(valorInput > 0 )
+         {
+            p[i]['cobro'] = valorInput;
+            aux.push(p[i]); 
+         }
+      }
+      $http({
+         url: 'cobrar/cobroPorPrioridad',
+         method: 'post',
+         data: aux
+         }).then(function successCallback(response)
+            {
+               console.log(response.data);
+
+            }, function errorCallback(data)
+            {
+               console.log(data.data);
+            });
+   }
+   
    // ESTA FUNCION ES PARA FILTRAR LA DATATABLE
    $scope.filtro = function()
    {
@@ -268,7 +412,7 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
       $(this).toggleClass('selected');
    });
 
-   $scope.cobrar = function()
+  /* $scope.cobrar = function()
    {
       var cuotas_id = [];
       $('#datatable-responsive > tbody > tr.selected').each(function (tr){
@@ -296,6 +440,6 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
             {
                console.log(data.data);
             });
-   }
+   }*/
 });
 

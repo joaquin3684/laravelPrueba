@@ -19,7 +19,7 @@
                     <div class="">
                         <div class="clearfix">
                         </div>
-                        @if(Sentinel::check()->hasAccess('proovedores.crear'))
+    
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
@@ -189,9 +189,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
 
-      @if(Sentinel::check()->hasAccess('proovedores.visualizar'))
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
@@ -238,44 +236,23 @@
                             </div>
                         </div>
                         <div class="x_content">
+                        <div id="paraBorrar">
                             <table cellspacing="0" class="table table-striped  table-bordered dt-responsive nowrap order-colum compact " id="datatable-responsive" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Organismo
-                                        </th>
-                                        <th>
-                                            Asociado
-                                        </th>
-                                        <th>
-                                            Proovedor
-                                        </th>
-                                        <th>
-                                            Producto
-                                        </th>
-                                        <th>
-                                            Importe
-                                        </th>
-                                       
-                                        <th>
-                                            N° Cuota
-                                        </th>
-                                      
-                                        
-                                    </tr>
-                                </thead>
+                          
                                 <tfoot>
                                     <tr>
-                                        <th colspan="4" style="text-align:right">Total:</th>
-                                        <th colspan="2"></th>
+                                        <th style="text-align:right">Total:</th>
+                                        <th></th>
                                         
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
+                        <button ng-click="cobrar()" class="btn btn-primary">Cobrar</button>
+                        </div>
                     </div>
                 </div>
-                @endif
+ 
                 <!-- /page content -->
             </input>
         </div>
