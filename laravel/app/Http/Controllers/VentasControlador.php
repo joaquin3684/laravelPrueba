@@ -160,10 +160,16 @@ class VentasControlador extends Controller
         
 
         return  $tabla =  Datatables::of($ventasPorOrganismo)
-                ->filter(function ($query) use ($request){
+                /*->filter(function ($query) use ($request){
                 
                     $this->filtros($request,$query);
             
+                })*/
+                ->filter(function ($instance) use ($request){
+                    $instance->collection = $instance->collection->filter(function ($row) use ($request){
+                        return $row;
+                        return $row == $request['filtros']['id_organismo'] ? true : false;
+                    });
                 })
         ->make(true);
  

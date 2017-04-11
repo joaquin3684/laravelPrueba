@@ -137,7 +137,7 @@ app.controller('ventas', function($scope, $http, $compile, $sce, $window) {
          }
       },
       createdRow: function ( row, data, index ) {
-               
+               console.log(data);
             if ( parseFloat(data.diferencia) * 1 > 0 ) {
                 $('td', row).eq(3).addClass('highlight');
             }
@@ -397,7 +397,7 @@ app.controller('ventas', function($scope, $http, $compile, $sce, $window) {
          {'campo': 'ventas.id_asociado', 'valor': $scope.valorSocio, 'operador': '='},
          {'campo': 'ventas.id_producto', 'valor': $scope.valorProducto, 'operador': '='},
          {'campo': 'proovedores.id', 'valor': $scope.valorProovedor, 'operador': '='},
-         {'campo': 'organismos.id', 'valor': $scope.valorOrganismo, 'operador': '='}, 
+         {'campo': 'id_organismo', 'valor': $scope.valorOrganismo, 'operador': '='}, 
          {'campo': 'importeTotal', 'valor':$scope.minimo_importe, 'operador': '>='},
          {'campo': 'importeTotal', 'valor':$scope.maximo_importe, 'operador': '<='},
          {'campo': 'cuotas.importe', 'valor':$scope.minimo_importe_cuota, 'operador': '>='},
@@ -407,7 +407,7 @@ app.controller('ventas', function($scope, $http, $compile, $sce, $window) {
          {'campo': 'cuotas.fecha_inicio', 'valor':desde, 'operador': '>='},
          {'campo': 'cuotas.fecha_inicio', 'valor':hasta, 'operador': '<='}
         ];
-         console.log($scope.tabla2);
+            
       if($scope.tabla2 != undefined)
       {
          $scope.tabla2.draw();
