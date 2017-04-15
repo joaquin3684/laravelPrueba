@@ -12,7 +12,7 @@ class Dar_Servicio extends Controller
     public function index()
   {
   	
-    return view('Dar_Servicio');
+    return view('Dar_servicio');
   }
   public function sociosQueCumplenConFiltro(Request $request)
   {

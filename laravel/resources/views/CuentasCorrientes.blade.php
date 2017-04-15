@@ -260,7 +260,7 @@
                         </div>
                         <div class="x_content">
                         <div id="paraBorrar">
-                            <table cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" id="datatable-responsive" width="100%">
+                            <table cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" id="tablaOrganismos" width="100%">
                                
                                <tfoot>
                                     <tr>

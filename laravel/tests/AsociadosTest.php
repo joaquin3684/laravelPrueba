@@ -55,7 +55,7 @@ class AsociadosTest extends TestCase
     public function getData($custom = array())
     {
         $faker = F::create('App\Socios');
-        $data = [            
+        $data = [
 			'nombre'           => $faker->name,
 			'fecha_nacimiento' => $faker->date('Y-m-d'),
 			'cuit'             => $faker->swiftBicNumber,
@@ -67,8 +67,8 @@ class AsociadosTest extends TestCase
 			'legajo'           => $faker->randomNumber(8),
 			'fecha_ingreso'    => $faker->date('Y-m-d'),
 			'grupo_familiar'   => $faker->randomDigit,           
-			'id_organismo'     => $faker->randomDigitNotNull                              
-            ];
+			'id_organismo'     => $faker->randomDigitNotNull
+        ];
         $data = array_merge($data, $custom);
         return $data;
     }
