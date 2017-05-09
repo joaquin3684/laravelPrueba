@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Proovedores;
 use App\Http\Requests\ValidacionABMproovedores;
 use Yajra\Datatables\Facades\Datatables;
-
+use App\Proovedores;
 class ABM_proovedores extends Controller
 {
     
   public function index()
   {
-    
-    return view('ABM_proovedores');
+      $registros = Proovedores::all();
+      return view('ABM_proovedores', compact('registros'));
+
   }
 
    public function store(ValidacionABMproovedores $request)

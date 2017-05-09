@@ -76,7 +76,7 @@
         <div class="" >
          
           <div class="clearfix"></div>
-@if(Sentinel::check()->hasAccess('asociados.crear'))
+@if(Sentinel::check()->hasAccess('socios.crear'))
           <div class="row" >
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
@@ -209,7 +209,7 @@
 
        @endif
 
-       @if(Sentinel::check()->hasAccess('asociados.visualizar'))
+       @if(Sentinel::check()->hasAccess('socios.visualizar'))
 
       </div>
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -271,8 +271,8 @@
                                 <td>{{ $registro->organismo->nombre }}</td>
                                 
 
-                                <td>@if(Sentinel::check()->hasAccess('asociados.editar'))<button type="button" data-toggle="modal" data-target="#editar" onclick="enviarFormulario('Mostrar', {{$registro->id}})" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button>@endif
-                               @if(Sentinel::check()->hasAccess('asociados.borrar')) <button type="button" class="btn btn-danger" onclick="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>
+                                <td>@if(Sentinel::check()->hasAccess('socios.editar'))<button type="button" data-toggle="modal" data-target="#editar" onclick="enviarFormulario('Mostrar', {{$registro->id}})" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button>@endif
+                               @if(Sentinel::check()->hasAccess('socios.borrar')) <button type="button" class="btn btn-danger" onclick="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>
                                @endif
                                 </td>
                                

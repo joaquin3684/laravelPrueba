@@ -14,6 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('creacionAutomatica', function(){
+    $user = Sentinel::registerAndActivate(array('usuario'=>'1', 'email'=>'1', 'password'=> '1'));
+    $role = Sentinel::getRoleRepository()->createModel()->create([
+        'name' => 'genio',
+        'slug' => 'genio',
+    ]);
+    $role->permissions = ['organismos.crear' => true, 'organismos.visualizar' => true, 'organismos.editar' => true, 'organismos.borrar'=> true, 'socios.editar' => true, 'socios.visualizar' => true, 'socios.crear' => true, 'socios.borrar' => true];
+    $role->save();
+    $role->users()->attach($user);
+});
 Route::get('abm/mostrarRegistros', 'Prueba@mostrarRegistros');
 Route::get('organismos/traerRelacionorganismos', 'ABM_organismos@traerRelacionorganismos');
 Route::get('asociados/traerDatos', 'ABM_asociados@traerDatos');
@@ -46,11 +56,15 @@ Route::post('cobrar/datosAutocomplete', 'CobrarController@traerDatosAutocomplete
 Route::post('cobrar/cobrarCuotas', 'CobrarController@cobrarCuotas');
 Route::post('cobrar/cobroPorPrioridad', 'CobrarController@cobrarPorPrioridad');
 Route::post('cobrar/porSocio', 'CobrarController@mostrarPorSocio');
+Route::post('cobrar/mostrarPorVenta', 'CobrarController@mostrarPorVenta');
+Route::post('cobrar/cobroPorVenta', 'CobrarController@cobrarPorVenta');
+
 Route::get('prioridades/datos', 'ABM_prioridades@datos');
 Route::post('prioridades/guardarConfiguracion', 'ABM_prioridades@guardarConfiguracion');
 Route::get('proovedores/traerRelacionproovedores', 'ABM_proovedores@traerRelacion');
 Route::get('prioridades/traerRelacionprioridades', 'ABM_prioridades@traerRelacion');
 
+Route::resource('cobrar', 'CobrarController');
 Route::resource('proovedores_prioridades', 'PrioridadesProovedores');
 Route::resource('prioridades', 'ABM_prioridades');
 Route::resource('usuarios', 'ABM_usuarios');
@@ -59,4 +73,4 @@ Route::resource('proovedores', 'ABM_proovedores');
 Route::resource('asociados', 'ABM_asociados');
 Route::resource('roles', 'ABM_roles');
 Route::resource('ventas', 'VentasControlador');
-Route::resource('cobrar', 'CobrarController');
+Route::resource('productos', 'ABM_productos');

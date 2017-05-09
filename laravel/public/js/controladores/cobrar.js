@@ -118,9 +118,12 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
       {'campo': 'cuotas.fecha_pago', 'valor':$scope.desde, 'operador': '>='},
       {'campo': 'cuotas.fecha_pago', 'valor':$scope.hasta, 'operador': '<='}
    ];
-   
+   $scope.cobrarSocio = false;
+   $scope.cobrarVenta = false;
+    $("#cobrarSocio").hide();
+    $("#cobrarVenta").hide();
    // TABLA DE LA DATATABLE  
-   var tabla =  $("#datatable-responsive").DataTable({
+   var tabla =  $("#tablaOrganismos").DataTable({
       processing: true,
       serverSide: true,
       ajax:
@@ -139,7 +142,7 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
       columns: 
       [
          {data: 'organismo', name: 'organismo'},
-         {data: 'importe', name: 'importe'},
+         {data: 'diferencia', name: 'diferencia'},
       ],
       columnDefs: 
       [
@@ -213,17 +216,19 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
       ],
    });
 
-   $('#datatable-responsive tbody').on( 'click', 'tr', function () {
-         var id = tabla.row(this).data().id_organismo;
-         $('#datatable-responsive').dataTable().fnDestroy();
-         $('#datatable-responsive').remove();
-         var $div = $("<table>", {"class": "table table-striped table-bordered dt-responsive nowrap order-colum compact", id: "otro", });
+   $('#tablaOrganismos tbody').on( 'click', 'tr', function () {
+       $("#cobrarSocio").show();
+
+            var id = tabla.row(this).data().id_organismo;
+         $('#tablaOrganismos').dataTable().fnDestroy();
+         $('#tablaOrganismos').remove();
+         var $div = $("<table>", {"class": "table table-striped table-bordered dt-responsive nowrap order-colum compact", id: "tablaSocios", });
          $('#paraBorrar').append($div);
          var tfoot = $("<tfoot>");
-         $('#otro').append(tfoot);
+         $('#tablaSocios').append(tfoot);
          var html = '<tr><th style="text-align:right">Total:</th><th></th><th></th></tr>';
          $('tfoot').append(html);
-         $scope.tabla2 =  $("#otro").DataTable({
+         $scope.tabla2 =  $("#tablaSocios").DataTable({
          processing: true,
          serverSide: true,
          ajax:
@@ -246,7 +251,7 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
                 $('td', row).eq(6).addClass('highlight');
             }
 
-            $(row).find('input').attr('id', 'input'+data.id_asociado);
+            $(row).find('input').attr('id', 'input'+data.id_socio);
       
         },   
          columnDefs: 
@@ -260,7 +265,7 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
 
             {data: 'socio', name: 'socio'},
 
-            {data: 'importe', name: 'importe'},
+            {data: 'diferencia', name: 'diferencia'},
             {defaultContent: '<input type="number">'},
             
          ],
@@ -344,6 +349,136 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
 
    });
 
+    $('#paraBorrar').on( 'click', '#tablaSocios tr', function () {
+        $("#cobrarSocio").hide();
+        $("#cobrarVenta").show();
+        var id = $scope.tabla2.row(this).data().id_socio;
+        $('#tablaSocios').dataTable().fnDestroy();
+        $('#tablaSocios').remove();
+        $scope.tabla2 = undefined;
+        var $div = $("<table>", {"class": "table table-striped table-bordered dt-responsive nowrap order-colum compact", id: "tablaVentas", });
+        $('#paraBorrar').append($div);
+        var tfoot = $("<tfoot>");
+        $('#tablaVentas').append(tfoot);
+        var html = '<tr><th colspan="3" style="text-align:right">Total:</th><th></th><th></th></tr>';
+        $('tfoot').append(html);
+        $scope.tabla3 =  $("#tablaVentas").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax:
+                {
+                    url:"cobrar/mostrarPorVenta",
+                    type: "POST",
+                    headers:
+                        {
+                            'X-CSRF-TOKEN': $('#token').val()
+                        },
+                    data: function (d)
+                    {
+                        d.filtros = $scope.data;
+                        d.id = id;
+                    }
+                },
+            createdRow: function ( row, data, index ) {
+
+                if ( parseFloat(data.diferencia) * 1 > 0 ) {
+                    $('td', row).eq(6).addClass('highlight');
+                }
+                $(row).find('input').attr('id', 'input'+data.id_venta);
+            },
+            columnDefs:
+                [
+                    { "title": "Servicio", "targets": 0 },
+                    { "title": "Socio", "targets": 1 },
+                    { "title": "Proovedor", "targets": 2 },
+                    { "title": "Monto a cobrar", "targets": 3 },
+
+                ],
+            columns:
+                [
+                    {data: 'id_venta', name:'id_venta'},
+                    {data: 'socio', name: 'socio'},
+                    {data: 'proovedor', name: 'proovedor'},
+                    {data: 'diferencia', name: 'diferencia'},
+                    {defaultContent: '<input type="number">'},
+
+
+                ],
+            footerCallback: function ( row, data, start, end, display )
+            {
+                var api = this.api(), data;
+
+                // Remove the formatting to get integer data for summation
+                var intVal = function ( i )
+                {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '')*1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+
+
+
+                deuda = api
+                    .column( 3, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+
+                $( api.column( 3 ).footer() ).html(
+                    '$'+deuda
+                );
+
+            },
+            select: true,
+            fixedHeader:
+                {
+                    header:true,
+                    footer: true,
+                },
+            language:
+                {
+                    info: "Mostrando del _PAGE_ al _END_ de _TOTAL_ registros",
+                    zeroRecords: "No se encontraron resultados",
+                    infoFiltered: "(filtrado de _MAX_ registros)",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    paginate:
+                        {
+                            next: "Siguiente",
+                            previous: "Anterior"
+                        },
+                    search: "Buscar:"
+                },
+            dom: 'Blrtip',
+            buttons:
+                [
+                    {
+                        extend: 'pdf',
+                        text: 'Generar reporte',
+                        exportOptions:
+                            {
+                                columns: ':visible',
+                                modifier:
+                                    {
+                                        page: 'current'
+                                    }
+                            }
+                    },
+                    'print',
+                ],
+            lengthChange: true,
+            aLengthMenu: [
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "Todos"]
+            ],
+        });
+
+    });
+
+
+
    $scope.cobrar = function()
    {
       var p = $scope.tabla2.rows().data();
@@ -351,7 +486,7 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
       var aux = [];
       for(var i=0; p.length > i; i++)
       {
-        var valorInput = $('#input'+p[i].id_asociado).val();
+        var valorInput = $('#input'+p[i].id_socio).val();
          if(valorInput > 0 )
          {
             p[i]['cobro'] = valorInput;
@@ -361,6 +496,7 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
       $http({
          url: 'cobrar/cobroPorPrioridad',
          method: 'post',
+         headers: {'X-CSRF-TOKEN': $('#token').val()},
          data: aux
          }).then(function successCallback(response)
             {
@@ -370,6 +506,35 @@ app.controller('cobrar', function($scope, $http, $compile, $sce) {
             {
                console.log(data.data);
             });
+   }
+
+   $scope.cobrarPorVenta = function()
+   {
+       var p = $scope.tabla3.rows().data();
+
+       var aux = [];
+       for(var i=0; p.length > i; i++)
+       {
+           var valorInput = $('#input'+p[i].id_venta).val();
+           if(valorInput > 0 )
+           {
+               p[i]['cobro'] = valorInput;
+               aux.push(p[i]);
+           }
+       }
+       $http({
+           url: 'cobrar/cobroPorVenta',
+           method: 'post',
+           headers: {'X-CSRF-TOKEN': $('#token').val()},
+           data: aux
+       }).then(function successCallback(response)
+       {
+           console.log(response.data);
+
+       }, function errorCallback(data)
+       {
+           console.log(data.data);
+       });
    }
    
    // ESTA FUNCION ES PARA FILTRAR LA DATATABLE

@@ -14,7 +14,7 @@ class Login extends Controller
 
 	public function login(Request $request)
 	{
-		Sentinel::authenticate($request->all());
+		$pum = Sentinel::authenticate($request->all());
 		if(Sentinel::check())
 		{
 			return redirect('/asociados');

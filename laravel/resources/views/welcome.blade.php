@@ -10,7 +10,7 @@
 
   <title> Mutual </title>
   <!-- Bootstrap core CSS -->
-{!! HTML::style('js/angular-material/angular-material.min.css') !!} 
+{!! Html::style('js/angular-material/angular-material.min.css') !!}
   {!! Html::style('css/bootstrap.min.css') !!}
   {!! Html::style('fonts/css/font-awesome.min.css') !!}
   
@@ -73,7 +73,7 @@
               <img src="images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-              <span>Bienvenido,</span>
+              <span>Bienvenido, {{Sentinel::check()->usuario}}</span>
               <h2></h2>
             </div>
           </div>
@@ -90,8 +90,14 @@
                
                 <li><a><i class="fa fa-edit"></i> ABM <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-
-
+                      <li><a href="asociados">Socios</a>
+                      </li>
+                      <li><a href="organismos">Organismos</a>
+                      </li>
+                      <li><a href="proovedores">Proovedores</a></li>
+                      <li><a href="productos">Productos</a></li>
+                      <li><a href="usuarios">Usuarios</a></li>
+                      <li><a href="roles">Roles</a></li>
                   </ul>
                 </li>
                  <li><a><i class="fa fa-edit"></i> Operaciones <span class="fa fa-chevron-down"></span></a>
@@ -100,10 +106,7 @@
                     </li>
                     <li><a href="ventas">Cuentas corrientes</a>
                     </li>
-                    <li><a href="cobranza">Reporte Deudas</a></li>
-                    <li><a href="pago_proovedores">Pago Proovedores</a></li>
-                    <li><a href="cobrar">Cobranza organismos</a></li>
-                    
+
                   </ul>
                 </li>
                

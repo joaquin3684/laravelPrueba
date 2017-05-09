@@ -3,49 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Socios as Socios;
 use App\Http\Requests\ValidacionABMsocios;
+use App\Repositories\Eloquent\AbmSociosRepositorio as Socio;
 
 class ABM_asociados extends Controller
 {
+    private $socio;
+
+    public function __construct(Socio $socio)
+    {
+        $this->socio = $socio;
+    }
+
     public function index()
     {   
-        $registros = Socios::all();
+        $registros = $this->socio->all();
         return view('ABM_socios', compact('registros'));
     }
-    
+
     public function store(ValidacionABMsocios $request)
-    {   
-        
-        Socios::create($request->all());
-        $registros = Socios::all();
-        return ['created' => true];
+    {
+        $this->socio->store($request->all());
     }
 
     public function show($id)
     {
-        $registro = Socios::find($id);
-        return $registro;
-       
+        $this->socio->show($id);
+
     }
 
     public function update(ValidacionABMsocios $request, $id)
     {
-        $registro = Socios::find($id);
-        $registro->fill($request->all())->save();
-        return ['updated' => true];
+        $this->socio->update($request->all(), $id);
     }
-
 
     public function destroy($id)
     {
-        $registro = Socios::find($id);
-        $registro->delete();
-        return ['deleted' => true];
+        $this->socio->destroy($id);
     }
 
     public function traerDatos()
     {
-        return Socios::all();
+        return $this->socio->all();
     }
 }

@@ -9,7 +9,7 @@ use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Organismos;
-
+use App\Repositories\Eloquent\Ventas as RepoVentas;
 class VentasControlador extends Controller
 {
     private $ventas;              
@@ -23,29 +23,6 @@ class VentasControlador extends Controller
 
     public function __construct()
     {
-  
-      $this->ventas              = Ventas::all();
-      $this->organismos = Organismos::all();
-      $this->cuotas              = collect();
-      $this->socios              = collect();
-      $this->productos           = collect();
-      $this->proovedores         = collect();
-      $this->movimientos         = collect();
-      $this->movimientosPorVenta = collect();
-
-      
-
-      foreach ($this->ventas as $key => $venta) {
-        $this->cuotas->push($venta->cuotas);
-        $this->socios->push($venta->socio);
-        $this->productos->push($venta->producto);
-        $this->movimientos->push($venta->movimientos);
-
-      }
-      $this->cuotas              = $this->cuotas->collapse();
-      $this->movimientos         = $this->movimientos->collapse();
-      $this->movimientosPorVenta = $this->movimientos->groupBy('id_venta');
-
 
     }
 
@@ -62,7 +39,6 @@ class VentasControlador extends Controller
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('productos', 'ventas.id_producto', '=', 'productos.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
             ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
             ->groupBy('ventas.id')
             ->where('socios.id', '=', $request['id'])
@@ -70,15 +46,14 @@ class VentasControlador extends Controller
 
         $movimientos = DB::table('ventas')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
-            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
+            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
             ->groupBy('ventas.id')
             ->where('socios.id', '=', $request['id'])
             ->select('ventas.id AS id_venta', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
 
-        $ventasPorVenta = $this->unirColecciones($ventas, $movimientos, "id_venta", ['totalCobrado' => 0]);
+        $ventasPorVenta = $this->unirColecciones($ventas, $movimientos, ["id_venta"], ['totalCobrado' => 0]);
 
         $ventasPorVenta = $ventasPorVenta->each(function ($item, $key){
             $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
@@ -107,18 +82,18 @@ class VentasControlador extends Controller
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
             ->where('ventas.id', '=', $request['id'])
-            ->select('cuotas.nro_cuota', 'socios.nombre AS socio', 'cuotas.fecha_vencimiento', 'cuotas.id', 'ventas.fecha', 'proovedores.nombre AS proovedor', 'cuotas.importe AS totalACobrar')->get();
+            ->select('cuotas.id AS id_cuota', 'socios.nombre AS socio', 'cuotas.fecha_vencimiento', 'cuotas.id', 'cuotas.nro_cuota', 'ventas.fecha', 'proovedores.nombre AS proovedor', 'cuotas.importe AS totalACobrar')->get();
 
         $movimientos = DB::table('ventas')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
-            ->groupBy('movimientos.nro_cuota')
+            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+            ->groupBy('movimientos.id_cuota')
             ->where('ventas.id', '=', $request['id'])
-            ->select('movimientos.nro_cuota', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
+            ->select('movimientos.id_cuota', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
 
-        $ventasPorCuota = $this->unirColecciones($ventas, $movimientos, "nro_cuota", ['totalCobrado' => 0]);
+        $ventasPorCuota = $this->unirColecciones($ventas, $movimientos, ["id_cuota"], ['totalCobrado' => 0]);
 
         $ventasPorCuota= $ventasPorCuota->each(function ($item, $key){
             $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
@@ -152,7 +127,7 @@ class VentasControlador extends Controller
             $fechaHoy = Carbon::create($carbon->year, $carbon->month, $carbon->day);
             $fechaHoy->addDays(1);
             $carbon->addDays(30);
-           
+           //TODO: cuando se da de aprobado una venta es cuando recien toma vigencia para poder seguir con el proceso
         }
     }
 
@@ -161,23 +136,21 @@ class VentasControlador extends Controller
         $ventas = DB::table('ventas')
             ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
             ->groupBy('socios.id')
             ->where('organismos.id', '=', $request['id'])
             ->select('socios.nombre AS socio', 'socios.id AS id_socio',  DB::raw('SUM(cuotas.importe) AS totalACobrar'))->get();
 
         $movimientos = DB::table('ventas')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
+            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
             ->groupBy('socios.id')
             ->where('organismos.id', '=', $request['id'])
             ->select('socios.id AS id_socio', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
 
-        $ventasPorSocio = $this->unirColecciones($ventas, $movimientos, "id_socio", ['totalCobrado' => 0]);
+        $ventasPorSocio = $this->unirColecciones($ventas, $movimientos, ["id_socio"], ['totalCobrado' => 0]);
 
         $ventasPorSocio = $ventasPorSocio->each(function ($item, $key){
             $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
@@ -200,6 +173,8 @@ class VentasControlador extends Controller
     public function mostrarPorOrganismo(Request $request)
 
     {
+        /*$ventas = new RepoVentas(2);
+        $ventas->cobrar(20);*/
 
         $ventas = DB::table('ventas')
             ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
@@ -211,17 +186,15 @@ class VentasControlador extends Controller
 
         $movimientos = DB::table('ventas')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
-            ->join('proovedores', function($join){
-                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
-            })
+            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+
             ->groupBy('organismos.id')
             ->select('organismos.id AS id_organismo', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
 
         //return [$ventas, $movimientos];
-        $ventasPorOrganismo = $this->unirColecciones($ventas, $movimientos, "id_organismo", ['totalCobrado' => 0]);
+        $ventasPorOrganismo = $this->unirColecciones($ventas, $movimientos, ["id_organismo"], ['totalCobrado' => 0]);
 
         $ventasPorOrganismo = $ventasPorOrganismo->each(function ($item, $key){
             $diferencia = $item['totalACobrar'] - $item['totalCobrado'];

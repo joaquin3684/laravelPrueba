@@ -9,7 +9,7 @@ class CreateABMOrganismosTable extends Migration
     public function up()
     {
         //Schema::rename('a_b_m_organismos', 'ORGANISMOS');
-        Schema::create('ORGANISMOS', function (Blueprint $table) {
+        Schema::create('organismos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->string('cuit');

@@ -10,13 +10,13 @@ class Movimientos extends Model
    	use SoftDeletes;
 
 	protected $fillable = [
-        'id_venta', 'entrada', 'salida', 'fecha'
+        'id_cuota', 'entrada', 'salida', 'fecha', 'nro_cuota'
     ];
 
     protected $dates = ['deleted_at'];
 
     public function ventas()
     {
-    	return $this->belongsTo('App\Ventas', 'id_venta', 'id');
+    	return $this->belongsTo('App\Cuotas', 'id_cuota', 'id');
     }
 }

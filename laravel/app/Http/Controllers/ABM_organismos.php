@@ -1,55 +1,54 @@
-
 <?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Organismos as Organismos;
 use App\Http\Requests\ValidacionABMorganismos;
+use App\Repositories\Eloquent\AbmOrganismosRepositorio as Organismo;
 
 class ABM_organismos extends Controller
 {
-    
+
+    private $organismo;
+    public function __construct(Organismo $organismo)
+    {
+        $this->organismo = $organismo;
+    }
+
     public function index()
     {   
-        $registros = Organismos::all();
+        $registros = $this->organismo->all();
         return view('ABM_organismos', compact('registros'));
         
     }
 
  
     public function store(ValidacionABMorganismos $request)
-    {   
-        Organismos::create($request->all());
-        $registros = Organismos::all();
-        return ['created' => true];
+    {
+        $this->organismo->store($request->all());
+
     }
 
     public function show($id)
     {
-        $registro = Organismos::find($id);
-        return $registro;
+        return $this->organismo->show($id);
        
     }
 
     public function update(ValidacionABMorganismos $request, $id)
     {
-        $registro = Organismos::find($id);
-        $registro->fill($request->all())->save();
-        return ['updated' => true];
+        $this->organismo->update($request->all(), $id);
     }
 
 
     public function destroy($id)
     {
-        $registro = Organismos::find($id);
-        $registro->delete();
-        return ['deleted' => true];
+        $this->organismo->destroy($id);
     }
 
     public function traerRelacionorganismos()
     {
-        return  Organismos::all();
+        return  $this->organismo->all();
     }
 
 }

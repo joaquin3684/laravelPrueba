@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -8,6 +9,28 @@ use Faker\Factory as F;
 class AsociadosTest extends TestCase
 {
    	use DatabaseMigrations;
+
+   	private $data;
+    public function setUp()
+    {
+        parent::setUp();
+        $faker = F::create('App\Socios');
+        $this->data = [
+            'nombre'           => $faker->name,
+            'fecha_nacimiento' => $faker->date('Y-m-d'),
+            'cuit'             => $faker->swiftBicNumber,
+            'dni'              => $faker->randomNumber(8),
+            'domicilio'        => $faker->streetAddress,
+            'localidad'        => $faker->state,
+            'codigo_postal'    => $faker->postcode,
+            'telefono'         => $faker->randomNumber(8),
+            'legajo'           => $faker->randomNumber(8),
+            'fecha_ingreso'    => $faker->date('Y-m-d'),
+            'grupo_familiar'   => $faker->randomDigit,
+            'id_organismo'     => $faker->randomDigitNotNull
+        ];
+
+    }
 
     public function testFormularioCompleto()
     {
@@ -31,13 +54,14 @@ class AsociadosTest extends TestCase
 
     public function testHttpRequest()
     {
-        $data = $this->getData();
+
+        $data = $this->data;
         $this->post('/asociados', $data)
         ->assertResponseOk()
         ->seeInDatabase('socios', $data)
         ->seeJson(['created' => true]);
 
-        $data2 = $this->getData();
+        $data2 = $this->data;
         $this->put('/asociados/1', $data2)
         ->assertResponseOk()
         ->seeInDatabase('socios', $data2)
@@ -52,7 +76,7 @@ class AsociadosTest extends TestCase
     }
 
 
-    public function getData($custom = array())
+   /* public function getData($custom = array())
     {
         $faker = F::create('App\Socios');
         $data = [
@@ -71,5 +95,5 @@ class AsociadosTest extends TestCase
         ];
         $data = array_merge($data, $custom);
         return $data;
-    }
+    }*/
 }

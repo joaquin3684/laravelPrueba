@@ -34,12 +34,12 @@ class Controller extends BaseController
 
     public function filtrosNoNulos($objeto)
     {
-        $array = [];
+        $array = collect();
         foreach($objeto['filtros'] as $obj)
         {
             if(!empty($obj['valor']))
             {
-                array_push($array, $obj);
+                $array->push($obj);
             }
         }
 
@@ -47,11 +47,16 @@ class Controller extends BaseController
     }
 
 
-    public function unirColecciones($array1, $array2, $parametroComparativo, $parametrosNulos)
+    public function unirColecciones($array1, $array2, $parametrosComparativo, $parametrosNulos = null)
     {
-        $unido =  $array1->map(function ($item) use ($array2, $parametroComparativo, $parametrosNulos){
-            $var = $array2->first(function ($item2) use ($item, $parametroComparativo){
-                return $item->$parametroComparativo == $item2->$parametroComparativo;
+        $unido =  $array1->map(function ($item) use ($array2, $parametrosComparativo, $parametrosNulos){
+            $var = $array2->first(function ($item2) use ($item, $parametrosComparativo){
+               foreach ($parametrosComparativo as $parametro){
+                    if($item->$parametro != $item2->$parametro){
+                        return false;
+                    }
+                }
+                return true;
             });
             $item = collect($item);
             if($var == null)

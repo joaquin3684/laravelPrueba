@@ -15,13 +15,13 @@ class Productos extends Model
 
     protected $dates = ['deleted_at'];
 
-     public function movimientos()
+    public function proovedor()
     {
-    	return $this->hasMany('App\Movimientos', 'id_asociado', 'id');
+        return $this->belongsTo('App\Proovedores', 'id_proovedor', 'id');
     }
 
-    public function proovedores()
+    public function movimientos()
     {
-        return $this->belongsTo('App\proovedores', 'id_proovedor', 'id');
+    	return $this->hasMany('App\Movimientos', 'id_producto', 'id');
     }
 }

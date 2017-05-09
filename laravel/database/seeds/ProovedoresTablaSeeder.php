@@ -6,6 +6,7 @@ class ProovedoresTablaSeeder extends Seeder
 {
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         $faker = F::create('App\Proovedores');
         for ($i=0; $i < 100; $i++)
         {
@@ -16,5 +17,6 @@ class ProovedoresTablaSeeder extends Seeder
 	        'porcentaje_gastos_administrativos' => $faker->numberBetween(0, 100),
         	]);
         }
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

@@ -41,6 +41,7 @@ app.controller('ABM', function($scope, $http, $compile, $sce) {
             {
                if(tipoSolicitud == 'Mostrar')
                   {
+
                      console.log(response);
                      llenarFormulario('formularioEditar',response.data);
                   } 

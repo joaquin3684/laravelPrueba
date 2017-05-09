@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Prioridades as Prioridades;
+use App\Repositories\Eloquent\AbmPrioridadesRepositorio as Prioridad;
 
 class ABM_prioridades extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $prioridad;
+
+    public function __construct(Prioridad $prioridad)
+    {
+        $this->prioridad = $prioridad;
+    }
+
     public function index()
     {
         return view('ABM_prioridades');
@@ -24,24 +26,13 @@ class ABM_prioridades extends Controller
      */
     public function datos()
     {
-        return Prioridades::all();
+        return $this->prioridad->all();
 
     }
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        Prioridades::create($request->all());
-        return ['created' => true];
+        $this->priorirdad->store($request->all());
     }
 
     /**
@@ -52,8 +43,7 @@ class ABM_prioridades extends Controller
      */
     public function show($id)
     {
-        $registro = Prioridades::find($id);
-        return $registro;
+        $this->prioridad->show($id);
     }
     public function guardarConfiguracion(Request $request)
     {
@@ -68,16 +58,7 @@ class ABM_prioridades extends Controller
             $i++;
         }
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -88,9 +69,7 @@ class ABM_prioridades extends Controller
      */
     public function update(Request $request, $id)
     {
-        $registro = Prioridades::find($id);
-        $registro->fill($request->all())->save();
-        return ['updated' => true];
+        $this->prioridad->update($request->all(), $id);
     }
 
     /**
@@ -101,13 +80,11 @@ class ABM_prioridades extends Controller
      */
     public function destroy($id)
     {
-        $registro = Prioridades::find($id);
-        $registro->delete();
-        return ['deleted' => true];
+        $this->prioridad->destroy($id);
     }
 
     public function traerRelacion()
     {
-        return Prioridades::all();
+        return $this->prioridad->all();
     }
 }

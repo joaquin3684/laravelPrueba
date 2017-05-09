@@ -237,7 +237,7 @@
                         </div>
                         <div class="x_content">
                         <div id="paraBorrar">
-                            <table cellspacing="0" class="table table-striped  table-bordered dt-responsive nowrap order-colum compact " id="datatable-responsive" width="100%">
+                            <table cellspacing="0" class="table table-striped  table-bordered dt-responsive nowrap order-colum compact " id="tablaOrganismos" width="100%">
                           
                                 <tfoot>
                                     <tr>
@@ -248,7 +248,9 @@
                                 </tfoot>
                             </table>
                         </div>
-                        <button ng-click="cobrar()" class="btn btn-primary">Cobrar</button>
+                        <button ng-click="cobrar()" id="cobrarSocio" class="btn btn-primary">Cobrar</button>
+                            <button ng-click="cobrarPorVenta()" id="cobrarVenta" class="btn btn-success">Cobrar</button>
+
                         </div>
                     </div>
                 </div>

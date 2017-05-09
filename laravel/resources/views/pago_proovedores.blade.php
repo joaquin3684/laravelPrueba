@@ -9,6 +9,7 @@
   {!! Html::style('js/datatables/fixedHeader.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/responsive.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/scroller.bootstrap.min.css') !!}
+
 <div class="nav-md" ng-controller="pago_proovedores">
     <div class="container body">
         <div class="main_container">
@@ -19,7 +20,7 @@
                     <div class="">
                         <div class="clearfix">
                         </div>
-                        @if(Sentinel::check()->hasAccess('proovedores.crear'))
+
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
@@ -191,9 +192,9 @@
                         </div>
                     </div>
                 </div>
-                @endif
 
-      @if(Sentinel::check()->hasAccess('proovedores.visualizar'))
+
+
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
@@ -243,38 +244,67 @@
                             <table cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" id="datatable-responsive" width="100%">
                                 <thead>
                                     <tr>
-                                    
-                                        <th>
-                                            Asociado
-                                        </th>
+
                                         <th>
                                             Proovedor
                                         </th>
                                         <th>
-                                            Producto
-                                        </th>
-                                        <th>
-                                            Importe
-                                        </th>
-                                        <th>
-                                            N° Cuota
+                                            Total a Pagar
                                         </th>
                                       
                                         
                                     </tr>
                                 </thead>
-                                <tfoot>
+                                <tbody id="pum">
                                     <tr>
-                                        <th colspan="3" style="text-align:right">Total:</th>
-                                        <th colspan="2"></th>
-                                        
+                                        <td>Proovedor 1</td>
+                                        <td>3000</td>
                                     </tr>
-                                </tfoot>
+                                    <tr>
+                                        <td>Proovedor 2</td>
+                                        <td>4000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 3</td>
+                                        <td>7500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 4</td>
+                                        <td>2500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 5</td>
+                                        <td>3000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 6</td>
+                                        <td>4250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 7</td>
+                                        <td>3000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 8</td>
+                                        <td>9000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 9</td>
+                                        <td>1000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proovedor 10</td>
+                                        <td>3500</td>
+                                    </tr>
+
+                                </tbody>
+
                             </table>
+                            <button id="pagar" onclick="esconder()" class="btn btn-primary">Pagar</button>
                         </div>
                     </div>
                 </div>
-                @endif
+
                 <!-- /page content -->
             </input>
         </div>
@@ -306,11 +336,37 @@
         {!! Html::script('js/datatables/dataTables.responsive.min.js') !!}
         {!! Html::script('js/datatables/responsive.bootstrap.min.js') !!}
         {!! Html::script('js/datatables/dataTables.scroller.min.js') !!}
-    <script>
-    </script>
+
     <script type="text/javascript">
-      
-    
+        $(document).ready(function() {
+            var tabla =  $("#datatable-responsive").DataTable({
+                select: true,
+                fixedHeader: true,
+                language: {
+                    info: "Mostrando del _PAGE_ al _END_ de _TOTAL_ registros",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    paginate: {
+                        next: "Siguiente",
+                        previous: "Anterior"
+                    },
+                    search: "Buscar:"
+
+
+                },
+
+                dom: 'Blfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
+                lengthChange: true,
+
+            });
+
+        });
+        function esconder(){
+            console.log('entrra');
+            $("#pum").hide();
+        }
     </script>
 </div>
 @endsection

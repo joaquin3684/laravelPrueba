@@ -20,6 +20,7 @@ class CreateCuotasTable extends Migration
             $table->foreign('id_venta')->references('id')->on('ventas');
             $table->double('importe');
             $table->date('fecha_vencimiento');
+            $table->date('fecha_inicio');
             $table->integer('nro_cuota');
             $table->softDeletes();
         });

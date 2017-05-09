@@ -141,11 +141,27 @@
                               <th>Descripcion</th>
                               <th>% de Ganancia</th>
                               <th>% Gastos Administrativos </th>
+                                <th>Prioridad</th>
                               <th></th>
                               
                             </tr>
                           </thead>
-                      
+                        <tbody>
+                        @foreach ($registros as $registro)
+                            <tr>
+                                <td>{{ $registro->nombre }}</td>
+                                <td>{{ $registro->descripcion }}</td>
+                                <td>{{ $registro->porcentaje_retencion }}</td>
+                                <td>{{ $registro->porcentaje_gastos_administrativos }}</td>
+                                <td>{{$registro->prioridad->nombre}}</td>
+                                <td>@if(Sentinel::check()->hasAccess('organismos.editar'))<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', {{$registro->id}})"><span class="glyphicon glyphicon-pencil"></span></button>@endif
+                                    @if(Sentinel::check()->hasAccess('organismos.borrar'))  <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>@endif
+                                </td>
+
+
+                            </tr>
+                        @endforeach
+                        </tbody>
                         </table>
 
                       </div>
@@ -214,7 +230,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">Prioridad <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="prioridadEditar" name="id_prioridad" class="form-control col-md-7 col-xs-12" ></select>
+                        <select id="prioridad_Editar" name="id_prioridad" class="form-control col-md-7 col-xs-12" ></select>
                       </div>
 
                     </div>
@@ -268,17 +284,6 @@
         <script type="text/javascript">
           $(document).ready(function() {
           var tabla =  $("#datatable-responsive").DataTable({
-              processing: true,
-        serverSide: true,
-        ajax: "proovedores/datos",
-        columns: [
-          {data: 'nombre'},
-          {data: 'descripcion'},
-          {data: 'porcentaje_retencion'},
-          {data: 'porcentaje_gastos_administrativos'},
-        
-          {defaultContent: '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario("Mostrar")"><span class="glyphicon glyphicon-pencil"></span></button>'},
-        ],
               select: true,
               fixedHeader: true,
                language: {

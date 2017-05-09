@@ -1,0 +1,21 @@
+PLANIFICACION TEST
+
+Dar servicio
+- Dar de alta un servicio
+    - capital:100
+     - cuotas: 5
+     - vencimiento: elejir cualquier dia
+     - tipo: producto
+     - afiliado: uno cualquiera,
+     - proovedor: uno cualquiera,
+     - producto: uno cualquiera,
+     #resultado:
+     - en la tabla ventas tiene que haber un nuevo registro con un total de cuotas de 5
+      con la fecha de inicio del dia de hoy y el estado tiene que ser un producto
+     - en la tabla cuotas tiene que haber 5 registros con el id de venta correspondiente
+      con un importe por cuota igual al capital ingresado dividido por el numero de cuotas
+     - la primer cuota tiene que tener la fecha de vencimiento elegido y las proximas tienen
+     dos meses y 10 dias de diferencia entre cada uno
+
+- Dar de alta un servicio
+

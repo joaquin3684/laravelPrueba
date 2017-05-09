@@ -12,84 +12,128 @@ use App\Productos;
 use App\Socios;
 use Carbon\Carbon;
 use App\Prioridades;
+use App\Movimientos;
 use Debugbar;
+use App\Repositories\Eloquent\ConsultasCuotas;
+use App\Repositories\Eloquent\ConsultasMovimientos;
+use App\Repositories\Eloquent\Filtros;
+use App\Repositories\Eloquent\Tabla;
+use App\Repositories\Eloquent\Ventas as RepoVentas;
+
 
 class CobrarController extends Controller
 {
+    private $cuotas;
+    private $movimientos;
+    private $filtros;
+    private $tabla;
+    private $cobrar;
+
+    public function __construct(ConsultasCuotas $cuotas, Tabla $tabla, ConsultasMovimientos $movimientos, Filtros $filtros)
+    {
+        $this->cuotas = $cuotas;
+        $this->movimientos = $movimientos;
+        $this->filtros = $filtros;
+        $this->tabla = $tabla;
+
+    }
+
     public function index()
     {
         
         return view('cobrar');
 
     }
-
     public function datos(Request $request)
     {
-        $fechaHoy = Carbon::today();
-        $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('proovedores', function($join){
-                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
-            })
-            ->groupBy('organismos.id')
-            ->select('organismos.nombre AS organismo', 'organismos.id AS id_organismo', DB::raw('SUM(cuotas.importe) - SUM(cuotas.cobro) AS importe'))
-            ->where(function($query) use ($fechaHoy){
-                $query->where('cuotas.fecha_vencimiento', '<=', $fechaHoy)
-                      ->orWhere(function($query2) use ($fechaHoy){
-                            $query2->where('cuotas.fecha_vencimiento', '>=', $fechaHoy)
-                                   ->where('cuotas.fecha_inicio', '<=', $fechaHoy);
-                        });
-            })
-            ->whereColumn('cuotas.cobro', '<', 'cuotas.importe');
-            
-        return  $tabla =  Datatables::of($ventas)
-           ->filter(function ($query) use ($request){
-                
-                $this->filtros($request,$query);
-            
-            })
-        ->make(true);
-    }
 
+        $cuotas = $this->cuotas->cuotasVencidasDeOrganismos();
+        $movimientos = $this->movimientos->movimientosHastaHoyDeOrganismos();
+        $cobrado = $this->unirColecciones($cuotas, $movimientos, ['id_organismo'], ['totalCobrado' => 0]);
+
+        $cobrado = $cobrado->each(function ($item, $key){
+            $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
+            $item->put('diferencia', $diferencia);
+            return $item;
+        });
+
+        $cobrado = $cobrado->filter(function ($item) {
+            return $item['diferencia'] > 0;
+        });
+
+        return $this->tabla->generarTabla($request, $cobrado);
+
+    }
     public function mostrarPorSocio(Request $request)
     {
-        $fechaHoy = Carbon::today();
+        $cuotas = $this->cuotas->cuotasVencidasDeSociosDelOrganismo($request['id']);
+        $movimientos = $this->movimientos->movimientosHastaHoyDeSociosDelOrganismo($request['id']);
+        $cobrado = $this->unirColecciones($cuotas, $movimientos, ['id_socio'], ['totalCobrado' => 0]);
+
+        $cobrado = $cobrado->each(function ($item, $key){
+            $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
+            $item->put('diferencia', $diferencia);
+            return $item;
+        });
+
+        $cobrado = $cobrado->filter(function ($item) {
+           return $item['diferencia'] > 0;
+        });
+
+        return $this->tabla->generarTabla($request, $cobrado);
+    }
+    public function mostrarPorVenta(Request $request)
+    {
+        $hoy = Carbon::today()->toDateString();
         $ventas = DB::table('ventas')
             ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('productos', 'ventas.id_producto', '=', 'productos.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('proovedores', function($join){
-                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
+            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
+            ->groupBy('ventas.id')
+            ->where(function($query) use ($hoy){
+                $query->where('cuotas.fecha_vencimiento', '<=', $hoy)
+                    ->orWhere(function($query2) use ($hoy){
+                        $query2->where('cuotas.fecha_vencimiento', '>=', $hoy)
+                            ->where('cuotas.fecha_inicio', '<=', $hoy);
+                    });
             })
-            ->groupBy('socios.id')
-            ->select('socios.nombre AS socio', 'socios.id AS id_asociado', DB::raw('SUM(cuotas.importe) - SUM(cuotas.cobro) AS importe'))
-            ->where(function($query) use ($fechaHoy){
-                $query->where('cuotas.fecha_vencimiento', '<=', $fechaHoy)
-                      ->orWhere(function($query2) use ($fechaHoy){
-                            $query2->where('cuotas.fecha_vencimiento', '>=', $fechaHoy)
-                                   ->where('cuotas.fecha_inicio', '<=', $fechaHoy);
-                        });
-            })
-            ->whereColumn('cuotas.cobro', '<', 'cuotas.importe')
-            ->where('organismos.id', '=', $request['id']);
-            
-        return  $tabla =  Datatables::of($ventas)
-           ->filter(function ($query) use ($request){
-                
-                $this->filtros($request,$query);
-            
-            })
-        ->make(true);
+            ->where('socios.id', '=', $request['id'])
+            ->select('socios.nombre AS socio', 'ventas.id AS id_venta', 'proovedores.nombre AS proovedor', DB::raw('SUM(cuotas.importe) AS totalACobrar'))->get();
+
+        $movimientos = DB::table('ventas')
+            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+            ->groupBy('ventas.id')
+            ->where('socios.id', '=', $request['id'])
+            ->select('ventas.id AS id_venta', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
+
+        $cobrado = $this->unirColecciones($ventas, $movimientos, ["id_venta"], ['totalCobrado' => 0]);
+
+        $cobrado = $cobrado->each(function ($item, $key){
+            $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
+            $item->put('diferencia', $diferencia);
+            return $item;
+        });
+
+        $cobrado = $cobrado->filter(function ($item) {
+            return $item['diferencia'] > 0;
+        });
+
+        return $this->tabla->generarTabla($request, $cobrado);
+
+
     }
     public function cobrarPorPrioridad(Request $request)
     {
-        $fechaHoy = Carbon::today();
+
         foreach($request->all() as $socio)
         {
+
+
             $cuotas = DB::table('ventas')
             ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
@@ -99,7 +143,7 @@ class CobrarController extends Controller
                 $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
             })
             ->join('prioridades', 'prioridades.id', '=', 'proovedores.id_prioridad')
-            ->select('socios.nombre AS socio', 'cuotas.id AS id_cuota', 'prioridades.orden', 'socios.id AS id_asociado', 'cuotas.cobro', 'cuotas.importe', DB::raw('cuotas.importe - cuotas.cobro AS diferencia'))
+            ->select('socios.nombre AS socio', 'cuotas.id AS id_cuota', 'cuotas.nro_cuota', 'prioridades.orden', 'socios.id AS id_socio', 'cuotas.importe', 'ventas.id AS id_venta')
             ->where(function($query) use ($fechaHoy){
                 $query->where('cuotas.fecha_vencimiento', '<=', $fechaHoy)
                       ->orWhere(function($query2) use ($fechaHoy){
@@ -107,31 +151,85 @@ class CobrarController extends Controller
                                    ->where('cuotas.fecha_inicio', '<=', $fechaHoy);
                         });
             })
-            ->whereColumn('cuotas.cobro', '<', 'cuotas.importe')
-            ->where('socios.id', '=', $socio['id_asociado'])->get();
+            ->where('socios.id', '=', $socio['id_socio'])->get();
+
+            $movimientos = DB::table('ventas')
+                ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+                ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+                ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+                ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
+                ->groupBy('movimientos.id_venta')
+                ->groupBy('movimientos.nro_cuota')
+                ->where('movimientos.fecha', '<=', $fechaHoy)
+                ->where('socios.id', '=', $socio['id_socio'])
+                ->select('ventas.id AS id_venta', 'movimientos.nro_cuota', 'movimientos.id AS id_movimiento', DB::raw('SUM(movimientos.entrada) AS entrada'))
+                ->get();
+
+
+
+
+            $cuotas = $this->unirColecciones($cuotas, $movimientos, ["id_venta", "nro_cuota"], ['entrada' => 0]);
+            $cuotas = $cuotas->map(function ($item){
+                $diferencia = $item['importe'] - $item['entrada'];
+                $item->put('diferencia', $diferencia);
+                return $item;
+            });
+            $cuotas = $cuotas->filter(function ($item){
+                return $item['diferencia'] > 0;
+            });
+
+            $cuotas = $cuotas->groupBy('id_venta');
+            $i = 0;
+            $cuotas = $cuotas->map(function ($item) use(&$i){
+               $cantidad = $item->count();
+               if($cantidad > $i)
+               {
+                   $i = $cantidad;
+               }
+               $item->put('cantidad', $cantidad);
+               return $item;
+            });
+
+            $cuotas->sortBy('cantidad');
+            $cuotas = $cuotas->map(function ($item) use ($i){
+                if($item['cantidad'] == $i)
+                {
+                    $item->forget('cantidad');
+                    $minimaCuota = $item->min('nro_cuota');
+                   $pum = $item->first(function ($item2) use ($minimaCuota){
+                       return $item2['nro_cuota'] == $minimaCuota;
+                    });
+                   return $pum;
+                }
+            });
+
+            $cuotas = $cuotas->filter(function ($item){
+                return $item != null;
+            });
+
+
+
 
             $cuotas = $cuotas->groupBy('orden');
          
             $plataDisponible = $socio['cobro'];
             $deudores = collect();
-            $cuotas->each(function ($item, $key) use (&$plataDisponible, &$deudores) {
+            $cuotas->each(function ($item) use (&$plataDisponible, &$deudores, $fechaHoy) {
                 $plataTotal = $plataDisponible / $item->count();
-                $item->each(function ($item2, $key) use (&$plataTotal, &$plataDisponible, &$deudores){
-                 
-                    if($item2->diferencia <= $plataTotal)
+                $item->each(function ($item2) use (&$plataTotal, &$plataDisponible, &$deudores, $fechaHoy){
+                 // el tema de la cuota total esta mal!!! presta atencion joaquin no seas boludo
+                    if($item2['diferencia'] <= $plataTotal)
                     {
-                        $cuotaTotal = $item2->importe;
-                        $plataDisponible -= ($item2->importe - $item2->cobro);
+                        $cuotaTotal = $item2['diferencia'];
+                        $plataDisponible -= ($item2['diferencia']);
 
-                    } else if($item2->diferencia > $plataTotal)
+                    } else if($item2['diferencia'] > $plataTotal)
                     {
-                        $cuotaTotal = $item2->cobro + $plataTotal;
+                        $cuotaTotal = $plataTotal;
                         $plataDisponible -= $plataTotal;
                         $deudores->push($item2);
                     }
-                    $cuot = Cuotas::find($item2->id_cuota);
-                    $cuot->cobro = $cuotaTotal;
-                    $cuot->save();
+                    $cuota = Movimientos::Create(['entrada' => $cuotaTotal, 'fecha' => $fechaHoy, 'nro_cuota' => $item2['nro_cuota'], 'id_venta' => $item2['id_venta'] ]);
 
                 });
                 $this->repasarDeudores($deudores, $plataDisponible);
@@ -148,33 +246,52 @@ class CobrarController extends Controller
                         $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
                     })
                     ->join('prioridades', 'prioridades.id', '=', 'proovedores.id_prioridad')
-                    ->select('socios.nombre AS socio', 'cuotas.id AS id_cuota', 'prioridades.orden', 'socios.id AS id_asociado', 'cuotas.cobro', 'cuotas.importe', DB::raw('cuotas.importe - cuotas.cobro AS diferencia'))
+                    ->select('socios.nombre AS socio', 'cuotas.id AS id_cuota', 'cuotas.nro_cuota', 'ventas.id AS id_venta', 'prioridades.orden', 'socios.id AS id_asociado', 'cuotas.importe')
                     ->where('cuotas.fecha_inicio', '>=', $fechaHoy)
-                        
-        
-                    ->whereColumn('cuotas.cobro', '<', 'cuotas.importe')
-                    ->where('socios.id', '=', $socio['id_asociado'])
+                    ->where('socios.id', '=', $socio['id_socio'])
                     ->orderBy('cuotas.fecha_inicio')->get();
 
-                    $cuotasTardias = $cuotasTardias->groupBy('orden');
-                $cuotasTardias->each(function ($item, $key) use (&$plataDisponible, &$deudores) {
-                    $plataTotal = $plataDisponible / $item->count();
-                    $item->each(function ($item2, $key) use (&$plataTotal, &$plataDisponible, &$deudores){
-                     
-                        if($item2->diferencia <= $plataTotal)
-                        {
-                            $cuotaTotal = $item2->importe;
-                            $plataDisponible -= ($item2->importe - $item2->cobro);
+                $movimientos = DB::table('ventas')
+                    ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+                    ->join('productos', 'ventas.id_producto', '=', 'productos.id')
+                    ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+                    ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
+                    ->groupBy('movimientos.id_venta')
+                    ->groupBy('movimientos.nro_cuota')
+                    ->where('movimientos.fecha', '>=', $fechaHoy)
+                    ->where('socios.id', '=', $socio['id_socio'])
+                    ->select('ventas.id AS id_venta', 'movimientos.nro_cuota', 'movimientos.id AS id_movimiento', DB::raw('SUM(movimientos.entrada) AS entrada'))
+                    ->get();
 
-                        } else if($item2->diferencia > $plataTotal)
+
+                $cuotasTardias = $this->unirColecciones($cuotasTardias, $movimientos, ["id_venta", "nro_cuota"], ['entrada' => 0]);
+                $cuotasTardias = $cuotasTardias->map(function ($item){
+                    $diferencia = $item['importe'] - $item['entrada'];
+                    $item->put('diferencia', $diferencia);
+                    return $item;
+                });
+                $cuotasTardias = $cuotasTardias->filter(function ($item){
+                    return $item['diferencia'] > 0;
+                });
+
+                    $cuotasTardias = $cuotasTardias->groupBy('orden');
+                $cuotasTardias->each(function ($item, $key) use (&$plataDisponible, &$deudores, $fechaHoy) {
+                    $plataTotal = $plataDisponible / $item->count();
+                    $item->each(function ($item2, $key) use (&$plataTotal, &$plataDisponible, &$deudores, $fechaHoy){
+                     
+                        if($item2['diferencia'] <= $plataTotal)
                         {
-                            $cuotaTotal = $item2->cobro + $plataTotal;
+                            $cuotaTotal = $item2['diferencia'];
+                            $plataDisponible -= ($item2['diferencia']);
+
+                        } else if($item2['diferencia'] > $plataTotal)
+                        {
+                            $cuotaTotal = $plataTotal;
                             $plataDisponible -= $plataTotal;
                             $deudores->push($item2);
                         }
-                        $cuot = Cuotas::find($item2->id_cuota);
-                        $cuot->cobro = $cuotaTotal;
-                        $cuot->save();
+                       Movimientos::Create(['entrada' => $cuotaTotal, 'fecha' => $fechaHoy, 'nro_cuota' => $item2['nro_cuota'], 'id_venta' => $item2['id_venta'] ]);
+
 
                     });
                     $this->repasarDeudores($deudores, $plataDisponible);
@@ -186,35 +303,35 @@ class CobrarController extends Controller
         }
         return $request->all();
     }
-
     public function repasarDeudores($deudores, &$plataDisponible)
     {
+        $fechaHoy = Carbon::today();
         if($deudores->count() > 0 && $plataDisponible > 0)
         {
             $deudores2 = collect();
             $plataTotal2 = $plataDisponible / $deudores->count();
-                    $deudores->each(function ($item, $key) use (&$plataTotal2, &$plataDisponible, &$deudores2) {
-                        $cuota = Cuotas::find($item->id_cuota);
-                        $diferencia = $cuota->importe - $cuota->cobro;
+                    $deudores->each(function ($item, $key) use (&$plataTotal2, &$plataDisponible, &$deudores2, $fechaHoy) {
+                        $entrada = Movimientos::where('nro_cuota', $item['nro_cuota'])
+                                                    ->where('id_venta', $item['id_venta'])->get()->sum('entrada');
+                        $diferencia = $item['importe'] - $entrada;
                         if($diferencia <= $plataTotal2)
                         {
-                            $cuotaTotal = $cuota->importe;
-                            $plataDisponible -= ($cuota->importe - $cuota->cobro);
+                            $cuotaTotal = $diferencia;
+                            $plataDisponible -= ($diferencia);
                         }
                         else if($diferencia > $plataTotal2)
                         {
-                            $cuotaTotal = $cuota->cobro + $plataTotal2;
+                            $cuotaTotal = $plataTotal2;
                             $plataDisponible -= $plataTotal2;
                             $deudores2->push($item);
                         }
-                          $cuota->cobro = $cuotaTotal;
-                          $cuota->save();
-            });
+                        $cuota = Movimientos::Create(['entrada' => $cuotaTotal, 'fecha' => $fechaHoy, 'nro_cuota' => $item['nro_cuota'], 'id_venta' => $item['id_venta'] ]);
+
+                    });
         $this->repasarDeudores($deudores2, $plataDisponible);
         }
 
     }
-
     public function traerDatosAutocomplete(Request $request)
     {
         $ventas = DB::table('cuotas')
@@ -250,7 +367,6 @@ class CobrarController extends Controller
                 
             }
     }
-
     public function cobrarCuotas(Request $request)
     {
     	foreach($request['cuotas'] as $id_cuota)
@@ -261,6 +377,14 @@ class CobrarController extends Controller
     	}
     	// esto luego deberia afectar a la contabilidad
     	
+    }
+    public function cobrarPorVenta(Request $request)
+    {
+        foreach($request->all() as $venta)
+        {
+            $ventaRepo = new RepoVentas($venta['id_venta']);
+            $ventaRepo->cobrar($venta['cobro']);
+        }
     }
 
 }
