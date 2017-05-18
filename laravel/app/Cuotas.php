@@ -15,9 +15,9 @@ class Cuotas extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function movimiento()
+    public function movimientos()
     {
-    	return $this->belongsTo('App\Movimientos', 'id_movimiento', 'id');
+    	return $this->hasMany('App\Movimientos', 'id_cuota', 'id');
     }
 
      public function venta()

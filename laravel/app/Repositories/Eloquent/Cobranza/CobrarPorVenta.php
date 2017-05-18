@@ -6,13 +6,14 @@
  * Time: 22:41
  */
 
-namespace App\Repositories\Eloquent;
-
+namespace App\Repositories\Eloquent\Cobranza;
 
 class CobrarPorVenta
 {
-    public function cobrar($cuotas, $monto)
+    public function cobrar($venta, $monto)
     {
+
+        $cuotas = $venta->cuotasVencidas();
         $cuotas->each(function ($cuota) use (&$monto){
             if($monto == 0)
                 return false;

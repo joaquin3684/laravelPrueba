@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Eloquent\Mapper\VentasMapper;
+use App\Repositories\Eloquent\Ventas;
 use Illuminate\Http\Request;
 use App\Movimientos;
 use App\Cuotas;
@@ -15,11 +17,13 @@ class PagoProovedoresController extends Controller
 {
    public function index()
     {
+        $this->pagarCuotas();
         return view('pago_proovedores');
     }
 
     public function datos(Request $request)
     {
+
         $movimientos = DB::table('movimientos')
             ->join('cuotas', 'cuotas.id_movimiento', '=', 'movimientos.id')
             ->join('socios', 'movimientos.id_asociado', '=', 'socios.id')
@@ -77,14 +81,19 @@ class PagoProovedoresController extends Controller
             }
     }
 
-    public function pagarCuotas(Request $request)
+    public function pagarCuotas()
     {
-        foreach($request['cuotas'] as $id_cuota)
-        {
-            $cuota = Cuotas::find($id_cuota);
-            $cuota->pago = 1;
-            $cuota->save();
-        }
+        //TODO: volver a poner el Parametro Request en la funcion
+       /* foreach($request['cuotas'] as $id)
+        {*/
+            $mapper = new VentasMapper();
+            $ventas = $mapper->cuotasAPagarProovedor(5);
+            $ventas->each(function ($venta) {
+               $v = new Ventas($venta);
+               $porcentaje = $venta->producto->porcentaje + $venta->producto->gastos_administrativos;
+               $v->pagarProovedor($porcentaje);
+            });
+        //}
     }
 
 

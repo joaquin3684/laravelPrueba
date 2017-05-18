@@ -6,7 +6,7 @@
  * Time: 12:43
  */
 
-namespace App\Repositories\Eloquent;
+namespace App\Repositories\Eloquent\Cobranza;
 use App\Repositories\Eloquent\ConsultasCuotas;
 use App\Repositories\Eloquent\ConsultasMovimientos;
 

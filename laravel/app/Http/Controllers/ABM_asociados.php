@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidacionABMsocios;
-use App\Repositories\Eloquent\AbmSociosRepositorio as Socio;
+use App\Repositories\Eloquent\ABMS\AbmSociosRepositorio as Socio;
 
 class ABM_asociados extends Controller
 {

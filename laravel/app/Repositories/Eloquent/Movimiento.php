@@ -8,8 +8,7 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Eloquent\Fechas;
-use App\Repositories\Eloquent\MovimientoMapper;
+use App\Movimientos;
 class Movimiento
 {
     private $id;
@@ -17,7 +16,7 @@ class Movimiento
     private $entrada;
     private $salida;
     private $fecha;
-    private $movimientoMapper;
+    private $activeMovimiento;
 
     /**
      * Movimiento constructor.
@@ -27,35 +26,16 @@ class Movimiento
      * @param $salida
      * @param $fecha
      */
-    public function __construct($id = null, $id_cuota = null, $entrada = null, $salida = null, $fecha = null)
+    public function __construct(Movimientos $movimiento)
     {
-        $this->id = $id;
-        $this->id_cuota = $id_cuota;
-        $this->entrada = $entrada;
-        $this->salida = $salida;
-        $this->fecha = $fecha;
-        $movimiento = new MovimientoMapper();
-        $this->movimientoMapper = $movimiento;
+        $this->id = $movimiento->id;
+        $this->id_cuota = $movimiento->id_cuota;
+        $this->entrada = $movimiento->entrada;
+        $this->salida = $movimiento->salida;
+        $this->fecha = $movimiento->fecha;
+        $this->activeMovimiento = $movimiento;
     }
 
-    public function movimientosDeCuota($id)
-    {
-        return $this->movimientoMapper->movimientosDeCuota($id);
-    }
-
-    public function totalEntradaDeCuota($id)
-    {
-        $cuotas = $this->movimientosDeCuota($id);
-        $totalEntrada = $cuotas->sum(function($cuota){ return $cuota->entrada;});
-        return $totalEntrada;
-    }
-    public function agregarEntrada($entrada)
-    {
-        $fecha = new Fechas();
-        $this->entrada = $entrada;
-        $this->fecha = $fecha->getFechaHoy();
-        $this->movimientoMapper->alta($this);
-    }
 
     public function getIdCuota()
     {
@@ -70,5 +50,15 @@ class Movimiento
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+    public function pagarProovedor($gastosAdmin, $ganancia)
+    {
+        $entrada = $this->activeMovimiento->entrada;
+        $this->activeMovimiento->salida = $entrada - ($entrada * ($gastosAdmin + $ganancia) / 100);
+        $this->activeMovimiento->gastos_administrativos = $entrada * $gastosAdmin / 100;
+        $this->activeMovimiento->ganancia = $entrada * $ganancia / 100;
+
+        $this->activeMovimiento->save();
     }
 }

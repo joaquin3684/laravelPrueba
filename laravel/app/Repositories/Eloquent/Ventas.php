@@ -7,9 +7,10 @@
  */
 
 namespace App\Repositories\Eloquent;
-use App\Repositories\Eloquent\CobrarPorVenta;
-use App\Repositories\Eloquent\Cuota;
-
+use App\Repositories\Eloquent\Cobranza\CobrarPorVenta;
+use App\Repositories\Eloquent\Mapper\CuotasMapper;
+use App\Repositories\Eloquent\Mapper\VentasMapper;
+use App\Ventas as ModelVentas;
 
 class Ventas
 {
@@ -22,26 +23,22 @@ class Ventas
     private $descripcion;
     private $nro_cuotas;
     private $fecha;
-    private $cobrarObjeto;
+    private $activeVenta;
 
-    public function __construct($id, $id_asociado = null, $id_producto = null, $alta = null, $aprobado = null, $descripcion = null, $nro_cuotas = null, $fecha = null)
+    public function __construct(ModelVentas $venta)
     {
-        $this->id = $id;
-        $this->id_asociado = $id_asociado;
-        $this->id_producto = $id_producto;
-        $this->alta = $alta;
-        $this->aprobado = $aprobado;
-        $this->descripcion = $descripcion;
-        $this->nro_cuotas = $nro_cuotas;
-        $this->fecha = $fecha;
-        $cuota = new Cuota();
-        $this->cobrarObjeto = new CobrarPorVenta();
-        $this->cuotas = $cuota->cuotasDeVenta($this->id);
-    }
+        $this->id = $venta->id;
+        $this->id_asociado = $venta->id_asociado;
+        $this->id_producto = $venta->id_producto;
+        $this->alta = $venta->alta;
+        $this->aprobado = $venta->aprobado;
+        $this->descripcion = $venta->descripcion;
+        $this->nro_cuotas = $venta->nro_cuotas;
+        $this->fecha = $venta->fecha;
+        $this->setCuotas($venta->cuotas);
+        $this->activeVenta = $venta;
 
-    public function cobrar($monto)
-    {
-        $this->cobrarObjeto->cobrar($this->cuotasVencidas(), $monto);
+
     }
 
     public function cuotasVencidas()
@@ -51,8 +48,24 @@ class Ventas
         });
     }
 
-    public function setCuotas(Cuota $cuotas)
+    public function setCuotas($cuotas)
     {
-        $this->cuotas = $cuotas;
+        $this->cuotas = $cuotas->map(function ($cuota) {
+            return new Cuota($cuota);
+        });
+    }
+
+    public function getCuotas()
+    {
+        return $this->cuotas;
+    }
+
+    public function pagarProovedor()
+    {
+        $gastosAdmin = $this->activeVenta->producto->gastos_administrativos;
+        $ganancia = $this->activeVenta->producto->ganancia;
+        $this->cuotas->each(function ($cuota) use ($gastosAdmin, $ganancia) {
+           $cuota->pagarProovedor($gastosAdmin, $ganancia);
+        });
     }
 }

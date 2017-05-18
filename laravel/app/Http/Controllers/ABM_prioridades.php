@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\AbmPrioridadesRepositorio as Prioridad;
+use App\Repositories\Eloquent\ABMS\AbmPrioridadesRepositorio as Prioridad;
 
 class ABM_prioridades extends Controller
 {

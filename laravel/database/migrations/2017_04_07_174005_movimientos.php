@@ -22,6 +22,8 @@ class Movimientos extends Migration
             $table->double('entrada');
             $table->double('salida');
             $table->date('fecha');
+            $table->double('ganancia');
+            $table->double('gastos_administrativos');
             $table->softDeletes();
         });
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidacionABMorganismos;
-use App\Repositories\Eloquent\AbmOrganismosRepositorio as Organismo;
+use App\Repositories\Eloquent\ABMS\AbmOrganismosRepositorio as Organismo;
 
 class ABM_organismos extends Controller
 {

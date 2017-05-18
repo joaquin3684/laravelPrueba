@@ -3,17 +3,25 @@
  * Created by PhpStorm.
  * User: joaquin
  * Date: 07/05/17
- * Time: 21:15
+ * Time: 19:30
  */
 
-namespace App\Repositories\Eloquent;
-use App\Movimientos;
+namespace App\Repositories\Eloquent\Mapper;
 use App\Repositories\Eloquent\Movimiento;
-class MovimientoMapper
+use App\Cuotas;
+
+class CuotasMapper
 {
-    public function movimientosDeCuota($id)
+    private $idCuota;
+
+    public function __construct($idCuota = null)
     {
-        $movimientos = Movimientos::where('id_cuota', $id)->get();
+        $this->idCuota = $idCuota;
+    }
+
+    public function movimientos()
+    {
+        $movimientos = Cuotas::find($this->idCuota)->movimientos();
         $collection = collect();
         $movimientos->each(function ($item) use($collection){
             $a = new Movimiento($item->id, $item->id_cuota, $item->entrada, $item->salida, $item->fecha);
@@ -22,8 +30,6 @@ class MovimientoMapper
         return $collection;
     }
 
-    public function alta($movimiento)
-    {
-        Movimientos::create(['id_cuota' => $movimiento->getIdCuota(), 'entrada' => $movimiento->getEntrada(), 'fecha' => $movimiento->getFecha() ]);
-    }
+
+
 }

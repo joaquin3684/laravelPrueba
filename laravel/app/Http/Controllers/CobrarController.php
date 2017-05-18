@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Eloquent\Mapper\CuotasMapper;
+use App\Repositories\Eloquent\Mapper\VentasMapper;
 use Illuminate\Http\Request;
 use App\Ventas;
 use App\Cuotas;
@@ -19,6 +21,7 @@ use App\Repositories\Eloquent\ConsultasMovimientos;
 use App\Repositories\Eloquent\Filtros;
 use App\Repositories\Eloquent\Tabla;
 use App\Repositories\Eloquent\Ventas as RepoVentas;
+use App\Repositories\Eloquent\Cobranza\CobrarPorVenta;
 
 
 class CobrarController extends Controller
@@ -382,8 +385,13 @@ class CobrarController extends Controller
     {
         foreach($request->all() as $venta)
         {
-            $ventaRepo = new RepoVentas($venta['id_venta']);
-            $ventaRepo->cobrar($venta['cobro']);
+
+            $ventasMapper = new VentasMapper($venta['id_venta']);
+            $ventasCuotasVencidas = $ventasMapper->cuotasVencidas();
+            $ventaObj = new RepoVentas($ventasCuotasVencidas);
+
+            $cobrar = new CobrarPorVenta();
+            $cobrar->cobrar($ventaObj, $venta['cobro']);
         }
     }
 

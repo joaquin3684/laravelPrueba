@@ -122,7 +122,7 @@ class VentasControlador extends Controller
         
         for($i=1; $request['nro_cuotas']>= $i; $i++)
         {
-            Cuotas::create(['nro_cuota' => $i, 'importe' => $importeCuota, 'id_venta' => $venta->id, 'fecha_vencimiento' => $carbon->toDateString()]);
+            Cuotas::create(['nro_cuota' => $i, 'importe' => $importeCuota, 'id_venta' => $venta->id, 'fecha_vencimiento' => $carbon->toDateString(), 'fecha_inicio' => $fechaHoy->toDateString()]);
             
             $fechaHoy = Carbon::create($carbon->year, $carbon->month, $carbon->day);
             $fechaHoy->addDays(1);
@@ -205,12 +205,14 @@ class VentasControlador extends Controller
         $arrayDeFiltros = $this->filtrosNoNulos($request);
         $arrayDeFiltros = collect($arrayDeFiltros);
 
-        return  $tabla =  Datatables::of($ventasPorOrganismo)
+        /*return  $tabla =  Datatables::of($ventasPorOrganismo)
             ->filter(function ($instance) use ($arrayDeFiltros){
                 $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
 
             })
-            ->make(true);
+            ->make(true);*/
+
+        return $ventasPorOrganismo->toJson();
 
 
     }

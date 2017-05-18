@@ -7,9 +7,8 @@
  */
 
 namespace App\Repositories\Eloquent;
-use App\Repositories\Eloquent\Movimiento;
-use App\Repositories\Eloquent\Fechas;
-use App\Repositories\Eloquent\CuotasMapper;
+use App\Repositories\Eloquent\Mapper\MovimientoMapper;
+use App\Cuotas;
 
 class Cuota
 {
@@ -20,47 +19,55 @@ class Cuota
     private $fecha_vencimiento;
     private $fecha_inicio;
     private $nro_cuota;
-    private $hoy;
-    private $cuotasMapper;
-    private $movimiento;
+    private $activeCuota;
 
-    public function __construct($id = null, $id_venta = null, $importe = null, $fecha_vencimiento = null, $fecha_inicio = null, $nro_cuota = null)
+
+    public function __construct(Cuotas $cuota)
     {
-        $this->id = $id;
-        $this->id_venta = $id_venta;
-        $this->importe = $importe;
-        $this->fecha_vencimiento = $fecha_vencimiento;
-        $this->fecha_inicio = $fecha_inicio;
-        $this->nro_cuota = $nro_cuota;
-        $this->movimiento = new Movimiento(null, $this->id);
-        $cuotasMapper = new CuotasMapper();
-        $this->cuotasMapper = $cuotasMapper;
+        $this->id = $cuota->id;
+        $this->id_venta = $cuota->id_venta;
+        $this->importe = $cuota->importe;
+        $this->fecha_vencimiento = $cuota->fecha_vencimiento;
+        $this->fecha_inicio = $cuota->fecha_inicio;
+        $this->nro_cuota = $cuota->nro_cuota;
+        $this->setMovimientos($cuota->movimientos);
+        $this->activeCuota = $cuota;
 
     }
+
     public function cobrar(&$monto)
     {
-        $montoACobrar = $this->importe - $this->movimiento->totalEntradaDeCuota($this->id);
+        $montoACobrar = $this->importe - $this->totalEntradaDeMovimientosDeCuota();
         $cobrado = $montoACobrar <= $monto && $monto > 0 ? $montoACobrar : $monto;
-            $this->movimiento->agregarEntrada($cobrado);
+        $mapperMovimiento = new MovimientoMapper();
+        $fecha = new Fechas();
+        $mapperMovimiento->alta($this->id, $cobrado, $fecha->getFechaHoy());
         $monto = $monto - $cobrado;
     }
-    public function cuotasDeVenta($id)
-    {
-        return $this->cuotasMapper->cuotasDeVenta($id);
-    }
 
-    public function setMovimientos()
+    public function setMovimientos($movimientos)
     {
-        $this->movimientos = $this->movimiento->movimientosDeCuota($this->id);
+        $this->movimientos =  $movimientos->map(function ($movimiento) {
+            return new Movimiento($movimiento);
+        });
     }
 
     public function estaVencida()
     {
-        $fecha = new Fechas();
-        $hoy = $fecha->getFechaHoy();
-        if($this->fecha_inicio < $hoy)
-        {
-           return $this->importe != $this->movimiento->totalEntradaDeCuota($this->id);
-        }
+           return $this->importe > $this->totalEntradaDeMovimientosDeCuota();
+    }
+
+    public function totalEntradaDeMovimientosDeCuota()
+    {
+        return $this->movimientos->sum(function($movimiento){
+            return $movimiento->getEntrada();
+        });
+    }
+
+    public function pagarProovedor($gastosAdmin, $ganancia)
+    {
+        $this->movimientos->each(function ($movimiento) use ($gastosAdmin, $ganancia){
+            $movimiento->pagarProovedor($gastosAdmin, $ganancia);
+        });
     }
 }

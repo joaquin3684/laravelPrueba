@@ -10,7 +10,7 @@ class Ventas extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-        'id_asociado', 'id_producto', 'descripcion', 'nro_cuotas', 'fecha'
+        'id_asociado', 'id_producto', 'descripcion', 'nro_cuotas', 'fecha', 'alta', 'aprobado', 'tipo', 'nro_credito'
     ];
 
     protected $dates = ['deleted_at'];
@@ -32,6 +32,6 @@ class Ventas extends Model
 
     public function movimientos()
     {
-        return $this->hasMany('App\Movimientos', 'id_venta', 'id');
+        return $this->hasManyThrough('App\Movimientos', 'App\Cuotas', 'id_venta', 'id_cuota', 'id');
     }
 }

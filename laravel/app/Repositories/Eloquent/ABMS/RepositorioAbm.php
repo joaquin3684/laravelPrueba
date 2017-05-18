@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Repositories\Eloquent;
-
+namespace App\Repositories\Eloquent\ABMS;
 use App\Repositories\Contracts\abmInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as App;

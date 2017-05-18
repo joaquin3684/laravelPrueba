@@ -6,10 +6,9 @@
  * Time: 15:48
  */
 
-namespace App\Repositories\Eloquent;
-
+namespace App\Repositories\Eloquent\ABMS;
 use App\Repositories\Contracts\abmInterface;
-use App\Repositories\Eloquent\RepositorioAbm;
+use App\Repositories\Eloquent\ABMS\RepositorioAbm;
 
 class AbmSociosRepositorio extends RepositorioAbm
 {

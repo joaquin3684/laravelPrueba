@@ -10,7 +10,7 @@ class Productos extends Model
     use SoftDeletes;
 	
     protected $fillable = [
-        'id_proovedor', 'descripcion', 'precio', 'retencion', 'nombre'
+        'id_proovedor', 'descripcion', 'gastos_administrativos', 'ganancia', 'nombre'
     ];
 
     protected $dates = ['deleted_at'];
