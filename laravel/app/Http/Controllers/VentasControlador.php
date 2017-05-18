@@ -61,15 +61,15 @@ class VentasControlador extends Controller
             return $item;
         });
 
-        $arrayDeFiltros = $this->filtrosNoNulos($request);
-        $arrayDeFiltros = collect($arrayDeFiltros);
 
-        return  $tabla =  Datatables::of($ventasPorVenta)
+
+        /*return  $tabla =  Datatables::of($ventasPorVenta)
             ->filter(function ($instance) use ($arrayDeFiltros){
                 $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
 
             })
-            ->make(true);
+            ->make(true);*/
+        return $ventasPorVenta->toJson();
     }
 
     public function mostrarPorCuotas(Request $request)
@@ -101,15 +101,15 @@ class VentasControlador extends Controller
             return $item;
         });
 
-        $arrayDeFiltros = $this->filtrosNoNulos($request);
-        $arrayDeFiltros = collect($arrayDeFiltros);
 
-        return  $tabla =  Datatables::of($ventasPorCuota)
+
+        /*return  $tabla =  Datatables::of($ventasPorCuota)
             ->filter(function ($instance) use ($arrayDeFiltros){
                 $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
 
             })
-            ->make(true);
+            ->make(true);*/
+        return $ventasPorCuota->toJson();
     }
 
     public function store(Request $request)
@@ -158,15 +158,16 @@ class VentasControlador extends Controller
             return $item;
         });
 
-        $arrayDeFiltros = $this->filtrosNoNulos($request);
-        $arrayDeFiltros = collect($arrayDeFiltros);
 
-        return  $tabla =  Datatables::of($ventasPorSocio)
+
+        /*return  $tabla =  Datatables::of($ventasPorSocio)
                 ->filter(function ($instance) use ($arrayDeFiltros){
                    $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
 
                 })
-               ->make(true);
+               ->make(true);*/
+
+        return $ventasPorSocio->toJson();
 
     }
 

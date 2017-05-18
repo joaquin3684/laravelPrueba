@@ -47,7 +47,6 @@ class VentasMapper
             $query->where('fecha_inicio', '<', $hoy);
             $query->with('movimientos');
         }])->find($this->idVenta);
-
     }
 
     public function cuotasAPagarProovedor($id_proovedor)
