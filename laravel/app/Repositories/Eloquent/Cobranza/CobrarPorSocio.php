@@ -25,6 +25,7 @@ class CobrarPorSocio
         $collect = collect();
         $this->socio->getVentas()->each(function ($venta) use ($collect){
              $collect->push($venta->cuotasVencidas());
+
         });
 
     }

@@ -23,6 +23,7 @@ class CreateProductosTable extends Migration
             $table->double('gastos_administrativos');
             $table->double('ganancia');
             $table->string('nombre');
+            $table->string('tipo');
             $table->softDeletes();
         });
     }

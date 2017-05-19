@@ -27,7 +27,6 @@ class CreateVentasTable extends Migration
             $table->string('descripcion');
             $table->integer('nro_cuotas');
             $table->date('fecha');
-            $table->string('tipo');
             $table->integer('nro_credito');
             $table->softDeletes();
         });
