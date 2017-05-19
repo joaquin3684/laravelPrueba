@@ -69,7 +69,7 @@ class VentasControlador extends Controller
 
     public function mostrarPorCuotas(Request $request)
     {
-        $a =  Ventas::with('cuotas.movimientos')->find($request['id']);
+        $a =  Ventas::with('cuotas.movimientos', 'producto.proovedor')->find($request['id']);
                 $a->cuotas->each(function ($cuota){
                     $s = $cuota->movimientos->sum(function($movimiento) {
                         return $movimiento->entrada;
