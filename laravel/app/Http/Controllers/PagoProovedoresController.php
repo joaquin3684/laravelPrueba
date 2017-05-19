@@ -17,7 +17,6 @@ class PagoProovedoresController extends Controller
 {
    public function index()
     {
-        $this->pagarCuotas();
         return view('pago_proovedores');
     }
 
@@ -81,19 +80,18 @@ class PagoProovedoresController extends Controller
             }
     }
 
-    public function pagarCuotas()
+    public function pagarCuotas(Request $request)
     {
-        //TODO: volver a poner el Parametro Request en la funcion
-       /* foreach($request['cuotas'] as $id)
-        {*/
+        foreach($request['proovedores'] as $id)
+        {
             $mapper = new VentasMapper();
-            $ventas = $mapper->cuotasAPagarProovedor(5);
+            $ventas = $mapper->cuotasAPagarProovedor($id);
             $ventas->each(function ($venta) {
                $v = new Ventas($venta);
                $porcentaje = $venta->producto->porcentaje + $venta->producto->gastos_administrativos;
                $v->pagarProovedor($porcentaje);
             });
-        //}
+        }
     }
 
 

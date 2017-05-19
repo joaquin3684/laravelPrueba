@@ -9,22 +9,23 @@
 namespace App\Repositories\Eloquent\Cobranza;
 use App\Repositories\Eloquent\ConsultasCuotas;
 use App\Repositories\Eloquent\ConsultasMovimientos;
+use App\Repositories\Eloquent\Socio;
 
 class CobrarPorSocio
 {
-    private $cuotas;
-    private $movimientos;
-    private $prioridad;
-    public function __construct(ConsultasCuotas $cuotas, Prioridad $prioridad, ConsultasMovimientos $movimientos)
+
+    private $socio;
+    public function __construct(Socio $socio)
     {
-        $this->cuotas = $cuotas;
-        $this->movimientos = $movimientos;
-        $this->prioridad = $prioridad;
+        $this->socio = $socio;
     }
 
-    public function cobrar($ventas, $monto)
+    public function cobrar($monto)
     {
-        $cuotasVencidas = $ventas->cuotasVencidas();
+        $collect = collect();
+        $this->socio->getVentas()->each(function ($venta) use ($collect){
+             $collect->push($venta->cuotasVencidas());
+        });
 
     }
 }

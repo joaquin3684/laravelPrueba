@@ -63,52 +63,22 @@ class VentasControlador extends Controller
 
 
 
-        /*return  $tabla =  Datatables::of($ventasPorVenta)
-            ->filter(function ($instance) use ($arrayDeFiltros){
-                $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
-
-            })
-            ->make(true);*/
+       // return  $tabla =  Datatables::of($ventasPorVenta)->make(true);
         return $ventasPorVenta->toJson();
     }
 
     public function mostrarPorCuotas(Request $request)
     {
-
-        $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
-            ->where('ventas.id', '=', $request['id'])
-            ->select('cuotas.id AS id_cuota', 'socios.nombre AS socio', 'cuotas.fecha_vencimiento', 'cuotas.id', 'cuotas.nro_cuota', 'ventas.fecha', 'proovedores.nombre AS proovedor', 'cuotas.importe AS totalACobrar')->get();
-
-        $movimientos = DB::table('ventas')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
-            ->groupBy('movimientos.id_cuota')
-            ->where('ventas.id', '=', $request['id'])
-            ->select('movimientos.id_cuota', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
-
-        $ventasPorCuota = $this->unirColecciones($ventas, $movimientos, ["id_cuota"], ['totalCobrado' => 0]);
-
-        $ventasPorCuota= $ventasPorCuota->each(function ($item, $key){
-            $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
-            $item->put('diferencia', $diferencia);
-            return $item;
-        });
+        $a =  Ventas::with('cuotas.movimientos')->find($request['id']);
+                $a->cuotas->each(function ($cuota){
+                    $s = $cuota->movimientos->sum(function($movimiento) {
+                        return $movimiento->entrada;
+                    });
+                    $cuota->cobrado = $s;
+                });
+                return $a;
 
 
-
-        /*return  $tabla =  Datatables::of($ventasPorCuota)
-            ->filter(function ($instance) use ($arrayDeFiltros){
-                $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
-
-            })
-            ->make(true);*/
         return $ventasPorCuota->toJson();
     }
 
@@ -160,12 +130,7 @@ class VentasControlador extends Controller
 
 
 
-        /*return  $tabla =  Datatables::of($ventasPorSocio)
-                ->filter(function ($instance) use ($arrayDeFiltros){
-                   $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
-
-                })
-               ->make(true);*/
+       // return  $tabla =  Datatables::of($ventasPorSocio)->make(true);
 
         return $ventasPorSocio->toJson();
 
@@ -174,9 +139,6 @@ class VentasControlador extends Controller
     public function mostrarPorOrganismo(Request $request)
 
     {
-        /*$ventas = new RepoVentas(2);
-        $ventas->cobrar(20);*/
-
         $ventas = DB::table('ventas')
             ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
@@ -203,15 +165,8 @@ class VentasControlador extends Controller
             return $item;
         });
 
-        $arrayDeFiltros = $this->filtrosNoNulos($request);
-        $arrayDeFiltros = collect($arrayDeFiltros);
 
-        /*return  $tabla =  Datatables::of($ventasPorOrganismo)
-            ->filter(function ($instance) use ($arrayDeFiltros){
-                $instance->collection = $this->aplicarFiltros($arrayDeFiltros, $instance->collection);
-
-            })
-            ->make(true);*/
+        //return  $tabla =  Datatables::of($ventasPorOrganismo)->make(true);
 
         return $ventasPorOrganismo->toJson();
 

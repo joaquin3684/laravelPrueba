@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Eloquent\Cobranza\CobrarPorSocio;
 use App\Repositories\Eloquent\Mapper\CuotasMapper;
+use App\Repositories\Eloquent\Mapper\SociosMapper;
 use App\Repositories\Eloquent\Mapper\VentasMapper;
+use App\Repositories\Eloquent\Socio;
 use Illuminate\Http\Request;
 use App\Ventas;
 use App\Cuotas;
@@ -133,178 +136,18 @@ class CobrarController extends Controller
     public function cobrarPorPrioridad(Request $request)
     {
 
+
         foreach($request->all() as $socio)
         {
 
+            $socioMapper = new SociosMapper($socio['id']);
+            $objetoSocio = $socioMapper->ventasConCuotasVencidas();
+            $socio = new Socio($objetoSocio);
+            $cobrar = new CobrarPorSocio($socio);
+            $cobrar->cobrar($socio['monto']);
 
-            $cuotas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('proovedores', function($join){
-                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
-            })
-            ->join('prioridades', 'prioridades.id', '=', 'proovedores.id_prioridad')
-            ->select('socios.nombre AS socio', 'cuotas.id AS id_cuota', 'cuotas.nro_cuota', 'prioridades.orden', 'socios.id AS id_socio', 'cuotas.importe', 'ventas.id AS id_venta')
-            ->where(function($query) use ($fechaHoy){
-                $query->where('cuotas.fecha_vencimiento', '<=', $fechaHoy)
-                      ->orWhere(function($query2) use ($fechaHoy){
-                            $query2->where('cuotas.fecha_vencimiento', '>=', $fechaHoy)
-                                   ->where('cuotas.fecha_inicio', '<=', $fechaHoy);
-                        });
-            })
-            ->where('socios.id', '=', $socio['id_socio'])->get();
-
-            $movimientos = DB::table('ventas')
-                ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-                ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-                ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-                ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
-                ->groupBy('movimientos.id_venta')
-                ->groupBy('movimientos.nro_cuota')
-                ->where('movimientos.fecha', '<=', $fechaHoy)
-                ->where('socios.id', '=', $socio['id_socio'])
-                ->select('ventas.id AS id_venta', 'movimientos.nro_cuota', 'movimientos.id AS id_movimiento', DB::raw('SUM(movimientos.entrada) AS entrada'))
-                ->get();
-
-
-
-
-            $cuotas = $this->unirColecciones($cuotas, $movimientos, ["id_venta", "nro_cuota"], ['entrada' => 0]);
-            $cuotas = $cuotas->map(function ($item){
-                $diferencia = $item['importe'] - $item['entrada'];
-                $item->put('diferencia', $diferencia);
-                return $item;
-            });
-            $cuotas = $cuotas->filter(function ($item){
-                return $item['diferencia'] > 0;
-            });
-
-            $cuotas = $cuotas->groupBy('id_venta');
-            $i = 0;
-            $cuotas = $cuotas->map(function ($item) use(&$i){
-               $cantidad = $item->count();
-               if($cantidad > $i)
-               {
-                   $i = $cantidad;
-               }
-               $item->put('cantidad', $cantidad);
-               return $item;
-            });
-
-            $cuotas->sortBy('cantidad');
-            $cuotas = $cuotas->map(function ($item) use ($i){
-                if($item['cantidad'] == $i)
-                {
-                    $item->forget('cantidad');
-                    $minimaCuota = $item->min('nro_cuota');
-                   $pum = $item->first(function ($item2) use ($minimaCuota){
-                       return $item2['nro_cuota'] == $minimaCuota;
-                    });
-                   return $pum;
-                }
-            });
-
-            $cuotas = $cuotas->filter(function ($item){
-                return $item != null;
-            });
-
-
-
-
-            $cuotas = $cuotas->groupBy('orden');
-         
-            $plataDisponible = $socio['cobro'];
-            $deudores = collect();
-            $cuotas->each(function ($item) use (&$plataDisponible, &$deudores, $fechaHoy) {
-                $plataTotal = $plataDisponible / $item->count();
-                $item->each(function ($item2) use (&$plataTotal, &$plataDisponible, &$deudores, $fechaHoy){
-                 // el tema de la cuota total esta mal!!! presta atencion joaquin no seas boludo
-                    if($item2['diferencia'] <= $plataTotal)
-                    {
-                        $cuotaTotal = $item2['diferencia'];
-                        $plataDisponible -= ($item2['diferencia']);
-
-                    } else if($item2['diferencia'] > $plataTotal)
-                    {
-                        $cuotaTotal = $plataTotal;
-                        $plataDisponible -= $plataTotal;
-                        $deudores->push($item2);
-                    }
-                    $cuota = Movimientos::Create(['entrada' => $cuotaTotal, 'fecha' => $fechaHoy, 'nro_cuota' => $item2['nro_cuota'], 'id_venta' => $item2['id_venta'] ]);
-
-                });
-                $this->repasarDeudores($deudores, $plataDisponible);
-            });
-
-            if($plataDisponible > 0)
-            {
-                $cuotasTardias = DB::table('ventas')
-                    ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
-                    ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-                    ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-                    ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-                    ->join('proovedores', function($join){
-                        $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
-                    })
-                    ->join('prioridades', 'prioridades.id', '=', 'proovedores.id_prioridad')
-                    ->select('socios.nombre AS socio', 'cuotas.id AS id_cuota', 'cuotas.nro_cuota', 'ventas.id AS id_venta', 'prioridades.orden', 'socios.id AS id_asociado', 'cuotas.importe')
-                    ->where('cuotas.fecha_inicio', '>=', $fechaHoy)
-                    ->where('socios.id', '=', $socio['id_socio'])
-                    ->orderBy('cuotas.fecha_inicio')->get();
-
-                $movimientos = DB::table('ventas')
-                    ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-                    ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-                    ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-                    ->join('movimientos', 'movimientos.id_venta', '=', 'ventas.id')
-                    ->groupBy('movimientos.id_venta')
-                    ->groupBy('movimientos.nro_cuota')
-                    ->where('movimientos.fecha', '>=', $fechaHoy)
-                    ->where('socios.id', '=', $socio['id_socio'])
-                    ->select('ventas.id AS id_venta', 'movimientos.nro_cuota', 'movimientos.id AS id_movimiento', DB::raw('SUM(movimientos.entrada) AS entrada'))
-                    ->get();
-
-
-                $cuotasTardias = $this->unirColecciones($cuotasTardias, $movimientos, ["id_venta", "nro_cuota"], ['entrada' => 0]);
-                $cuotasTardias = $cuotasTardias->map(function ($item){
-                    $diferencia = $item['importe'] - $item['entrada'];
-                    $item->put('diferencia', $diferencia);
-                    return $item;
-                });
-                $cuotasTardias = $cuotasTardias->filter(function ($item){
-                    return $item['diferencia'] > 0;
-                });
-
-                    $cuotasTardias = $cuotasTardias->groupBy('orden');
-                $cuotasTardias->each(function ($item, $key) use (&$plataDisponible, &$deudores, $fechaHoy) {
-                    $plataTotal = $plataDisponible / $item->count();
-                    $item->each(function ($item2, $key) use (&$plataTotal, &$plataDisponible, &$deudores, $fechaHoy){
-                     
-                        if($item2['diferencia'] <= $plataTotal)
-                        {
-                            $cuotaTotal = $item2['diferencia'];
-                            $plataDisponible -= ($item2['diferencia']);
-
-                        } else if($item2['diferencia'] > $plataTotal)
-                        {
-                            $cuotaTotal = $plataTotal;
-                            $plataDisponible -= $plataTotal;
-                            $deudores->push($item2);
-                        }
-                       Movimientos::Create(['entrada' => $cuotaTotal, 'fecha' => $fechaHoy, 'nro_cuota' => $item2['nro_cuota'], 'id_venta' => $item2['id_venta'] ]);
-
-
-                    });
-                    $this->repasarDeudores($deudores, $plataDisponible);
-            });
-
-            }
-
-         
         }
-        return $request->all();
+
     }
     public function repasarDeudores($deudores, &$plataDisponible)
     {
