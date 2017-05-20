@@ -10,6 +10,7 @@ namespace App\Repositories\Eloquent\Cobranza;
 use App\Repositories\Eloquent\ConsultasCuotas;
 use App\Repositories\Eloquent\ConsultasMovimientos;
 use App\Repositories\Eloquent\Socio;
+use App\Repositories\Eloquent\Ventas;
 
 class CobrarPorSocio
 {
@@ -24,9 +25,21 @@ class CobrarPorSocio
     {
         $collect = collect();
         $this->socio->getVentas()->each(function ($venta) use ($collect){
-             $collect->push($venta->cuotasVencidas());
-
+             $orden = $venta->getOrdenPrioridad();
+             $cuotasVencidas = $venta->cuotasVencidas();
+             $cantidadCuotas = $venta->cuotasVencidas()->count();
+             $a = collect(['orden' => $orden, 'cuotas' => $cuotasVencidas, 'cantidad' => $cantidadCuotas]);
+             $collect->push($a);
         });
+        $max = $collect->max('cantidad');
+        $ventasConMayorPrioridad = $collect->filter(function($item) use ($max){
+            return $item['cantidad'] == $max;
+        })->sortBy('orden');
+        $ventaPrioritaria = $ventasConMayorPrioridad->first();
+        $cuota = $ventaPrioritaria['cuotas']->shift();
+        $ventaPrioritaria['cantidad']
+        $montoCuota = $monto / $ventasConMayorPrioridad->count();
+        $cuota->cobrar($montoCuota);
 
     }
 }

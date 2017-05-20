@@ -10,7 +10,7 @@ class Productos extends Model
     use SoftDeletes;
 	//TODO: hay que agregarle el tipo de producto (credito o producto) y cambiarlo en la base de datos
     protected $fillable = [
-        'id_proovedor', 'descripcion', 'gastos_administrativos', 'ganancia', 'nombre'
+        'id_proovedor', 'descripcion', 'gastos_administrativos', 'ganancia', 'nombre', 'tipo'
     ];
 
     protected $dates = ['deleted_at'];
@@ -23,5 +23,10 @@ class Productos extends Model
     public function movimientos()
     {
     	return $this->hasMany('App\Movimientos', 'id_producto', 'id');
+    }
+
+    public function ventas()
+    {
+        return $this->hasMany('App\Ventas', 'id_producto', 'id');
     }
 }

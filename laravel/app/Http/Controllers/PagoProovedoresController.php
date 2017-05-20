@@ -23,25 +23,18 @@ class PagoProovedoresController extends Controller
     public function datos(Request $request)
     {
 
-        $movimientos = DB::table('movimientos')
-            ->join('cuotas', 'cuotas.id_movimiento', '=', 'movimientos.id')
-            ->join('socios', 'movimientos.id_asociado', '=', 'socios.id')
-            ->join('productos', 'movimientos.id_producto', '=', 'productos.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('proovedores', function($join){
-                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
-            })
-            ->where('cuotas.cobro', '=', '1')
-            ->where('cuotas.pago', '=', '0')
-            ->select('movimientos.*', 'socios.nombre AS socio', 'proovedores.nombre AS proovedor', 'productos.nombre AS producto', 'cuotas.importe', 'cuotas.nro_cuota', 'cuotas.pago', 'cuotas.fecha_pago', 'organismos.nombre AS organismo', 'organismos.id AS id_organismo', 'cuotas.id AS id_cuota');
+        
+        $movimientos = DB::table('proovedores')
+            ->join('productos', 'proovedores.id', '=', 'productos.id_proovedor')
+            ->join('ventas', 'productos.id', '=', 'ventas.id_producto')
+            ->join('cuotas', 'ventas.id', '=', 'cuotas.id_venta')
+            ->join('movimientos', 'cuotas.id', '=', 'movimientos.id_cuota')
+            ->where('movimientos.salida', '=', '0')
+            ->where('movimientos.entrada', '>', '0')
+            ->groupBy('proovedores.id')
+            ->select('proovedores.nombre AS proovedor', 'proovedores.id AS id_proovedor', DB::raw('SUM(movimientos.entrada) - (SUM(movimientos.entrada) * (producto.ganancia + producto.gastos_administrativos) / 100)'));
             
-	    return  $tabla =  Datatables::of($movimientos)
-	           ->filter(function ($query) use ($request){
-	                
-	                $this->filtros($request,$query);
-	            
-	            })
-        		->make(true);
+	    return $movimientos->toJson();
     }
 
     public function traerDatosAutocomplete(Request $request)
