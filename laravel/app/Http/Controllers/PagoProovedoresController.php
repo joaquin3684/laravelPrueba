@@ -32,7 +32,7 @@ class PagoProovedoresController extends Controller
             ->where('movimientos.salida', '=', '0')
             ->where('movimientos.entrada', '>', '0')
             ->groupBy('proovedores.id')
-            ->select('proovedores.nombre AS proovedor', 'proovedores.id AS id_proovedor', DB::raw('SUM(movimientos.entrada) - (SUM(movimientos.entrada) * (producto.ganancia + producto.gastos_administrativos) / 100) AS pagar'));
+            ->select('proovedores.nombre AS proovedor', 'proovedores.id AS id_proovedor', DB::raw('SUM(movimientos.entrada) - (SUM(movimientos.entrada) * (producto.ganancia + producto.gastos_administrativos) / 100) AS pagar'))->get();
             
 	    return $movimientos->toJson();
     }
