@@ -19,4 +19,9 @@ class Proovedores extends Model
     {
     	return $this->belongsTo('App\Prioridades', 'id_prioridad', 'id');
     }
+
+    public function productos()
+    {
+        return $this->hasMany('App\Productos', 'id_proovedor', 'id');
+    }
 }

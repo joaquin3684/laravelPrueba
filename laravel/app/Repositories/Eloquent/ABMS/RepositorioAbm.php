@@ -26,7 +26,7 @@ abstract class RepositorioAbm implements abmInterface {
 
     abstract function model();
 
-    public function store(array $data)
+    public function create(array $data)
     {
         return $this->model->create($data);
     }

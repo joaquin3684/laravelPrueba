@@ -8,7 +8,8 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Movimientos;
+use App\Repositories\Eloquent\Repos\MovimientosRepo;
+
 class Movimiento
 {
     private $id;
@@ -16,26 +17,19 @@ class Movimiento
     private $entrada;
     private $salida;
     private $fecha;
-    private $activeMovimiento;
+    private $ganancia;
+    private $gastos_administrativos;
 
-    /**
-     * Movimiento constructor.
-     * @param $id
-     * @param $id_cuota
-     * @param $entrada
-     * @param $salida
-     * @param $fecha
-     */
-    public function __construct(Movimientos $movimiento)
+    public function __construct($id, $entrada, $id_cuota, $salida, $fecha, $ganancia, $gastos_administrativos)
     {
-        $this->id = $movimiento->id;
-        $this->id_cuota = $movimiento->id_cuota;
-        $this->entrada = $movimiento->entrada;
-        $this->salida = $movimiento->salida;
-        $this->fecha = $movimiento->fecha;
-        $this->activeMovimiento = $movimiento;
+        $this->id = $id;
+        $this->id_cuota = $id_cuota;
+        $this->entrada = $entrada;
+        $this->salida = $salida;
+        $this->fecha = $fecha;
+        $this->ganancia = $ganancia;
+        $this->gastos_administrativos = $gastos_administrativos;
     }
-
 
     public function getIdCuota()
     {
@@ -54,11 +48,19 @@ class Movimiento
 
     public function pagarProovedor($gastosAdmin, $ganancia)
     {
-        $entrada = $this->activeMovimiento->entrada;
-        $this->activeMovimiento->salida = $entrada - ($entrada * ($gastosAdmin + $ganancia) / 100);
-        $this->activeMovimiento->gastos_administrativos = $entrada * $gastosAdmin / 100;
-        $this->activeMovimiento->ganancia = $entrada * $ganancia / 100;
+        $entrada = $this->entrada;
+        $this->salida = $entrada - ($entrada * ($gastosAdmin + $ganancia) / 100);
+        $this->gastos_administrativos = $entrada * $gastosAdmin / 100;
+        $this->ganancia = $entrada * $ganancia / 100;
+        $this->update($this, $this->id);
+    }
 
-        $this->activeMovimiento->save();
+    public function update($arr, $id)
+    {
+        $repo = new MovimientosRepo();
+        if(!is_array($arr))
+            $arr = get_object_vars($arr);
+
+        $repo->update($arr, $id);
     }
 }

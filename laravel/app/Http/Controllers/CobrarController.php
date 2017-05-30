@@ -6,6 +6,7 @@ use App\Repositories\Eloquent\Cobranza\CobrarPorSocio;
 use App\Repositories\Eloquent\Mapper\CuotasMapper;
 use App\Repositories\Eloquent\Mapper\SociosMapper;
 use App\Repositories\Eloquent\Mapper\VentasMapper;
+use App\Repositories\Eloquent\Repos\SociosRepo;
 use App\Repositories\Eloquent\Socio;
 use Illuminate\Http\Request;
 use App\Ventas;
@@ -25,7 +26,7 @@ use App\Repositories\Eloquent\Filtros;
 use App\Repositories\Eloquent\Tabla;
 use App\Repositories\Eloquent\Ventas as RepoVentas;
 use App\Repositories\Eloquent\Cobranza\CobrarPorVenta;
-
+use App\Repositories\Eloquent\Repos\VentasRepo;
 
 class CobrarController extends Controller
 {
@@ -135,17 +136,12 @@ class CobrarController extends Controller
     }
     public function cobrarPorPrioridad(Request $request)
     {
-
-
         foreach($request->all() as $socio)
         {
-
-            $socioMapper = new SociosMapper($socio['id']);
-            $objetoSocio = $socioMapper->ventasConCuotasVencidas();
-            $socio = new Socio($objetoSocio);
+            $socioRepo = new SociosRepo();
+            $socio = $socioRepo->ventasConCuotasVencidas($socio['id']);
             $cobrar = new CobrarPorSocio($socio);
             $cobrar->cobrar($socio['monto']);
-
         }
 
     }
@@ -228,13 +224,11 @@ class CobrarController extends Controller
     {
         foreach($request->all() as $venta)
         {
-
-            $ventasMapper = new VentasMapper($venta['id_venta']);
-            $ventasCuotasVencidas = $ventasMapper->cuotasVencidas();
-            $ventaObj = new RepoVentas($ventasCuotasVencidas);
+            $ventasRepo = new VentasRepo();
+            $ventaCuotasVencidas = $ventasRepo->cuotasVencidas($venta['id_venta']);
 
             $cobrar = new CobrarPorVenta();
-            $cobrar->cobrar($ventaObj, $venta['cobro']);
+            $cobrar->cobrar($ventaCuotasVencidas, $venta['cobro']);
         }
     }
 

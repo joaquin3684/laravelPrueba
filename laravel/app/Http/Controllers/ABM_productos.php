@@ -30,7 +30,7 @@ class ABM_productos extends Controller
 
     public function store(Request $request)
     {
-        $this->producto->store($request->all());
+        $this->producto->create($request->all());
     }
 
     /**

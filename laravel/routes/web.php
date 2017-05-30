@@ -11,6 +11,16 @@
 |
 */
 
+use App\Repositories\Eloquent\Cobranza\CobrarPorSocio;
+use App\Repositories\Eloquent\Mapper\SociosMapper;
+use App\Repositories\Eloquent\Repos\CuotasRepo;
+use App\Repositories\Eloquent\Repos\EstadoVentaRepo;
+use App\Repositories\Eloquent\Repos\SociosRepo;
+use App\Repositories\Eloquent\Repos\VentasRepo;
+use App\Repositories\Eloquent\Socio;
+use App\Ventas;
+use Carbon\Carbon;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,6 +33,9 @@ Route::get('creacionAutomatica', function(){
     $role->permissions = ['organismos.crear' => true, 'organismos.visualizar' => true, 'organismos.editar' => true, 'organismos.borrar'=> true, 'socios.editar' => true, 'socios.visualizar' => true, 'socios.crear' => true, 'socios.borrar' => true];
     $role->save();
     $role->users()->attach($user);
+    \App\Prioridades::create(['nombre' => 'alta', 'orden' => '1']);
+    \App\Prioridades::create(['nombre' => 'baja', 'orden' => '2']);
+
 });
 Route::get('abm/mostrarRegistros', 'Prueba@mostrarRegistros');
 Route::get('organismos/traerRelacionorganismos', 'ABM_organismos@traerRelacionorganismos');
@@ -63,6 +76,35 @@ Route::get('prioridades/datos', 'ABM_prioridades@datos');
 Route::post('prioridades/guardarConfiguracion', 'ABM_prioridades@guardarConfiguracion');
 Route::get('proovedores/traerRelacionproovedores', 'ABM_proovedores@traerRelacion');
 Route::get('prioridades/traerRelacionprioridades', 'ABM_prioridades@traerRelacion');
+Route::get('aprobacion', 'AprobacionServiciosController@index');
+Route::get('aprobacion/datos', 'AprobacionServiciosController@datos');
+Route::post('aprobacion/aprobar', 'AprobacionServiciosController@aprobarServicios');
+Route::get('pruebas', function(){
+
+    $estadoRepo = new EstadoVentaRepo();
+    $estadoRepo->create(['id_venta' => 3, 'id_responsable_estado' => 1, 'estado' => 'APROBADO', 'observacion' => 'AAA']);
+
+        $cuotaRepo = new CuotasRepo();
+        $ventasRepo = new VentasRepo();
+        $venta = $ventasRepo->find(3);
+        $fecha = $venta->getFechaVencimiento();
+        $carbon = Carbon::createFromFormat('Y-m-d', $fecha);
+        $fechaHoy = Carbon::today();
+        $importeCuota = $venta->getImporte() / $venta->getNroCuotas();
+
+        for($i=1; $venta->getNroCuotas() >= $i; $i++)
+        {
+            $cuotaRepo->create(['nro_cuota' => $i, 'importe' => $importeCuota, 'id_venta' => $venta->getId(), 'fecha_vencimiento' => $carbon->toDateString(), 'fecha_inicio' => $fechaHoy->toDateString()]);
+
+            $fechaHoy = Carbon::create($carbon->year, $carbon->month, $carbon->day);
+            $carbon->addMonth();
+        }
+
+
+
+
+
+});
 
 Route::resource('cobrar', 'CobrarController');
 Route::resource('proovedores_prioridades', 'PrioridadesProovedores');

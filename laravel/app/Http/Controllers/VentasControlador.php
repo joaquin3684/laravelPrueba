@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\EstadoVenta;
+use App\Repositories\Eloquent\Repos\EstadoVentaRepo;
+use App\Repositories\Eloquent\Repos\VentasRepo;
+use Sentinel;
 use Illuminate\Http\Request;
 use App\Ventas;
 use App\Cuotas;
@@ -84,21 +88,13 @@ class VentasControlador extends Controller
 
     public function store(Request $request)
     {
-       $venta = Ventas::create($request->all());
-        $importeCuota = $request['importe'] / $request['nro_cuotas'];
-        $fecha = explode('-', $request['vencimiento']);
-        $carbon = Carbon::create($fecha[0], $fecha[1], $fecha[2], 0);
-        $fechaHoy = Carbon::today();
-        
-        for($i=1; $request['nro_cuotas']>= $i; $i++)
-        {
-            Cuotas::create(['nro_cuota' => $i, 'importe' => $importeCuota, 'id_venta' => $venta->id, 'fecha_vencimiento' => $carbon->toDateString(), 'fecha_inicio' => $fechaHoy->toDateString()]);
-            
-            $fechaHoy = Carbon::create($carbon->year, $carbon->month, $carbon->day);
-            $fechaHoy->addDays(1);
-            $carbon->addDays(30);
-           //TODO: cuando se da de aprobado una venta es cuando recien toma vigencia para poder seguir con el proceso
-        }
+        $user = Sentinel::getUser();
+        $req = $request->all();
+        $ventaRepo = new VentasRepo();
+        $venta = $ventaRepo->create($req);
+        $estadoRepo = new EstadoVentaRepo();
+        $estadoVenta = $estadoRepo->create(['id_venta' => $venta->getId(), 'id_responsable_estado' => $user->id, 'estado' => 'ALTA']);
+
     }
 
     public function mostrarPorSocio(Request $request)

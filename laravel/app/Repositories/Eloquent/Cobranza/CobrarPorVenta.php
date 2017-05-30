@@ -17,7 +17,8 @@ class CobrarPorVenta
         $cuotas->each(function ($cuota) use (&$monto){
             if($monto == 0)
                 return false;
-           $cuota->cobrar($monto);
+          $cobrado = $cuota->cobrar($monto);
+          $monto -= $cobrado;
         });
     }
 }

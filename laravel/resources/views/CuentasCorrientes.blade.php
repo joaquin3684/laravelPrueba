@@ -70,10 +70,10 @@
                                       <form ng-submit="filtro()">
                                   
 
-
                                         <div class="row">
-                                        <div class="col-sm-3 col-xs-12">
-                                                <md-autocomplete  md-item-text="item.organismo" md-no-cache="true" md-search-text-change="buscandoOrganismos(searchText4)" md-selected-item-change="filtrar()" md-items="item in query(searchText4)" md-search-text="searchText4" md-selected-item="organismo" placeholder="Buscar organismo..." >
+
+                                            <div id="filterOrganismo" ng-if="vistaactual=='Organismos'">
+                                                <md-autocomplete md-item-text="item.organismo" md-no-cache="true" md-search-text-change="buscandoOrganismos(searchText4)" md-selected-item-change="filtrar()" md-items="item in query(searchText4)" md-search-text="searchText4" md-selected-item="organismo" placeholder="Buscar organismo..." >
                                                 <md-item-template>
                                                     <span md-highlight-text="searchText">
                                                         {[{item.organismo}]}
@@ -85,7 +85,7 @@
                                                     </md-not-found>
                                                 </md-autocomplete>
                                             </div>
-                                            <div class="col-sm-3 col-xs-12">
+                                            <div id="filterSocio" ng-if="vistaactual=='Socios'">
                                                 <md-autocomplete  md-item-text="item.socio" md-no-cache="true" md-search-text-change="buscandoSocios(searchText)" md-selected-item-change="filtrar()" md-items="item in query(searchText)" md-search-text="searchText" md-selected-item="socio" placeholder="Buscar afiliado..." >
                                                 <md-item-template>
                                                     <span md-highlight-text="searchText">
@@ -98,7 +98,7 @@
                                                     </md-not-found>
                                                 </md-autocomplete>
                                             </div>
-                                            <div class="col-sm-3 col-xs-12">
+                                            <div id="filterProveedor" ng-if="vistaactual=='Ventas' || vistaactual =='Cuotas'">
                                                 <md-autocomplete  md-item-text="item.proovedor" md-no-cache="true"  md-search-text-change="buscandoProovedores(searchText2)" md-items="item in query(searchText2)" md-selected-item-change="filtrar()" md-search-text="searchText2" md-selected-item="proovedor" placeholder="Buscar proovedor...">
                                                 <md-item-template>
                                                     <span md-highlight-text="searchText">
@@ -111,7 +111,7 @@
                                                     </md-not-found>
                                                 </md-autocomplete>
                                             </div>
-                                            <div class="col-sm-3 col-xs-12">
+                                            <div id="filterProducto" ng-if="vistaactual=='Ventas'">
                                                 <md-autocomplete  md-item-text="item.producto" md-no-cache="true"  md-search-text-change="buscandoProductos(searchText3)" md-items="item in query(searchText3)" md-selected-item-change="filtrar()" md-search-text="searchText3" md-selected-item="producto" placeholder="Buscar producto...">
                                                 <md-item-template>
                                                     <span md-highlight-text="searchText">
@@ -124,9 +124,9 @@
                                                     </md-not-found>
                                                 </md-autocomplete>
                                             </div>
+
                                         </div>
-                                        
-                                        <div class="row" style="margin-top:20px;">
+                                        <div class="row" style="margin-top:20px;" id="filterCuota">
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
                                                     Minimo importe cuota
@@ -152,10 +152,10 @@
                                                 </input>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" id="filterCuota2">
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Minimo N° cuota
+                                                    Minimo N�� cuota
                                                 </label>
                                                 <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" 
                                                  ng-model="minimo_nro_cuota">
@@ -168,7 +168,7 @@
                                             </div>
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Maximo N° cuota
+                                                    Maximo N�� cuota
                                                 </label>
                                                 <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" ng-model="maximo_nro_cuota">
                                                 </md-slider>
@@ -179,7 +179,7 @@
                                                 </input>
                                             </div>
                                         </div>
-                                        <div class="row" style="margin-top:20px;">
+                                        <div class="row" style="margin-top:20px;" id="filterFecha">
                                             <div class="item form-group col-sm-6 col-xs-12">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="desde">
                                                     Desde:
@@ -259,18 +259,156 @@
                             </div>
                         </div>
                         <div class="x_content">
-                        <div id="paraBorrar">
-                            <table cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" id="tablaOrganismos" width="100%">
-                               
-                               <tfoot>
-                                    <tr>
-                                        <th style="text-align:right">Total:</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+ <div class="row">
+    <ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="" id="bread-organismos" ng-click="setVista('Organismos')"><i class="fa fa-home"></i> ORGANISMOS</a></li>
+        <li><a href="" id="bread-socios" ng-if="vistaactual !== 'Organismos'" ng-click="setVista('Socios')">SOCIOS (<b>{[{organismoactual}]}</b>)</a></li>
+        <li><a href="" id="bread-servicios" ng-if="vistaactual !== 'Organismos' && vistaactual !== 'Socios'" ng-click="setVista('Ventas')">SERVICIOS (<b>{[{socioactual}]}</b>)</a></li>
+        <li><a href="" id="bread-cuotas" ng-if="vistaactual == 'Cuotas'">CUOTAS (<b>{[{productoactual}]}</b>)</a></li>
+    </ol>
+</div>
+                        <div id="divTablaOrganismos" ng-if="vistaactual=='Organismos'">
+                        		<table id="tablaOrganismos" ng-table="paramsOrganismos" show-filter="true" class="table table-hover table-bordered">
+                                    
+                                    <tr ng-repeat="organismo in $data" ng-click="PullSocios(organismo.id_organismo,organismo.organismo)">
+
+                                        <td title="'Organismo'" filter="{ organismo: 'text'}" sortable="'organismo'">
+							            {[{organismo.organismo}]}
+                                    </td>
+							        <td title="'Diferencia'" sortable="'diferencia'">
+							            {[{organismo.diferencia}]}
+                                    </td>
+							   	</tr>
+								</table>
+                        </div>
+                        <div id="divTablaSocios" ng-if="vistaactual=='Socios'">
+                                <table id="tablaSocios" ng-table="paramsSocios" class="table table-hover table-bordered">
+
+                                    <tr ng-repeat="socio in $data" ng-click="PullVentas(socio.id_socio,socio.socio)">
+                                        <td title="'Socio'" sortable="'socio'">
+                                            {[{socio.socio}]}
+                                        </td>
+                                        <td title="'Diferencia'" sortable="'diferencia'">
+                                            {[{socio.diferencia}]}
+                                        </td>
+                                        <td title="'Total a Cobrar'" sortable="'totalACobrar'">
+                                            {[{socio.totalACobrar}]}
+                                        </td>
+                                        <td title="'Total Cobrado'" sortable="'totalCobrado'">
+                                            {[{socio.totalCobrado}]}
+                                        </td>
                                     </tr>
-                                </tfoot> 
+                                </table>
+                        </div>
+                        <div id="divTablaVentas" ng-if="vistaactual=='Ventas'">
+                            <table id="tablaVentas" ng-table="paramsVentas" class="table table-hover table-bordered">
+                                <tr ng-repeat="venta in $data" ng-click="PullCuotas(venta.id_venta,venta.producto)">
+                                    <td title="'Producto'" sortable="'producto'">
+                                        {[{venta.producto}]}
+                                    </td>
+                                    <td title="'Proveedor'" sortable="'proovedor'">
+                                        {[{venta.proovedor}]}
+                                    </td>
+                                    <td title="'Fecha'" sortable="'fecha'">
+                                        {[{venta.fecha}]}
+                                    </td>
+                                    <td title="'Diferencia'" sortable="'diferencia'">
+                                        {[{venta.diferencia}]}
+                                    </td>
+                                    <td title="'Total a Cobrar'" sortable="'totalACobrar'">
+                                        {[{venta.totalACobrar}]}
+                                    </td>
+                                    <td title="'Total Cobrado'" sortable="'totalCobrado'">
+                                        {[{venta.totalCobrado}]}
+                                    </td>
+                                </tr>
                             </table>
+                        </div>
+{{--                        <div id="divTablaCuotas" ng-if="vistaactual=='Cuotas'">
+                            <table id="tablaCuotas" ng-table="paramsCuotas" class="table table-hover table-bordered">
+                                <tr ng-repeat="cuota in cuotas" ng-click="">
+                                    <td title="'NroCuota'" sortable="'nro_cuota'">
+                                        {[{cuota.nro_cuota}]}
+                                    </td>
+                                    <td title="'Proveedor'" sortable="'proovedor'">
+                                        {[{cuota.proovedor}]}
+                                    </td>
+                                    <td title="'Vencimiento'" sortable="'fecha_vencimiento'">
+                                        {[{cuota.fecha_vencimiento}]}
+                                    </td>
+
+                                    <td title="'Importe'" sortable="'importe'">
+                                        {[{cuota.importe}]}
+                                    </td>
+                                    <td title="'Cobrado'" sortable="'cobrado'">
+                                        {[{cuota.cobrado}]}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>--}}
+                            <div id="pruebaExpandir" ng-if="vistaactual=='Cuotas'">
+                                <div class="span12 row-fluid">
+                                    <!-- START $scope.[model] updates -->
+                                    <!-- END $scope.[model] updates -->
+                                    <!-- START TABLE -->
+                                    <div>
+                                        <table ng-table="paramsCuotas" class="table table-hover table-bordered">
+
+                                            <tbody data-ng-repeat="cuota in $data" data-ng-switch on="dayDataCollapse[$index]">
+                                            <tr class="clickableRow" title="" data-ng-click="selectTableRow($index,cuota.id_cuota)" >
+                                                <td title="'NroCuota'" sortable="'nro_cuota'">
+                                                    {[{cuota.nro_cuota}]}
+                                                </td>
+                                                <td title="'Proveedor'" sortable="'proovedor'">
+                                                    {[{productodelacuota}]}
+                                                </td>
+                                                <td title="'Vencimiento'" sortable="'fecha_vencimiento'">
+                                                    {[{cuota.fecha_vencimiento}]}
+                                                </td>
+
+                                                <td title="'Importe'" sortable="'totalACobrar'">
+                                                    {[{cuota.importe}]}
+                                                </td>
+                                                <td title="'Cobrado'" sortable="'totalCobrado'">
+                                                    {[{cuota.cobrado}]}
+                                                </td>
+                                            </tr>
+                                            <tr data-ng-switch-when="true">
+                                                <td colspan="5">
+                                                    <div>
+                                                        <div>
+                                                            <table class="table">
+                                                                <thead class="levelTwo" style="background-color: #73879C; color: white;">
+                                                                <tr>
+                                                                    <th>Fecha</th>
+                                                                    <th>Entrada</th>
+                                                                    <th>Salida</th>
+                                                                    <th>Ganancia</th>
+                                                                    <th>Gastos Administrativos</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr style="background-color: #A6A6A6; color: white;" data-ng-repeat="movimiento in cuota.movimientos">
+
+                                                                    <td><center>{[{movimiento.fecha}]}</center></td>
+                                                                    <td><center>{[{movimiento.entrada}]}</center></td>
+                                                                    <td><center>{[{movimiento.salida}]}</center></td>
+                                                                    <td><center>{[{movimiento.ganancia}]}</center></td>
+                                                                    <td><center>{[{movimiento.gastos_administrativos}]}</center></td>
+                                  
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{--</tbody>--}}
+                                        </table>
+                                    </div>
+                                    <!-- END TABLE -->
+                                </div>
+
                             </div>
                         </div>
                     </div>

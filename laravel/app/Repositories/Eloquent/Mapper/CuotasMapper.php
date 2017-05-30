@@ -7,27 +7,29 @@
  */
 
 namespace App\Repositories\Eloquent\Mapper;
-use App\Repositories\Eloquent\Movimiento;
+use App\Repositories\Eloquent\Cuota;
 use App\Cuotas;
 
 class CuotasMapper
 {
-    private $idCuota;
+    private $movimientoMapper;
 
-    public function __construct($idCuota = null)
+    public function __construct()
     {
-        $this->idCuota = $idCuota;
+        $this->movimientoMapper = new MovimientoMapper();
     }
 
-    public function movimientos()
+    public function map($cuota)
     {
-        $movimientos = Cuotas::find($this->idCuota)->movimientos();
-        $collection = collect();
-        $movimientos->each(function ($item) use($collection){
-            $a = new Movimiento($item->id, $item->id_cuota, $item->entrada, $item->salida, $item->fecha);
-            $collection->push($a);
-        });
-        return $collection;
+        $cuotaNuevo = new Cuota($cuota->id, $cuota->importe, $cuota->fecha_vencimiento, $cuota->fecha_inicio, $cuota->nro_cuota);
+        if($cuota->relationLoaded('movimientos'))
+        {
+            $movimientos = $cuota->movimientos->map(function($movimiento){
+                return $this->movimientoMapper->map($movimiento);
+            });
+            $cuotaNuevo->setMovimientos($movimientos);
+        }
+        return $cuotaNuevo;
     }
 
 

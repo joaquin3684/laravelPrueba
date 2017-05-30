@@ -8,56 +8,46 @@
 
 namespace App\Repositories\Eloquent\Mapper;
 use App\Repositories\Eloquent\Fechas;
-use App\Ventas;
 use App\Repositories\Eloquent\Cuota;
-use App\Repositories\Eloquent\Ventas as RepoVentas;
+use App\Ventas as VentasModel;
+use App\Repositories\Eloquent\Ventas;
 
 
 class VentasMapper
 {
-    private $idVenta;
+    private $cuotasMapper;
+    private $productosMapper;
 
-    public function __construct($idVenta = null)
+    public function __construct()
     {
-        $this->idVenta = $idVenta;
+        $this->cuotasMapper = new CuotasMapper();
+        $this->productosMapper = new ProductosMapper();
+        $this->estadoMapper = new EstadoVentaMapper();
     }
 
-    public function cuotas()
+    public function map(VentasModel $venta)
     {
-        $cuotas = Ventas::find($this->idVenta)->cuotas();
-        $coleccion = collect();
-        $cuotas->each(function($cuota) use ($coleccion){
-            $a = new Cuota($cuota->id, $cuota->id_venta, $cuota->importe, $cuota->fecha_vencimiento, $cuota->fecha_inicio, $cuota->nro_cuota);
-            $coleccion->push($a);
-        });
-        return $coleccion;
-    }
-
-    public function find()
-    {
-        return $venta = Ventas::find($this->idVenta);
-    }
-
-    public function cuotasVencidas()
-    {
-        $fecha = new Fechas();
-        $hoy = $fecha->getFechaHoy();
-        return $ventas = Ventas::with(['cuotas' => function($query) use ($hoy) {
-            $query->where('fecha_inicio', '<', $hoy);
-            $query->with('movimientos');
-        }])->find($this->idVenta);
-    }
-
-    public function cuotasAPagarProovedor($id_proovedor)
-    {
-        return $ventas = Ventas::with(['cuotas' => function($query) {
-               $query->with(['movimientos' => function($query) {
-                $query->where('entrada', '>', 0);
-                $query->where('salida', '=', 0);
-            }]);
-        }, 'producto.proovedor'])->has('movimientos')->whereHas('producto.proovedor', function($query) use ($id_proovedor){
-            $query->where('id', $id_proovedor);
-        })->get();
+        $ventaNueva = new Ventas($venta->id,  $venta->descripcion, $venta->nro_cuotas, $venta->fecha, $venta->importe, $venta->fecha_vencimiento);
+        if($venta->relationLoaded('cuotas'))
+        {
+            $cuotas = $venta->cuotas->map(function($cuota){
+                return $this->cuotasMapper->map($cuota);
+            });
+            $ventaNueva->setCuotas($cuotas);
+        }
+        if($venta->relationLoaded('producto'))
+        {
+            $producto = $this->productosMapper->map($venta->producto);
+            $ventaNueva->setProducto($producto);
+        }
+        if($venta->relationLoaded('estado'))
+        {
+            $estados = $venta->estados->map(function($estado){
+                return $this->estadoMapper->map($estado);
+            });
+            $ventaNueva->setEstados($estados);
+        }
+        return $ventaNueva;
     }
 
 

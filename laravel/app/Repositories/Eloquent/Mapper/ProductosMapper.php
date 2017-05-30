@@ -8,8 +8,28 @@
 
 namespace App\Repositories\Eloquent\Mapper;
 
+use App\Productos;
+use App\Repositories\Eloquent\Producto;
+use App\Repositories\Eloquent\Mapper\ProveedoresMapper;
 
 class ProductosMapper
 {
+    /**
+     * ProductosMapper constructor.
+     */
+    public function __construct()
+    {
+        $this->proveedorMapper = new ProveedoresMapper();
+    }
 
+    public function map(Productos $producto)
+    {
+        $productoNuevo = new Producto($producto->id, $producto->nombre, $producto->gastos_administrativos, $producto->ganancia, $producto->tipo);
+        if($producto->relationLoaded('proovedor'))
+        {
+            $proveedor = $this->proveedorMapper->map($producto->proovedor);
+            $productoNuevo->setProveedor($proveedor);
+        }
+        return $productoNuevo;
+    }
 }

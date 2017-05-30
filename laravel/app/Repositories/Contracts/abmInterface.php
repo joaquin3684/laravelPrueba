@@ -11,7 +11,7 @@ namespace App\Repositories\Contracts;
 
 interface abmInterface
 {
-    public function store(array $data);
+    public function create(array $data);
 
     public function update(array $data, $id);
 

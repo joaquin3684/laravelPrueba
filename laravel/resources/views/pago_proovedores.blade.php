@@ -25,9 +25,9 @@
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>
-                                        Formulario de proovedores
+                                       Pago a Proveedores
                                         <small>
-                                            Dar de alta un proovedor
+                                            Pagar a un Proveedor
                                         </small>
                                     </h2>
                                     <ul class="nav navbar-right panel_toolbox">
@@ -73,32 +73,7 @@
 
 
                                         <div class="row">
-                                        <div class="col-sm-3 col-xs-12">
-                                                <md-autocomplete  md-item-text="item.organismo" md-no-cache="true" md-search-text-change="buscandoOrganismos(searchText4)" md-selected-item-change="filtrar()" md-items="item in query(searchText)" md-search-text="searchText4" md-selected-item="organismo" placeholder="Buscar organismo..." >
-                                                <md-item-template>
-                                                    <span md-highlight-text="searchText">
-                                                        {[{item.organismo}]}
-                                                    </span>
-                                                    </md-item-template>
-                                                    <md-not-found>
-                                                     No se encontraron resultados para "{[{searchText}]}".
-          
-                                                    </md-not-found>
-                                                </md-autocomplete>
-                                            </div>
-                                            <div class="col-sm-3 col-xs-12">
-                                                <md-autocomplete  md-item-text="item.socio" md-no-cache="true" md-search-text-change="buscandoSocios(searchText)" md-selected-item-change="filtrar()" md-items="item in query(searchText)" md-search-text="searchText" md-selected-item="socio" placeholder="Buscar afiliado..." >
-                                                <md-item-template>
-                                                    <span md-highlight-text="searchText">
-                                                        {[{item.socio}]}
-                                                    </span>
-                                                    </md-item-template>
-                                                    <md-not-found>
-                                                     No se encontraron resultados para "{[{searchText}]}".
-          
-                                                    </md-not-found>
-                                                </md-autocomplete>
-                                            </div>
+
                                             <div class="col-sm-3 col-xs-12">
                                                 <md-autocomplete  md-item-text="item.proovedor" md-no-cache="true"  md-search-text-change="buscandoProovedores(searchText2)" md-items="item in query(searchText2)" md-selected-item-change="filtrar()" md-search-text="searchText2" md-selected-item="proovedor" placeholder="Buscar proovedor...">
                                                 <md-item-template>
@@ -112,25 +87,13 @@
                                                     </md-not-found>
                                                 </md-autocomplete>
                                             </div>
-                                            <div class="col-sm-3 col-xs-12">
-                                                <md-autocomplete  md-item-text="item.producto" md-no-cache="true"  md-search-text-change="buscandoProductos(searchText3)" md-items="item in query(searchText3)" md-selected-item-change="filtrar()" md-search-text="searchText3" md-selected-item="producto" placeholder="Buscar producto...">
-                                                <md-item-template>
-                                                    <span md-highlight-text="searchText">
-                                                        {[{item.producto}]}
-                                                    </span>
-                                                    </md-item-template>
-                                                    <md-not-found>
-                                                     No se encontraron resultados para "{[{searchText}]}".
-          
-                                                    </md-not-found>
-                                                </md-autocomplete>
-                                            </div>
+
                                         </div>
                                         
                                         <div class="row" style="margin-top:20px;">
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Minimo importe cuota
+                                                    Minimo importe
                                                 </label>
                                                 <md-slider aria-label="red" class="md-primary" ng-change="filtrar()"  flex="" id="red-slider" max="255" min="0" ng-model="minimo_importe_cuota">
                                                 </md-slider>
@@ -142,7 +105,7 @@
                                             </div>
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Maximo importe cuota
+                                                    Maximo importe 
                                                 </label>
                                                 <md-slider aria-label="red" class="md-primary" ng-change="filtrar()"  flex="" id="red-slider" max="255" min="0" ng-model="maximo_importe_cuota">
                                                 </md-slider>
@@ -153,37 +116,10 @@
                                                 </input>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="item form-group col-sm-5 col-xs-8">
-                                                <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Minimo N° cuota
-                                                </label>
-                                                <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" 
-                                                 ng-model="minimo_nro_cuota">
-                                                </md-slider>
-                                            </div>
-                                            <div class="col-md-1 col-sm-1 col-xs-4">
-                                                <input class="form-control col-md-7 col-xs-12" ng-change="filtrar()"  id="minimo" name="minimo" ng-model="minimo_nro_cuota" type="number">
-                                                    {[{errores.porcentaje_retencion[0]}]}
-                                                </input>
-                                            </div>
-                                            <div class="item form-group col-sm-5 col-xs-8">
-                                                <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Maximo N° cuota
-                                                </label>
-                                                <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" ng-model="maximo_nro_cuota">
-                                                </md-slider>
-                                            </div>
-                                            <div class="col-md-1 col-sm-1 col-xs-4">
-                                                <input class="form-control col-md-7 col-xs-12" ng-change="filtrar()"  id="minimo" name="minimo" ng-model="maximo_nro_cuota" type="number">
-                                                    {[{errores.porcentaje_retencion[0]}]}
-                                                </input>
-                                            </div>
-                                        </div>
                                         <div class="row" style="margin-top:20px;">
                                             <input type="submit" ng-click="filtro()" class="btn btn-success" value="Filtrar">
                                             <button type="button" ng-click="seleccionarTodo()" class="btn btn-primary">Seleccionar Todo</button>
-                                            <button type="button" ng-click="cobrar()" class="btn btn-danger">Cobrar</button>
+                                            
                                         </div>
                                         </form>
                                     </div>
@@ -201,7 +137,7 @@
                             <h2>
                                 Proovedores
                                 <small>
-                                    Todos los proovedores disponibles 
+                                    Todos los proovedores disponibles para pagarles
                                 </small>
                             </h2>
                         
@@ -241,66 +177,61 @@
                             </div>
                         </div>
                         <div class="x_content">
-                            <table cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" id="datatable-responsive" width="100%">
-                                <thead>
-                                    <tr>
+                            <div id="pruebaExpandir">
+                                <div class="span12 row-fluid">
+                                    <!-- START $scope.[model] updates -->
+                                    <!-- END $scope.[model] updates -->
+                                    <!-- START TABLE -->
+                                    <div>
+                                        <table ng-table="paramsProveedores" class="table table-hover table-bordered">
 
-                                        <th>
-                                            Proovedor
-                                        </th>
-                                        <th>
-                                            Total a Pagar
-                                        </th>
-                                      
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody id="pum">
-                                    <tr>
-                                        <td>Proovedor 1</td>
-                                        <td>3000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 2</td>
-                                        <td>4000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 3</td>
-                                        <td>7500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 4</td>
-                                        <td>2500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 5</td>
-                                        <td>3000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 6</td>
-                                        <td>4250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 7</td>
-                                        <td>3000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 8</td>
-                                        <td>9000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 9</td>
-                                        <td>1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Proovedor 10</td>
-                                        <td>3500</td>
-                                    </tr>
+                                            <tbody data-ng-repeat="proveedor in $data" data-ng-switch on="dayDataCollapse[$index]">
+                                            <tr class="clickableRow" title="" data-ng-click="selectTableRow($index,cuota.id_cuota)" >
+                                                <td title="'Proveedor'" sortable="'nro_cuota'">
+                                                    {[{proveedor.nro_cuota}]}
+                                                </td>
+                                                <td title="'Total a Pagar'" sortable="''">
+                                                    {[{proveedor.totalapagar}]}
+                                                </td>
+                                            </tr>
+                                            <tr data-ng-switch-when="true">
+                                                <td colspan="5">
+                                                    <div>
+                                                        <div>
+                                                            <table class="table">
+                                                                <thead class="levelTwo" style="background-color: #73879C; color: white;">
+                                                                <tr>
+                                                                    <th>Fecha</th>
+                                                                    <th>Entrada</th>
+                                                                    <th>Salida</th>
+                                                                    <th>Ganancia</th>
+                                                                    <th>Gastos Administrativos</th>
+                                                                </tr>
+                                                                </thead>
+                                                   {{--             <tbody>
+                                                                <tr style="background-color: #A6A6A6; color: white;" data-ng-repeat="movimiento in cuota.movimientos">
 
-                                </tbody>
+                                                                    <td><center>{[{movimiento.fecha}]}</center></td>
+                                                                    <td><center>{[{movimiento.entrada}]}</center></td>
+                                                                    <td><center>{[{movimiento.salida}]}</center></td>
+                                                                    <td><center>{[{movimiento.ganancia}]}</center></td>
+                                                                    <td><center>{[{movimiento.gastos_administrativos}]}</center></td>
 
-                            </table>
-                            <button id="pagar" onclick="esconder()" class="btn btn-primary">Pagar</button>
+                                                                </tr>
+                                                                </tbody>--}}
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{--</tbody>--}}
+                                        </table>
+                                    </div>
+                                    <!-- END TABLE -->
+                                </div>
+
+                            </div>
+                            <button id="pagar" ng-click="Pagar()" class="btn btn-primary">Pagar</button>
                         </div>
                     </div>
                 </div>

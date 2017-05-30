@@ -20,7 +20,9 @@
  
   {!! Html::style('css/custom.css') !!}
   {!! Html::style('css/icheck/flat/green.css') !!}
+  {!! Html::style('css/barrow.css') !!}
   {!! Html::style('css/floatexamples.css') !!}
+  {!! Html::style('css/ng-table.min.css') !!}
 
   {!! Html::script('js/jquery.min.js') !!}
    {!! Html::script('js/jquery-ui-1.12.1/jquery-ui.min.js') !!}
@@ -29,6 +31,7 @@
     {!! Html::script('js/nprogress.js') !!}
   {!! Html::script('js/misFunciones.js') !!}
   {!! Html::script('js/angular-animate/angular-animate.min.js') !!}
+  {!! Html::script('js/ng-table.min.js') !!}
 
   {!! Html::script('js/angular-aria/angular-aria.min.js') !!}
 {!! Html::script('js/angular-messages/angular-messages.min.js') !!}

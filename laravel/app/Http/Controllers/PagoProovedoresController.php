@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Eloquent\Mapper\VentasMapper;
+use App\Repositories\Eloquent\Repos\VentasRepo;
 use App\Repositories\Eloquent\Ventas;
 use Illuminate\Http\Request;
 use App\Movimientos;
@@ -22,19 +23,36 @@ class PagoProovedoresController extends Controller
 
     public function datos(Request $request)
     {
+        $proovedores = Proovedores::with(['productos' => function($q) {
+            $q->has('ventas');
+            $q->has('ventas.movimientos');
+            $q->with(['ventas' => function($q){
+                $q->has('movimientos');
+                $q->with(['movimientos' => function($q){
+                    $q->where('salida', 0);
+                    $q->where('entrada', '>', 0);
+                }]);
+            }]);
+        }])->has('productos.ventas.movimientos')->get();
 
-        
-        $movimientos = DB::table('proovedores')
-            ->join('productos', 'proovedores.id', '=', 'productos.id_proovedor')
-            ->join('ventas', 'productos.id', '=', 'ventas.id_producto')
-            ->join('cuotas', 'ventas.id', '=', 'cuotas.id_venta')
-            ->join('movimientos', 'cuotas.id', '=', 'movimientos.id_cuota')
-            ->where('movimientos.salida', '=', '0')
-            ->where('movimientos.entrada', '>', '0')
-            ->groupBy('proovedores.id')
-            ->select('proovedores.nombre AS proovedor', 'proovedores.id AS id_proovedor', DB::raw('SUM(movimientos.entrada) - (SUM(movimientos.entrada) * (productos.ganancia + productos.gastos_administrativos) / 100) AS pagar'))->get();
-            
-	    return $movimientos->toJson();
+
+
+        $proovedores->each(function($proovedor) {
+
+            $totalAPagar = $proovedor->productos->sum(function ($producto) {
+                $porcentaje = $producto->ganancia + $producto->gastos_administrativos;
+                return $producto->ventas->sum(function ($venta) use ($porcentaje) {
+
+                    $total = $venta->movimientos->sum(function ($movimiento) {
+                        return $movimiento->entrada;
+                    });
+                    return $pagar = $total - $total * $porcentaje / 100;
+                });
+            });
+            $proovedor->total = $totalAPagar;
+
+        });
+        return $proovedores->toJson();
     }
 
     public function traerDatosAutocomplete(Request $request)
@@ -75,14 +93,12 @@ class PagoProovedoresController extends Controller
 
     public function pagarCuotas(Request $request)
     {
-        foreach($request['proovedores'] as $id)
+        foreach($request['proveedores'] as $id)
         {
-            $mapper = new VentasMapper();
-            $ventas = $mapper->cuotasAPagarProovedor($id);
+            $ventasRepo = new VentasRepo();
+            $ventas = $ventasRepo->cuotasAPagarProovedor($id);
             $ventas->each(function ($venta) {
-               $v = new Ventas($venta);
-               $porcentaje = $venta->producto->porcentaje + $venta->producto->gastos_administrativos;
-               $v->pagarProovedor($porcentaje);
+                $venta->pagarProovedor();
             });
         }
     }

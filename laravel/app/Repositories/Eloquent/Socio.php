@@ -28,33 +28,144 @@ class Socio
     private $grupo_familiar;
 
 
-    public function __construct(Socios $socio)
+    public function __construct($id, $nombre, $fecha_nacimiento, $cuit, $dni, $domicilio, $localidad, $codigo_postal, $telefono, $fecha_ingreso, $legajo)
     {
-        $this->id = $socio->id;
-        $this->nombre = $socio->nombre;
-        $this->fecha_nacimiento = $socio->fecha_nacimiento;
-        $this->cuit = $socio->cuit;
-        $this->dni = $socio->dni;
-        $this->domicilio = $socio->domicilio;
-        $this->localidad = $socio->localidad;
-        $this->codigo_postal = $socio->codigo_postal;
-        $this->telefono = $socio->telefono;
-        $this->fecha_ingreso = $socio->fecha_ingreso;
-        $this->legajo = $socio->legajo;
-        $this->activeSocio = $socio;
-        $this->setVentas($socio->ventas);
+        $this->id = $id;
+        $this->nombre = $nombre;
+        $this->fecha_nacimiento = $fecha_nacimiento;
+        $this->cuit = $cuit;
+        $this->dni = $dni;
+        $this->domicilio = $domicilio;
+        $this->localidad = $localidad;
+        $this->codigo_postal = $codigo_postal;
+        $this->telefono = $telefono;
+        $this->fecha_ingreso = $fecha_ingreso;
+        $this->legajo = $legajo;
     }
+
 
     public function setVentas($ventas)
     {
-        $this->ventas = $ventas->map(function ($venta) {
-            return new Ventas($venta);
-        });
+        $this->ventas = $ventas;
     }
 
     public function getVentas()
     {
         return $this->ventas;
     }
+
+    /**
+     * @return Socios
+     */
+    public function getActiveSocio()
+    {
+        return $this->activeSocio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFechaNacimiento()
+    {
+        return $this->fecha_nacimiento;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCuit()
+    {
+        return $this->cuit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDni()
+    {
+        return $this->dni;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDomicilio()
+    {
+        return $this->domicilio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocalidad()
+    {
+        return $this->localidad;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCodigoPostal()
+    {
+        return $this->codigo_postal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganismo()
+    {
+        return $this->organismo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFechaIngreso()
+    {
+        return $this->fecha_ingreso;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLegajo()
+    {
+        return $this->legajo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrupoFamiliar()
+    {
+        return $this->grupo_familiar;
+    }
+
+
 
 }

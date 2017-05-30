@@ -8,12 +8,13 @@
 
 namespace App\Repositories\Eloquent\Mapper;
 use App\Movimientos;
+use App\Repositories\Eloquent\Movimiento;
 
 class MovimientoMapper
 {
-
-    public function alta($id_cuota, $entrada, $fecha)
+    
+    public function map($movimiento)
     {
-        Movimientos::create(['id_cuota' => $id_cuota, 'entrada' => $entrada, 'fecha' => $fecha ]);
+        return new Movimiento($movimiento->id, $movimiento->entrada, $movimiento->id_cuota, $movimiento->salida, $movimiento->fecha, $movimiento->ganancia, $movimiento->gastos_administrativos);
     }
 }

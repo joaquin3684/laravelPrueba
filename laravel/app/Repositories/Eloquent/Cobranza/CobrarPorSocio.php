@@ -9,8 +9,12 @@
 namespace App\Repositories\Eloquent\Cobranza;
 use App\Repositories\Eloquent\ConsultasCuotas;
 use App\Repositories\Eloquent\ConsultasMovimientos;
+use App\Repositories\Eloquent\Mapper\CuotasMapper;
+use App\Repositories\Eloquent\Mapper\SociosMapper;
+use App\Repositories\Eloquent\Repos\SociosRepo;
 use App\Repositories\Eloquent\Socio;
 use App\Repositories\Eloquent\Ventas;
+use Carbon\Carbon;
 
 class CobrarPorSocio
 {
@@ -25,21 +29,92 @@ class CobrarPorSocio
     {
         $collect = collect();
         $this->socio->getVentas()->each(function ($venta) use ($collect){
-             $orden = $venta->getOrdenPrioridad();
-             $cuotasVencidas = $venta->cuotasVencidas();
-             $cantidadCuotas = $venta->cuotasVencidas()->count();
-             $a = collect(['orden' => $orden, 'cuotas' => $cuotasVencidas, 'cantidad' => $cantidadCuotas]);
-             $collect->push($a);
-        });
-        $max = $collect->max('cantidad');
-        $ventasConMayorPrioridad = $collect->filter(function($item) use ($max){
-            return $item['cantidad'] == $max;
-        })->sortBy('orden');
-        $ventaPrioritaria = $ventasConMayorPrioridad->first();
-        $cuota = $ventaPrioritaria['cuotas']->shift();
-        $ventaPrioritaria['cantidad']
-        $montoCuota = $monto / $ventasConMayorPrioridad->count();
-        $cuota->cobrar($montoCuota);
+            $cuotasVencidas = $venta->cuotasVencidas();
+            $orden = $venta->getPrioridad();
+            $cuotasVencidas->each(function($cuota) use ($orden){
+                $cuota->orden = $orden;
 
+            });
+
+
+             $collect->push($cuotasVencidas);
+        });
+
+        $flaten = $collect->flatten(1);
+        $p = $flaten->groupBy(function ($cuota) {
+            $fecha = Carbon::createFromFormat('Y-m-d', $cuota->getFechaInicio());
+            return $fecha->month.$fecha->year;
+        })->sortBy(function($item, $key){
+            return $key;
+        });
+
+        $p->transform(function($item){
+             $p = $item->groupBy(function($item){
+                return $item->orden;
+            })->sortBy(function($item, $key){return $key;});
+             return $p;
+        });
+
+        $p->each(function($grupoPorFecha) use (&$monto){
+            if($monto > 0)
+            {
+                $grupoPorFecha->each(function ($grupoPorOrden) use (&$monto){
+                    if($monto > 0)
+                    {
+                        $cantidad = $grupoPorOrden->count();
+                        $montoPorCuota = $monto / $cantidad;
+                        $grupoPorOrden->each(function($cuota) use ($montoPorCuota, &$monto) {
+                            $cobrado =  $cuota->cobrar($montoPorCuota);
+                            $monto -= $cobrado;
+                        });
+                    }
+                });
+            } else { return false; }
+        });
+        if($monto > 0)
+        {
+            $repo = new SociosRepo();
+            $socio = $repo->cuotasFuturas($this->socio->getId());
+            $collect = collect();
+            $socio->getVentas()->each(function ($venta) use ($collect){
+                // $orden = $venta->getOrdenPrioridad();
+                $cuotasVencidas = $venta->cuotasVencidas();
+                $cantidadCuotas = $venta->cuotasVencidas()->count();
+                $collect->push($cuotasVencidas);
+            });
+
+            $flaten = $collect->flatten(1);
+            $p = $flaten->groupBy(function ($cuota) {
+                $fecha = Carbon::createFromFormat('Y-m-d', $cuota->getFechaInicio());
+                return $fecha->month.$fecha->year;
+            })->sortBy(function($item, $key){
+                return $key;
+            });
+
+            $p->transform(function($item){
+                $p = $item->groupBy(function($item){
+                    return $item->ordenProovedor();
+                })->sortBy(function($item, $key){return $key;});
+                return $p;
+            });
+
+            $p->each(function($grupoPorFecha) use (&$monto){
+                if($monto > 0)
+                {
+                    $grupoPorFecha->each(function ($grupoPorOrden) use (&$monto){
+                        if($monto > 0)
+                        {
+                            $cantidad = $grupoPorOrden->count();
+                            $montoPorCuota = $monto / $cantidad;
+                            $grupoPorOrden->each(function($cuota) use ($montoPorCuota, &$monto) {
+                                $cobrado =  $cuota->cobrar($montoPorCuota);
+                                $monto -= $cobrado;
+                            });
+                        }
+                    });
+                } else { return false; }
+            });
+
+        }
     }
 }

@@ -16,30 +16,26 @@ class Ventas
 {
     private $cuotas;
     private $id;
-    private $id_asociado;
-    private $id_producto;
-    private $alta;
-    private $aprobado;
+    private $producto;
     private $descripcion;
     private $nro_cuotas;
     private $fecha;
-    private $activeVenta;
+    private $estados;
+    private $importe;
+    private $fecha_vencimiento;
 
-    public function __construct(ModelVentas $venta)
+
+
+    public function __construct($id, $descripcion, $nro_cuotas, $fecha, $importe, $fecha_vencimiento)
     {
-        $this->id = $venta->id;
-        $this->id_asociado = $venta->id_asociado;
-        $this->id_producto = $venta->id_producto;
-        $this->alta = $venta->alta;
-        $this->aprobado = $venta->aprobado;
-        $this->descripcion = $venta->descripcion;
-        $this->nro_cuotas = $venta->nro_cuotas;
-        $this->fecha = $venta->fecha;
-        $this->setCuotas($venta->cuotas);
-        $this->activeVenta = $venta;
-
-
+        $this->id = $id;
+        $this->descripcion = $descripcion;
+        $this->nro_cuotas = $nro_cuotas;
+        $this->fecha = $fecha;
+        $this->importe = $importe;
+        $this->fecha_vencimiento = $fecha_vencimiento;
     }
+
 
     public function cuotasVencidas()
     {
@@ -50,9 +46,7 @@ class Ventas
 
     public function setCuotas($cuotas)
     {
-        $this->cuotas = $cuotas->map(function ($cuota) {
-            return new Cuota($cuota);
-        });
+        $this->cuotas = $cuotas;
     }
 
     public function getCuotas()
@@ -62,10 +56,51 @@ class Ventas
 
     public function pagarProovedor()
     {
-        $gastosAdmin = $this->activeVenta->producto->gastos_administrativos;
-        $ganancia = $this->activeVenta->producto->ganancia;
+        $gastosAdmin = $this->getProcentajeGastosAdministrativos();
+        $ganancia = $this->getPorcentajeGanancia();
         $this->cuotas->each(function ($cuota) use ($gastosAdmin, $ganancia) {
            $cuota->pagarProovedor($gastosAdmin, $ganancia);
         });
+    }
+
+    public function setProducto($producto)
+    {
+        $this->producto = $producto;
+    }
+
+    public function getPrioridad()
+    {
+        return $this->producto->getPrioridad();
+    }
+
+    public function getPorcentajeGanancia()
+    {
+        return $this->producto->getGanancia();
+    }
+
+    public function getProcentajeGastosAdministrativos()
+    {
+        return $this->producto->getGastosAdministrativos();
+    }
+
+    public function setEstados($estados)
+    {
+        $this->estados = $estados;
+    }
+    public function getNroCuotas()
+    {
+        return $this->nro_cuotas;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getImporte()
+    {
+        return $this->importe;
+    }
+    public function getFechaVencimiento()
+    {
+        return $this->fecha_vencimiento;
     }
 }

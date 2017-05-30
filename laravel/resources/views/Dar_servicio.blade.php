@@ -106,6 +106,7 @@
                                                         </input>
                                                     </div>
                                                 </div>
+
                                             </div>
                                             <div class="row form-group">
                                                 <div class="item ">
@@ -142,13 +143,39 @@
                                             <div class="row form-group" ng-if="tipo_servicio == 'credito'">
                                                 <div class="item">
                                                     <label class="control-label col-md-1 col-sm-3 col-xs-12" for="plata recibida">
-                                                        Plata recibida
+                                                        Monto Total Otorgado
                                                         <span class="required">
                                                             *
                                                         </span>
                                                     </label>
                                                     <div class="col-md-4 col-sm-6 col-xs-12">
-                                                        <input class="form-control col-md-7 col-xs-12" name="plata_recibida" ng-model="plata_recibida" type="text">
+                                                        <input class="form-control col-md-7 col-xs-12" name="monto_total" ng-model="monto_total" type="text">
+                                                        </input>
+                                                    </div>
+                                                </div>
+                                                  <div class="" ng-show="tipo_servicio == 'credito'">
+                                                    <label class="control-label col-md-offset-1 col-md-1 col-sm-3 col-xs-12" for="ncredito">
+                                                        N° de Credito
+                                                        <span class="required">
+                                                            *
+                                                        </span>
+                                                    </label>
+                                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                                        <input class="form-control col-md-7 col-xs-12" name="ncredito" ng-model="ncredito" type="text">
+                                                        </input>
+                                                    </div>
+                                               	</div>
+                                            </div>
+                                            <div class="row form-group" ng-if="tipo_servicio == 'producto'">
+                                                <div class="item">
+                                                    <label class="control-label col-md-1 col-sm-3 col-xs-12" for="observaciones">
+                                                        Observaciones
+                                                        <span class="required">
+                                                            *
+                                                        </span>
+                                                    </label>
+                                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                                        <input class="form-control col-md-7 col-xs-12" name="observaciones" ng-model="observaciones" type="text">
                                                         </input>
                                                     </div>
                                                 </div>
