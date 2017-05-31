@@ -38,8 +38,7 @@
 {!! Html::script('js/angular-material/angular-material.min.js') !!}
 
 {!! Html::script('js/angular-sanitize/angular-sanitize.min.js') !!}
-{!! Html::script('js/Chart.min.js') !!}
-{!! Html::script('js//angular-chart.min.js') !!}
+
 
 
   <!--[if lt IE 9]>
@@ -288,7 +287,6 @@
         {!! Html::script('js/datepicker/daterangepicker.js') !!}
 
   <!-- chart js -->
-          {!! Html::script('js/chartjs/chart.min.js') !!}
  {!! Html::script('js/custom.js') !!}
 
   <!-- flot js -->
@@ -427,9 +425,7 @@
 
   <!-- dashbord linegraph -->
   <script>
-    Chart.defaults.global.legend = {
-      enabled: false
-    };
+
 
     var data = {
       labels: [
@@ -459,11 +455,7 @@
       }]
     };
 
-    var canvasDoughnut = new Chart(document.getElementById("canvas1"), {
-      type: 'doughnut',
-      tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-      data: data
-    });
+
   </script>
   <!-- /dashbord linegraph -->
   <!-- datepicker -->

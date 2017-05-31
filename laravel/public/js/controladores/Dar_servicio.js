@@ -44,7 +44,7 @@ $scope.vencimiento = moment().format('L');
  		$http({
 			url: 'ventas',
 			method: 'post',
-			data: {'id_asociado': $scope.socio.id, 'id_producto': $scope.producto.id, 'importe': $scope.importe, 'nro_cuotas': $scope.nro_cuotas, 'tipo':$scope.tipo_servicio, 'fecha_vencimiento':vencimiento, 'plata_recibida':$scope.$parent.plata_recibida}
+			data: {'id_asociado': $scope.socio.id, 'id_producto': $scope.producto.id, 'importe': $scope.importe, 'nro_cuotas': $scope.nro_cuotas, 'tipo':$scope.tipo_servicio, 'vencimiento':vencimiento, 'plata_recibida':$scope.$parent.plata_recibida}
 			}).then(function successCallback(response)
 				{
 					console.log(response);

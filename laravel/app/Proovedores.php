@@ -24,4 +24,9 @@ class Proovedores extends Model
     {
         return $this->hasMany('App\Productos', 'id_proovedor', 'id');
     }
+
+    public function ventas()
+    {
+        return $this->hasManyThrough('App\Movimientos', 'App\Cuotas', 'id_proovedor', 'id_producto', 'id');
+    }
 }

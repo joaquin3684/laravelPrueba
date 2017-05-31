@@ -28,3 +28,23 @@ Date.prototype.addDays = function(days) {
       var j = a.join('-');
       return j;         
    }
+
+function ProcesoArray(array){
+
+
+    for (j = 0; j < array.length; j++) {
+
+        for(k = 0; k < array.length; k++){
+
+            if(array[k] == array[k+1]){
+
+                array.splice(k,1);
+
+            }
+        }
+    }
+    array.sort();
+
+    return array;
+
+}

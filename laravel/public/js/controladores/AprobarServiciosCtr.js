@@ -4,8 +4,7 @@ var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'ngTable']).conf
 app.controller('pago_proovedores', function($scope, $http, $compile, $sce, NgTableParams, $filter) {
 
 
-$scope.ArrayPago = [];
-    $scope.pullProveedores = function (){
+    $scope.pullAprobar = function (){
 
         $http({
             url: 'pago_proovedores/datos',

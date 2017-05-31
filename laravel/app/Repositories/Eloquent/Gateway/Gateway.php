@@ -32,7 +32,7 @@ abstract class Gateway implements abminterface
     {
         $registro = $this->model->find($id);
         $registro->fill($data)->save();
-        return ['updated' => true];
+        return $registro;
     }
 
     public function destroy($id)

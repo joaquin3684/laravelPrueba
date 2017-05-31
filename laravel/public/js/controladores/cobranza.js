@@ -1,4 +1,4 @@
-var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'chart.js']).config(function($interpolateProvider){
+var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize']).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 app.controller('cobranza', function($scope, $http, $compile, $sce) {

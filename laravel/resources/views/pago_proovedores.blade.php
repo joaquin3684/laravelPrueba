@@ -4,13 +4,13 @@
 
 {!! Html::script('js/controladores/pagoProovedores.js') !!}
 <!-- CSS TABLAS -->
-{!! Html::style('js/datatables/jquery.dataTables.min.css') !!}
   {!! Html::style('js/datatables/buttons.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/fixedHeader.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/responsive.bootstrap.min.css') !!}
   {!! Html::style('js/datatables/scroller.bootstrap.min.css') !!}
 
 <div class="nav-md" ng-controller="pago_proovedores">
+
     <div class="container body">
         <div class="main_container">
             <input id="tipo_tabla" name="tipo_tabla" type="hidden" value="proovedores">
@@ -187,11 +187,11 @@
 
                                             <tbody data-ng-repeat="proveedor in $data" data-ng-switch on="dayDataCollapse[$index]">
                                             <tr class="clickableRow" title="" data-ng-click="selectTableRow($index,cuota.id_cuota)" >
-                                                <td title="'Proveedor'" sortable="'nro_cuota'">
-                                                    {[{proveedor.nro_cuota}]}
+                                                <td title="'Proveedor'" sortable="'proovedor'">
+                                                    <input type="checkbox" ng-model="check" ng-change="Corroborar(proveedor.id,check)">{[{proveedor.nombre}]}
                                                 </td>
-                                                <td title="'Total a Pagar'" sortable="''">
-                                                    {[{proveedor.totalapagar}]}
+                                                <td title="'Total a Pagar'" sortable="'pagar'">
+                                                    {[{proveedor.total}]}
                                                 </td>
                                             </tr>
                                             <tr data-ng-switch-when="true">
@@ -229,12 +229,14 @@
                                     </div>
                                     <!-- END TABLE -->
                                 </div>
-
+                                <button type="button" ng-click="pagar()" class="btn btn-primary">Pagar</button>
                             </div>
-                            <button id="pagar" ng-click="Pagar()" class="btn btn-primary">Pagar</button>
+
                         </div>
+
                     </div>
                 </div>
+
 
                 <!-- /page content -->
             </input>
@@ -248,56 +250,7 @@
         <div class="tabbed_notifications" id="notif-group">
         </div>
     </div>
- 
-    <!-- bootstrap progress js -->
-    <!-- icheck -->
-    <!-- pace -->
-    <!-- form validation -->
-    {!! Html::script('js/datatables/jquery.dataTables.min.js') !!}
-        {!! Html::script('js/datatables/dataTables.bootstrap.js') !!}
-        {!! Html::script('js/datatables/dataTables.buttons.min.js') !!}
-        {!! Html::script('js/datatables/buttons.bootstrap.min.js') !!}
-        {!! Html::script('js/datatables/jszip.min.js') !!}
-        {!! Html::script('js/datatables/pdfmake.min.js') !!}
-        {!! Html::script('js/datatables/vfs_fonts.js') !!}
-        {!! Html::script('js/datatables/buttons.html5.min.js') !!}
-        {!! Html::script('js/datatables/buttons.print.min.js') !!}
-        {!! Html::script('js/datatables/dataTables.fixedHeader.min.js') !!}
-        {!! Html::script('js/datatables/dataTables.keyTable.min.js') !!}
-        {!! Html::script('js/datatables/dataTables.responsive.min.js') !!}
-        {!! Html::script('js/datatables/responsive.bootstrap.min.js') !!}
-        {!! Html::script('js/datatables/dataTables.scroller.min.js') !!}
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var tabla =  $("#datatable-responsive").DataTable({
-                select: true,
-                fixedHeader: true,
-                language: {
-                    info: "Mostrando del _PAGE_ al _END_ de _TOTAL_ registros",
-                    lengthMenu: "Mostrar _MENU_ registros",
-                    paginate: {
-                        next: "Siguiente",
-                        previous: "Anterior"
-                    },
-                    search: "Buscar:"
 
 
-                },
-
-                dom: 'Blfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ],
-                lengthChange: true,
-
-            });
-
-        });
-        function esconder(){
-            console.log('entrra');
-            $("#pum").hide();
-        }
-    </script>
 </div>
 @endsection

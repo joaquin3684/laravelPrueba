@@ -1,4 +1,4 @@
-var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'chart.js', 'ngTable']).config(function($interpolateProvider){
+var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'ngTable']).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 app.controller('ventas', function($scope, $http, $compile, $sce, $window, NgTableParams, $filter) {

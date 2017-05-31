@@ -16,6 +16,10 @@ td.highlight {
     font-weight: bold;
     color: blue;
 }
+td.highlight-red {
+    font-weight: bold;
+    color: red;
+}
 div.dataTables_filter label {
 	font-weight: normal;
 	white-space: nowrap;
