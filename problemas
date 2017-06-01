@@ -2,18 +2,21 @@ MODULO CREDITO ENTIDADES
 
 hay entidades que tienen son ellas las que hacen sus creditos, entonces tiene que estar la posibilidad de que tengan un modulo loco para eso
 
+Cobro Cuotas por gestion de cobranza
+- pasar todo a ng-table
+- ponerle ajax
 
-CANCELAR CREDITOs
+Cobro cuotas sociales
+- hacer el cobro de cuotas sociales (estas pueden ser parciales)
 
-se tiene que poder cancelar un credito tiene su propia logica rara
+Cuenta corrientes cuotas sociales
+- hacer cuentas corrientes de cuotas sociales
 
 dar_servicio
 
+- en plan de pago cuota inicial tiene que arrancar desde el 1
 - en el caso del credito la plata recibida es un campo que tiene que estar en la base pero no afecta a ninguna logica es un dato de color para saber cuanto se le retuvo al flaco
 - agregar observacion
-
-	- tiene que haber una instancia de aprobacion para el credito 
-	- el vencimiento corre despues de que se aprobo
 - deberia ponerse automaticamente cuando selecciono cualquier proovedor el producto varios
 - si selecciono un proovedor y un producto y luego borro el proovedor deberia borrarse el producto y deshabilitarse el input del producto
 - emitir orden de descuento para imprimir
@@ -22,6 +25,17 @@ dar_servicio
 - cambiar titulo y subtiutlo
 - validaciones de capital y de cuotas
 - poner mensajes cuando se realiza una operacion
+- poner sentinel
+- puede haber colocacion es decir un servicio donde no se haga la gestion de cobanza solo se cobre un porcentaje del total del servicio
+- mostrar mensaje para cuando se realiza una venta o servicio
+- vaciar los campos caundos e da de alta
+
+abm_productos
+
+- poner mostrar todos
+- poner mensajes cuando se realiza una operacion
+- poner validaciones
+- poner ajax a las dataTables
 - poner sentinel
 
 abm_usuarios
@@ -51,6 +65,8 @@ abm_organismos
 
 abm_proovedores
 
+- sacar todos los porcentajes de ganancia y administrativos
+- se tiene que agregar un porcentaje loco (el proveedor le paga a la mutual por conseguirle un servicio, este le paga un porcentaje del total del servicio pero capaz estos servicios pueden tener un plus por ejemplo: si metes un servicio de un millon de pesos te corresponde el 10% pero si pasa el 1.5 millon tenes un plus del 5% de la diferencia) esto hay que charlarlo mejor en la reunion
 - poner mensajes cuando se realiza una operacion
 - poner validaciones
 - poner ajax a las dataTables
@@ -66,11 +82,11 @@ abm_socios
 
 Cuentas corrientes
 
-- agregar nivel de abstraccion por organismo
+- tiene que haber un boton en el nivel de abstraccion de las cuotas donde se puede expandir todos las cuotas para ver todos los movimientos
+- agregar columna para estado (es el estado del pago de esa cuota (parcial/total/cancelado)
+- agregar en la abstraccion de socio el legajo y el dni
+- agregar en la abstraccion de organismos total a cobrar y total cobrado
 - poner en rojo el highlight
-- sacar fecha de inicio en cuota
-- el vto de las cuotas es de dos meses mas 20 dias por ejemplo si estoy en 30/4 entonces vence el 20/6
-- en la abstraccion de los movimiento agregar la fecha de inicio unica de cuando se dio de alta el servicio
 - modificar los filtros para los distintos niveles de abstraccion
 - poner graficos 
 - que los maximos y minimos de las cuotas y los importes se seteen solos
@@ -99,10 +115,14 @@ Pantalla para ver que servicio tiene cada proovedor osea los servicio que se le 
 
 Pago proovedores
 
--> un boton pagar que pague todo y uno de imprimir capaz
-- pero se tiene que poder ver el detalle
+-> un boton pagar que pague todo y uno de imprimir por proveedor
+-> pero se tiene que poder ver el detalle
+-> campos de la tabla del detalle (legajo, socio, vto, monto de cuota, nro cuota, id servicio, nro credito, estado cobro
 
-Pantalla para visualizar historico de cobros
+Cancelacion de servicio
+- un socio puede deber muchas cuotas y abonarlas todas de una, pueden pasar dos cosas en la gestion de cobranza
+1- si por ejemplo debe 400 pesos se cancela por 400 pesos es decir se da todo de pagado normal
+2- cancela pero el proveedor establece una quita, esta es arbitraria (puede ser un porcentaje o un valor) por ejemplo si debiese 400 pesos el proveedor puede decir que me pague 300
 
 
 Reporte deudas
@@ -110,22 +130,3 @@ Reporte deudas
 -sacar producto y proovedor
 - se manda txt 
 - agregar dni y nro de legajo
-
-
-aplicacion tio
-
-- filtros cartilla no andan
-- no cargar todos los estudios, mandar solo foto
-- template
-- subir al playstore (prueba)
-
-
-- lupita error aumenta alrreves arreglala o sacala
-- revisar los reportes, creo que listaban mal
-- agarra la pagina entera y cargala al drive
-- subir al drive los datos de conexion el server blabla
-
-
-DATA TABLES
-
--cuando tira sDefaultContent fijarse en el foot de la tabla
