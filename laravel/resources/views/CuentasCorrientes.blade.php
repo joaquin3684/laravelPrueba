@@ -268,11 +268,11 @@
     </ol>
 </div>
                         <div id="divTablaOrganismos" ng-if="vistaactual=='Organismos'">
-                        		<table id="tablaOrganismos" ng-table="paramsOrganismos" show-filter="true" class="table table-hover table-bordered">
+                        		<table id="tablaOrganismos" ng-table="paramsOrganismos" class="table table-hover table-bordered">
                                     
                                     <tr ng-repeat="organismo in $data" ng-click="PullSocios(organismo.id_organismo,organismo.organismo)">
 
-                                        <td title="'Organismo'" filter="{ organismo: 'text'}" sortable="'organismo'">
+                                        <td title="'Organismo'" sortable="'organismo'">
 							            {[{organismo.organismo}]}
                                     </td>
 							        <td title="'Diferencia'" sortable="'diferencia'">

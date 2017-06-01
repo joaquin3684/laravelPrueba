@@ -3,15 +3,14 @@ var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'ngTable']).conf
 });
 app.controller('pago_proovedores', function($scope, $http, $compile, $sce, NgTableParams, $filter) {
 
-
+$scope.ArrayAprobar = [];
     $scope.pullAprobar = function (){
 
         $http({
-            url: 'pago_proovedores/datos',
-            method: 'post'
+            url: 'aprobacion/datos',
+            method: 'get'
         }).then(function successCallback(response)
         {
-            console.log(response.data.ventas);
             if(typeof response.data === 'string')
             {
                 return [];
@@ -19,15 +18,15 @@ app.controller('pago_proovedores', function($scope, $http, $compile, $sce, NgTab
             else
             {
                 console.log(response);
-                $scope.proveedores = response.data;
-                $scope.paramsProveedores = new NgTableParams({
+                $scope.aprobaciones = response.data;
+                $scope.paramsAprobaciones = new NgTableParams({
                     page: 1,
                     count: 10
                 }, {
-                    total: $scope.proveedores.length,
+                    total: $scope.aprobaciones.length,
                     getData: function (params) {
-                        $scope.proveedores = $filter('orderBy')($scope.proveedores, params.orderBy());
-                        return $scope.proveedores.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        $scope.aprobaciones = $filter('orderBy')($scope.aprobaciones, params.orderBy());
+                        return $scope.aprobaciones.slice((params.page() - 1) * params.count(), params.page() * params.count());
                     }
                 });
             }
@@ -41,12 +40,12 @@ app.controller('pago_proovedores', function($scope, $http, $compile, $sce, NgTab
 
     }
 
-    $scope.PagarProveedores = function (){
+    $scope.AprobarServicio = function (Dato){
 
         $http({
-            url: 'pago_proovedores/pagarCuotas',
+            url: 'aprobacion/aprobar',
             method: 'post',
-            data: {'proveedores': $scope.ArrayPago}
+            data: Dato
         }).then(function successCallback(response)
         {
             console.log(response.data.ventas);
@@ -56,8 +55,9 @@ app.controller('pago_proovedores', function($scope, $http, $compile, $sce, NgTab
             }
             else
             {
-                $scope.pullProveedores();
-                $scope.ArrayPago = [];
+                $scope.pullAprobar();
+                $scope.ArrayAprobar = [];
+                console.log('success');
             }
 
         }, function errorCallback(data)
@@ -70,31 +70,45 @@ app.controller('pago_proovedores', function($scope, $http, $compile, $sce, NgTab
     }
 
     var self = this;
-    $scope.pullProveedores();
+    $scope.pullAprobar();
     
 
-    $scope.Corroborar = function(prov,check){
+    $scope.Corroborar = function(serv,check){
     var esta = '';
     var i = 0;
         if(check == true){
-            for(i == 0; i < $scope.ArrayPago.length; i++){
-                if($scope.ArrayPago[i] == prov){ esta == 'si'; }
+            for(i == 0; i < $scope.ArrayAprobar.length; i++){
+                if($scope.ArrayAprobar[i] == serv){ esta == 'si'; }
             }
-            if(esta == 'si'){ }else{ $scope.ArrayPago.push(prov); }
+            if(esta == 'si'){ }else{ $scope.ArrayAprobar.push(serv); }
         }
         if(check == false){
-            for(i == 0; i < $scope.ArrayPago.length; i++){
-                if($scope.ArrayPago[i] == prov){ $scope.ArrayPago.splice(i,1); }
+            for(i == 0; i < $scope.ArrayAprobar.length; i++){
+                if($scope.ArrayAprobar[i] == serv){ $scope.ArrayAprobar.splice(i,1); }
             }
         }
 
 
     }
 
-    $scope.pagar = function(){
+    $scope.Aprobar = function(tipo,id){
+        if(tipo == 'ok'){
 
-        $scope.ArrayPago = ProcesoArray($scope.ArrayPago);
-        $scope.PagarProveedores();
+            var observacion = document.getElementById('observacion'+id).value;
+            $scope.Dato = [{'id':id,'estado':'APROBADO','observacion':observacion}];
+            $scope.AprobarServicio($scope.Dato);
+
+        } else {
+
+            var observacion = document.getElementById('observacion'+id).value;
+            $scope.Dato = [{'id':id,'estado':'RECHAZADO','observacion':observacion}];
+            $scope.AprobarServicio($scope.Dato);
+
+        }
+
+        //$scope.ArrayAprobar = ProcesoArray($scope.ArrayAprobar);
+        //console.log($scope.ArrayAprobar);
+        //$scope.PagarProveedores();
 
     }
 

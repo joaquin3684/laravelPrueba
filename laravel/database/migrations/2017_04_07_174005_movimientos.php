@@ -16,14 +16,12 @@ class Movimientos extends Migration
         Schema::create('movimientos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('id_cuota')->unsigned();
+            $table->integer('id_venta')->unsigned();
 
             $table->foreign('id_cuota')->references('id')->on('cuotas');
             $table->double('entrada');
             $table->double('salida');
             $table->date('fecha');
-            $table->double('ganancia');
-            $table->double('gastos_administrativos');
             $table->softDeletes();
         });
     }

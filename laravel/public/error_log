@@ -1,0 +1,1 @@
+[17-May-2017 21:29:24 UTC] PHP Fatal error:  Call to a member function hasAccess() on boolean in /home/b3523hos/larades/storage/framework/views/7e36890e4f905f6f15801cc34b4d3a779dc6f4a1.php on line 162
