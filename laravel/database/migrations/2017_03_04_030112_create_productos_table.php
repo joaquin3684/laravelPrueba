@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateProductosTable extends Migration
 {
     /**
@@ -13,7 +11,7 @@ class CreateProductosTable extends Migration
      */
     public function up()
     {
-      
+
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -26,7 +24,6 @@ class CreateProductosTable extends Migration
             $table->softDeletes();
         });
     }
-
     /**
      * Reverse the migrations.
      *

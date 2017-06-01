@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class Movimientos extends Migration
 {
     /**
@@ -16,16 +14,15 @@ class Movimientos extends Migration
         Schema::create('movimientos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('id_venta')->unsigned();
-
+            $table->integer('id_cuota')->unsigned();
             $table->foreign('id_cuota')->references('id')->on('cuotas');
             $table->double('entrada');
             $table->double('salida');
             $table->date('fecha');
+            $table->double('ganancia');
             $table->softDeletes();
         });
     }
-
     /**
      * Reverse the migrations.
      *

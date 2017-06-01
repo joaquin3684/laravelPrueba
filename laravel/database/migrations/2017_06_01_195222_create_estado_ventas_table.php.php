@@ -1,10 +1,8 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
-class CreateCuotasTable extends Migration
+class CreateEstadoVentasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +11,18 @@ class CreateCuotasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cuotas', function (Blueprint $table) {
+        Schema::create('estado_ventas', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('id_venta')->unsigned();
             $table->foreign('id_venta')->references('id')->on('ventas');
-            $table->double('importe');
-            $table->date('fecha_vencimiento');
-            $table->date('fecha_inicio');
-            $table->integer('nro_cuota');
+            $table->integer('id_responsable_estado')->unsigned();
+            $table->foreign('id_responsable_estado')->references('id')->on('users');
             $table->string('estado');
+            $table->string('observacion');
             $table->softDeletes();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -34,6 +30,6 @@ class CreateCuotasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuotas');
+        Schema::dropIfExists('estado_ventas');
     }
 }
