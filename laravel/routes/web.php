@@ -81,11 +81,38 @@ Route::get('aprobacion/datos', 'AprobacionServiciosController@datos');
 Route::post('aprobacion/aprobar', 'AprobacionServiciosController@aprobarServicios');
 Route::get('pruebas', function(){
 
-    $ventasRepo = new VentasRepo();
+
+    $user = Sentinel::getUser()->id;
+
+
+        $estadoRepo = new EstadoVentaRepo();
+        $estadoRepo->create(['id_venta' => 6, 'id_responsable_estado' => 1, 'estado' => 'APROBADO', 'observacion' => 'HOLA']);
+
+            $cuotaRepo = new CuotasRepo();
+            $ventasRepo = new VentasRepo();
+            $venta = $ventasRepo->find(6);
+            $fecha = $venta->getFechaVencimiento();
+            $carbon = Carbon::createFromFormat('Y-m-d', $fecha);
+            $fechaHoy = Carbon::today();
+            $importeCuota = $venta->getImporte() / $venta->getNroCuotas();
+
+            for ($i = 1; $venta->getNroCuotas() >= $i; $i++) {
+                $cuotaRepo->create(['nro_cuota' => $i, 'importe' => $importeCuota, 'id_venta' => $venta->getId(), 'fecha_vencimiento' => $carbon->toDateString(), 'fecha_inicio' => $fechaHoy->toDateString()]);
+
+                $fechaHoy = Carbon::create($carbon->year, $carbon->month, $carbon->day);
+                $carbon->addMonth();
+            }
+
+
+
+
+
+
+    /*$ventasRepo = new VentasRepo();
     $ventas = $ventasRepo->cuotasAPagarProovedor(2);
     $ventas->each(function ($venta) {
         $venta->pagarProovedor();
-    });
+    });*/
 
 });
 

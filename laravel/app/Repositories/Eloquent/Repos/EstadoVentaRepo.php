@@ -24,4 +24,5 @@ class EstadoVentaRepo extends Repositorio
     {
         return 'App\Repositories\Eloquent\Repos\EstadoVentaRepo';
     }
+
 }

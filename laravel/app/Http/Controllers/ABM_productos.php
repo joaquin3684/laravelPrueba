@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\Eloquent\ABMS\AbmProductosRepositorio as Producto;
+use App\Repositories\Eloquent\Gateway\ProductosGateway as Producto;
 
 class ABM_productos extends Controller
 {
@@ -41,7 +41,7 @@ class ABM_productos extends Controller
      */
     public function show($id)
     {
-        return $this->producto->show($id);
+        return $this->producto->find($id);
     }
 
 

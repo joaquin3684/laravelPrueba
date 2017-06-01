@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidacionABMorganismos;
-use App\Repositories\Eloquent\ABMS\AbmOrganismosRepositorio as Organismo;
+use App\Repositories\Eloquent\Gateway\OrganismosGateway as Organismo;
 
 class ABM_organismos extends Controller
 {
@@ -25,13 +25,13 @@ class ABM_organismos extends Controller
  
     public function store(ValidacionABMorganismos $request)
     {
-        $this->organismo->store($request->all());
+        $this->organismo->create($request->all());
 
     }
 
     public function show($id)
     {
-        return $this->organismo->show($id);
+        return $this->organismo->find($id);
        
     }
 

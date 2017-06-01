@@ -47,7 +47,7 @@ abstract class Gateway implements abminterface
         return $this->model->all();
     }
 
-    public function show($id)
+    public function find($id)
     {
         return $this->model->find($id);
 

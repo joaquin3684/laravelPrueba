@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Eloquent\ABMS\AbmPrioridadesRepositorio as Prioridad;
+use App\Repositories\Eloquent\Gateway\PrioridadGateway as Prioridad;
 
 class ABM_prioridades extends Controller
 {
@@ -32,7 +32,7 @@ class ABM_prioridades extends Controller
 
     public function store(Request $request)
     {
-        $this->priorirdad->store($request->all());
+        $this->priorirdad->create($request->all());
     }
 
     /**
@@ -43,7 +43,7 @@ class ABM_prioridades extends Controller
      */
     public function show($id)
     {
-        $this->prioridad->show($id);
+        $this->prioridad->find($id);
     }
     public function guardarConfiguracion(Request $request)
     {

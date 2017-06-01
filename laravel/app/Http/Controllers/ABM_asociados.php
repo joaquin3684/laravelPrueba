@@ -23,12 +23,12 @@ class ABM_asociados extends Controller
 
     public function store(ValidacionABMsocios $request)
     {
-        $this->socio->store($request->all());
+        $this->socio->create($request->all());
     }
 
     public function show($id)
     {
-        $this->socio->show($id);
+        $this->socio->find($id);
 
     }
 
