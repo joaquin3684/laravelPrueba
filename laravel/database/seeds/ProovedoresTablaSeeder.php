@@ -13,8 +13,6 @@ class ProovedoresTablaSeeder extends Seeder
         	DB::table('proovedores')->insert([
         	'nombre' => $faker->name,
 	        'descripcion' => $faker->realText(200, 3),
-	        'porcentaje_retencion' => $faker->numberBetween(0, 100),
-	        'porcentaje_gastos_administrativos' => $faker->numberBetween(0, 100),
         	]);
         }
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

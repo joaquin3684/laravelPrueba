@@ -17,8 +17,6 @@ class CreateProovedoresTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->integer('porcentaje_retencion');
-            $table->integer('porcentaje_gastos_administrativos');
             $table->softDeletes();
             $table->integer('id_prioridad')->unsigned();
             $table->foreign('id_prioridad')->references('id')->on('prioridades');

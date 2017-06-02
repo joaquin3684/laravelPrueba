@@ -82,14 +82,12 @@ abm_socios
 
 Cuentas corrientes
 
-- tiene que haber un boton en el nivel de abstraccion de las cuotas donde se puede expandir todos las cuotas para ver todos los movimientos
 - agregar columna para estado (es el estado del pago de esa cuota (parcial/total/cancelado)
 - agregar en la abstraccion de socio el legajo y el dni
 - agregar en la abstraccion de organismos total a cobrar y total cobrado
 - poner en rojo el highlight
 - modificar los filtros para los distintos niveles de abstraccion
 - poner graficos 
-- que los maximos y minimos de las cuotas y los importes se seteen solos
 - poner la opcion de mostrar todos los registros
 - agregar filtro de que se pago y que no
 - no muestra los totales en pdf e impresion

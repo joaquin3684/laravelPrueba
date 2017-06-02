@@ -9,8 +9,10 @@
 namespace App\Repositories\Eloquent;
 use App\Socios;
 use App\Repositories\Eloquent\CobrarPorSocio;
+use App\Traits\Conversion;
 class Socio
 {
+    use Conversion;
     private $ventas;
     private $activeSocio;
     private $id;

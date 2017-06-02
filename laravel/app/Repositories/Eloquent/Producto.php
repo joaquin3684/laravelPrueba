@@ -7,10 +7,11 @@
  */
 
 namespace App\Repositories\Eloquent;
-
+use App\Traits\Conversion;
 
 class Producto
 {
+    use Conversion;
     private $id;
     private $nombre;
     private $gastos_administrativos;

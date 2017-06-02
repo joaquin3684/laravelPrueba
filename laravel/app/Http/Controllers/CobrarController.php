@@ -209,17 +209,7 @@ class CobrarController extends Controller
                 
             }
     }
-    public function cobrarCuotas(Request $request)
-    {
-    	foreach($request['cuotas'] as $id_cuota)
-    	{
-    		$cuota = Cuotas::find($id_cuota);
-    		$cuota->cobro = 1;
-    		$cuota->save();
-    	}
-    	// esto luego deberia afectar a la contabilidad
-    	
-    }
+
     public function cobrarPorVenta(Request $request)
     {
         foreach($request->all() as $venta)

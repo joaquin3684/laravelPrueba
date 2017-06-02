@@ -35,7 +35,8 @@ class AprobacionServiciosController extends Controller
             $estado = $servicio['estado'];
             $observacion = $servicio['observacion'];
             $estadoRepo = new EstadoVentaRepo();
-            $estadoRepo->create(['id_venta' => $id, 'id_responsable_estado' => $user->id, 'estado' => $estado, 'observacion' => $observacion]);
+            $data = array('id_venta' => $id, 'id_responsable_estado' => $user, 'estado' => $estado, 'observacion' => $observacion);
+            $estadoRepo->create($data);
             if($estado == 'APROBADO')
             {
                 $cuotaRepo = new CuotasRepo();

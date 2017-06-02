@@ -21,7 +21,7 @@ class CuotasMapper
 
     public function map($cuota)
     {
-        $cuotaNuevo = new Cuota($cuota->id, $cuota->importe, $cuota->fecha_vencimiento, $cuota->fecha_inicio, $cuota->nro_cuota);
+        $cuotaNuevo = new Cuota($cuota->id, $cuota->importe, $cuota->fecha_vencimiento, $cuota->fecha_inicio, $cuota->nro_cuota, $cuota->estado);
         if($cuota->relationLoaded('movimientos'))
         {
             $movimientos = $cuota->movimientos->map(function($movimiento){

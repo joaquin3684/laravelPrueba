@@ -7,26 +7,30 @@
  */
 
 namespace App\Repositories\Eloquent;
-use App\Repositories\Eloquent\Mapper\MovimientoMapper;
-use App\Cuotas;
+use App\Repositories\Eloquent\Repos\CuotasRepo;
 use App\Repositories\Eloquent\Repos\MovimientosRepo;
+use App\Traits\Conversion;
 
 class Cuota
 {
+    use Conversion;
+
     private $movimientos;
     private $id;
     private $importe;
     private $fecha_vencimiento;
     private $fecha_inicio;
     private $nro_cuota;
+    private $estado;
 
-    public function __construct($id, $importe, $fecha_vencimiento, $fecha_inicio, $nro_cuota)
+    public function __construct($id, $importe, $fecha_vencimiento, $fecha_inicio, $nro_cuota, $estado)
     {
         $this->id = $id;
         $this->importe = $importe;
         $this->fecha_vencimiento = $fecha_vencimiento;
         $this->fecha_inicio = $fecha_inicio;
         $this->nro_cuota = $nro_cuota;
+        $this->estado = $estado;
     }
 
 
@@ -34,11 +38,16 @@ class Cuota
     {
         $montoACobrar = $this->importe - $this->totalEntradaDeMovimientosDeCuota();
         $cobrado = $montoACobrar <= $monto && $monto > 0 ? $montoACobrar : $monto;
+        $this->estado = $cobrado == $this->importe ? 'Cobro Total' : 'Cobro Parcial';
         $fecha = new Fechas();
         $array = array('id_cuota' => $this->id, 'entrada' => $cobrado, 'fecha' => $fecha->getFechaHoy());
         $this->addMovimiento($array);
+        $cuotasRepo = new CuotasRepo();
+        $data = $this->toArray($this);
+        $cuotasRepo->update($data, $this->id);
         return $cobrado;
     }
+
 
     public function setMovimientos($movimientos)
     {

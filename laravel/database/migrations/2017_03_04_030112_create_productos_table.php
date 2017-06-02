@@ -18,8 +18,8 @@ class CreateProductosTable extends Migration
             $table->integer('id_proovedor')->unsigned();
             $table->foreign('id_proovedor')->references('id')->on('proovedores');
             $table->string('descripcion');
-            $table->integer('precio');
-            $table->integer('retencion');
+            $table->string('tipo');
+            $table->integer('ganancia');
             $table->string('nombre');
             $table->softDeletes();
         });

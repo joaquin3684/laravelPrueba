@@ -9,9 +9,10 @@
 namespace App\Repositories\Eloquent;
 
 use App\Repositories\Eloquent\Repos\MovimientosRepo;
-
+use App\Traits\Conversion;
 class Movimiento
 {
+    use Conversion;
     private $id;
     private $id_cuota;
     private $entrada;
@@ -49,8 +50,7 @@ class Movimiento
     public function pagarProovedor($gastosAdmin, $ganancia)
     {
         $entrada = $this->entrada;
-        $this->salida = $entrada - ($entrada * ($gastosAdmin + $ganancia) / 100);
-        $this->gastos_administrativos = $entrada * $gastosAdmin / 100;
+        $this->salida = $entrada - ($entrada * $ganancia) / 100;
         $this->ganancia = $entrada * $ganancia / 100;
         $this->update($this, $this->id);
     }

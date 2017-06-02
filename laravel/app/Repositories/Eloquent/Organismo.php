@@ -8,10 +8,11 @@
 
 
 namespace App\Repositories\Eloquent;
-
+use App\Traits\Conversion;
 
 class Organismo
 {
+    use Conversion;
     private $socios;
     private $id;
     private $nombre;

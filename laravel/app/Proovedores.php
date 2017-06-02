@@ -10,7 +10,7 @@ class Proovedores extends Model
     use SoftDeletes;
 	
     protected $fillable = [
-        'nombre', 'descripcion', 'porcentaje_retencion', 'porcentaje_gastos_administrativos', 'id_prioridad'
+        'nombre', 'descripcion', 'id_prioridad'
     ];
 
     protected $dates = ['deleted_at'];

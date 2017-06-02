@@ -12,6 +12,7 @@
 */
 
 use App\Repositories\Eloquent\Cobranza\CobrarPorSocio;
+use App\Repositories\Eloquent\Cobranza\CobrarPorVenta;
 use App\Repositories\Eloquent\Mapper\SociosMapper;
 use App\Repositories\Eloquent\Repos\CuotasRepo;
 use App\Repositories\Eloquent\Repos\EstadoVentaRepo;
@@ -20,6 +21,7 @@ use App\Repositories\Eloquent\Repos\VentasRepo;
 use App\Repositories\Eloquent\Socio;
 use App\Ventas;
 use Carbon\Carbon;
+use App\Repositories\Eloquent\Filtros\OrganismoFilter;
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,8 +83,21 @@ Route::get('aprobacion/datos', 'AprobacionServiciosController@datos');
 Route::post('aprobacion/aprobar', 'AprobacionServiciosController@aprobarServicios');
 Route::get('pruebas', function(){
 
+    $ventasRepo = new VentasRepo();
+    $ventaCuotasVencidas = $ventasRepo->cuotasVencidas(1);
 
-    $user = Sentinel::getUser()->id;
+    $cobrar = new CobrarPorVenta();
+    $cobrar->cobrar($ventaCuotasVencidas, 30);
+    return 1;
+
+
+    $request = ['nombre' => ''];
+    $organismo = new OrganismoFilter();
+    $organismo = $organismo->apply($request);
+        
+
+
+   /* $user = Sentinel::getUser()->id;
 
 
         $estadoRepo = new EstadoVentaRepo();

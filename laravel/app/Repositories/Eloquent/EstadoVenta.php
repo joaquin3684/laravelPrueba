@@ -7,14 +7,16 @@
  */
 
 namespace App\Repositories\Eloquent;
-
+use App\Traits\Conversion;
 
 class EstadoVenta
 {
-    private $id;
-    private $id_venta;
-    private $id_responsable_estado;
-    private $estado;
+    use Conversion;
+
+    public $id;
+    public $id_venta;
+    public $id_responsable_estado;
+    public $estado;
     private $observacion;
 
     public function __construct($id, $id_venta, $id_responsable_estado, $estado, $observacion)

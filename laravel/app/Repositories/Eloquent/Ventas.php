@@ -11,9 +11,10 @@ use App\Repositories\Eloquent\Cobranza\CobrarPorVenta;
 use App\Repositories\Eloquent\Mapper\CuotasMapper;
 use App\Repositories\Eloquent\Mapper\VentasMapper;
 use App\Ventas as ModelVentas;
-
+use App\Traits\Conversion;
 class Ventas
 {
+    use Conversion;
     private $cuotas;
     private $id;
     private $producto;
