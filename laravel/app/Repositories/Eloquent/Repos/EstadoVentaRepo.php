@@ -9,8 +9,8 @@
 namespace App\Repositories\Eloquent\Repos;
 
 
-use App\Repositories\Eloquent\Gateway\EstadoVentaGateway;
-use App\Repositories\Eloquent\Mapper\EstadoVentaMapper;
+use App\Repositories\Eloquent\Repos\Gateway\EstadoVentaGateway;
+use App\Repositories\Eloquent\Repos\Mapper\EstadoVentaMapper;
 
 class EstadoVentaRepo extends Repositorio
 {

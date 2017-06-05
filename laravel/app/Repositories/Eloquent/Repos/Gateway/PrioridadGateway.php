@@ -6,7 +6,7 @@
  * Time: 21:05
  */
 
-namespace App\Repositories\Eloquent\Gateway;
+namespace App\Repositories\Eloquent\Repos\Gateway;
 
 
 class PrioridadGateway extends Gateway

@@ -16,8 +16,8 @@ class CreateCuotasTable extends Migration
         Schema::create('cuotas', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('id_venta')->unsigned();
-            $table->foreign('id_venta')->references('id')->on('ventas');
+            $table->integer('cuotable_id')->unsigned();
+            $table->string('cuotable_type');
             $table->double('importe');
             $table->date('fecha_vencimiento');
             $table->date('fecha_inicio');

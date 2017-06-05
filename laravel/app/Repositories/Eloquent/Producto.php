@@ -14,16 +14,15 @@ class Producto
     use Conversion;
     private $id;
     private $nombre;
-    private $gastos_administrativos;
     private $ganancia;
     private $tipo;
     private $proveedor;
 
-    public function __construct($id, $nombre, $gastos_administrativos, $ganancia, $tipo)
+    public function __construct($id, $nombre, $ganancia, $tipo)
     {
         $this->id = $id;
         $this->nombre = $nombre;
-        $this->gastos_administrativos = $gastos_administrativos;
+
         $this->ganancia = $ganancia;
         $this->tipo = $tipo;
     }

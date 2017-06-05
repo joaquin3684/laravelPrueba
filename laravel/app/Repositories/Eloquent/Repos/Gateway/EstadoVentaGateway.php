@@ -6,7 +6,7 @@
  * Time: 21:04
  */
 
-namespace App\Repositories\Eloquent\Gateway;
+namespace App\Repositories\Eloquent\Repos\Gateway;
 
 
 use App\EstadoVenta;

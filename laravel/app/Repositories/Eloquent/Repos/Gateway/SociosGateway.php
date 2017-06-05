@@ -1,4 +1,4 @@
-<?php   namespace App\Repositories\Eloquent\Gateway;
+<?php   namespace App\Repositories\Eloquent\Repos\Gateway;
 use App\Repositories\Eloquent\Fechas;
 use App\Socios;
 

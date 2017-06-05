@@ -1,6 +1,6 @@
 <?php namespace App\Repositories\Eloquent\Repos;
-use App\Repositories\Eloquent\Gateway\ProveedoresGateway;
-use App\Repositories\Eloquent\Mapper\ProveedoresMapper;
+use App\Repositories\Eloquent\Repos\Gateway\ProveedoresGateway;
+use App\Repositories\Eloquent\Repos\Mapper\ProveedoresMapper;
 
 /**
  * Created by PhpStorm.

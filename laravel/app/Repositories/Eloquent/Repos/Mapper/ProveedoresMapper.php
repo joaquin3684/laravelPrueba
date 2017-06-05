@@ -6,11 +6,11 @@
  * Time: 22:09
  */
 
-namespace App\Repositories\Eloquent\Mapper;
+namespace App\Repositories\Eloquent\Repos\Mapper;
 
 
 use App\Proovedores;
-use App\Repositories\Eloquent\Mapper\PrioridadMapper;
+use App\Repositories\Eloquent\Repos\Mapper\PrioridadMapper;
 use App\Repositories\Eloquent\Proveedor;
 class ProveedoresMapper
 {

@@ -6,11 +6,11 @@
  * Time: 22:09
  */
 
-namespace App\Repositories\Eloquent\Mapper;
+namespace App\Repositories\Eloquent\Repos\Mapper;
 
 use App\Productos;
 use App\Repositories\Eloquent\Producto;
-use App\Repositories\Eloquent\Mapper\ProveedoresMapper;
+use App\Repositories\Eloquent\Repos\Mapper\ProveedoresMapper;
 
 class ProductosMapper
 {
@@ -24,7 +24,7 @@ class ProductosMapper
 
     public function map(Productos $producto)
     {
-        $productoNuevo = new Producto($producto->id, $producto->nombre, $producto->gastos_administrativos, $producto->ganancia, $producto->tipo);
+        $productoNuevo = new Producto($producto->id, $producto->nombre, $producto->ganancia, $producto->tipo);
         if($producto->relationLoaded('proovedor'))
         {
             $proveedor = $this->proveedorMapper->map($producto->proovedor);

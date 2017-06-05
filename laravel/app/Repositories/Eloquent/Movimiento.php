@@ -19,17 +19,16 @@ class Movimiento
     private $salida;
     private $fecha;
     private $ganancia;
-    private $gastos_administrativos;
 
-    public function __construct($id, $entrada, $id_cuota, $salida, $fecha, $ganancia, $gastos_administrativos)
+
+    public function __construct($id, $entrada, $salida, $fecha, $ganancia)
     {
         $this->id = $id;
-        $this->id_cuota = $id_cuota;
         $this->entrada = $entrada;
         $this->salida = $salida;
         $this->fecha = $fecha;
         $this->ganancia = $ganancia;
-        $this->gastos_administrativos = $gastos_administrativos;
+
     }
 
     public function getIdCuota()
@@ -47,7 +46,7 @@ class Movimiento
         return $this->fecha;
     }
 
-    public function pagarProovedor($gastosAdmin, $ganancia)
+    public function pagarProovedor($ganancia)
     {
         $entrada = $this->entrada;
         $this->salida = $entrada - ($entrada * $ganancia) / 100;

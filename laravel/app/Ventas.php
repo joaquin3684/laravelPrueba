@@ -17,7 +17,7 @@ class Ventas extends Model
 
     public function cuotas()
     {
-    	return $this->hasMany('App\Cuotas', 'id_venta', 'id');
+    	return $this->morphMany(Cuotas::class, 'cuotable');
     }
 
     public function socio()
@@ -32,11 +32,12 @@ class Ventas extends Model
 
     public function movimientos()
     {
-        return $this->hasManyThrough('App\Movimientos', 'App\Cuotas', 'id_venta', 'id_cuota', 'id');
+        return $this->hasManyThrough('App\Movimientos', 'App\Cuotas', 'id_venta', 'identificadores_id', 'id');
     }
 
     public function estados()
     {
         return $this->hasMany('App\EstadoVenta', 'id_venta', 'id');
     }
+
 }

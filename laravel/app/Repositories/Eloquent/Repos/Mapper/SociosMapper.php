@@ -6,7 +6,7 @@
  * Time: 22:08
  */
 
-namespace App\Repositories\Eloquent\Mapper;
+namespace App\Repositories\Eloquent\Repos\Mapper;
 
 
 use App\Repositories\Eloquent\Fechas;

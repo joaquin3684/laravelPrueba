@@ -1,6 +1,6 @@
 <?php namespace App\Repositories\Eloquent\Repos;
-use App\Repositories\Eloquent\Gateway\OrganismosGateway;
-use App\Repositories\Eloquent\Mapper\OrganismosMapper;
+use App\Repositories\Eloquent\Repos\Gateway\OrganismosGateway;
+use App\Repositories\Eloquent\Repos\Mapper\OrganismosMapper;
 
 /**
  * Created by PhpStorm.

@@ -2,83 +2,106 @@ MODULO CREDITO ENTIDADES
 
 hay entidades que tienen son ellas las que hacen sus creditos, entonces tiene que estar la posibilidad de que tengan un modulo loco para eso
 
-Cobro Cuotas por gestion de cobranza
+---------------FRONTEND---------------
+
+Cobro
 - pasar todo a ng-table
-- ponerle ajax
+- ponerle mensajes al realizar acciones
+- ponerle ajax (al realizar el cobro se tiene que actualizar la tabla)
+- poner en el input de cada registro lo que falta para saldar la deuda automaticamente
+- mostrar total en el final de esos input
+- poder poner numeros con coma
+
 
 Cobro cuotas sociales
-- hacer el cobro de cuotas sociales (estas pueden ser parciales)
+- hacer pantalla
+- tiene que tener una tabla que muestre por organismo, con lo que se debe
+- al presionar un registro de la tabla organismos se tiene que mostrar una por socio con un input para poder registrar el cobro,
+- se tiene que poder poner un valor que sea para todos igual (pongo por ejemplo 120 y en todos los demas se pone 120)
+- tiene que estar el boton para realizar la accion de cobro
+- poder poner numeros con coma
 
 Cuenta corrientes cuotas sociales
-- hacer cuentas corrientes de cuotas sociales
+- hacer pantalla
+- tablas con distintos niveles de abstracciones
+- primera abstraccion por organismo
+- segunda abstraccion por socio
+- tercera abstraccion por cada cuota hasta el momento
+- cuarta abstraccion probablemente dentro de la de cuota movimientos para el pago de la cuota social
 
 dar_servicio
 
+- enviar bien al backend la fecha de vencimiento, tiene que ser "fecha_vencimiento"
 - en plan de pago cuota inicial tiene que arrancar desde el 1
-- en el caso del credito la plata recibida es un campo que tiene que estar en la base pero no afecta a ninguna logica es un dato de color para saber cuanto se le retuvo al flaco
-- agregar observacion
-- deberia ponerse automaticamente cuando selecciono cualquier proovedor el producto varios
+- sacar el select de tipo
+- se tiene que agregar un input automaticamente cuando se selecciona el producto, si el producto es un credito tiene que aparecer dos input uno que sea el nro de credito y el otro monto Total otorgado, si es un producto normal tiene que aparecer un input que se llame observacion, ACLARACION el el valor del input montoTotalOtorgado y observacion son el mismo campo
 - si selecciono un proovedor y un producto y luego borro el proovedor deberia borrarse el producto y deshabilitarse el input del producto
 - emitir orden de descuento para imprimir
 - primero se tiene que imprimir la orden de descuento y luego manualmente se tiene que enviar el formulario
 - ajustar pagina para celular
 - cambiar titulo y subtiutlo
-- validaciones de capital y de cuotas
 - poner mensajes cuando se realiza una operacion
-- poner sentinel
-- puede haber colocacion es decir un servicio donde no se haga la gestion de cobanza solo se cobre un porcentaje del total del servicio
-- mostrar mensaje para cuando se realiza una venta o servicio
 - vaciar los campos caundos e da de alta
+- poder poner numeros con coma
+- poner sentinel
 
 abm_productos
 
-- poner mostrar todos
+- poner mostrar todos en la paginacion
+- poner para imprimir
+- poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
-- poner validaciones
-- poner ajax a las dataTables
+- la tabla se tiene que actualizar automaticamente al realizar una accion
 - poner sentinel
+- poder poner numeros con coma
+
 
 abm_usuarios
 
-- poner mostrar todos
+- poner mostrar todos en la paginacion
+- poner para imprimir
+- poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
-- poner validaciones
+- la tabla se tiene que actualizar automaticamente al realizar una accion
 - poner las funciones de editar y borrar
-- poner ajax a las dataTables
 - poner sentinel
+
 
 abm_roles
 
-- poner mostrar todos
+- poner mostrar todos en la paginacion
+- poner para imprimir
+- poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
-- poner validaciones
 - poner las funciones de editar y borrar
-- poner ajax a las dataTables
 - poner sentinel
+
 
 abm_organismos
 
-- poner mostrar todos
+- poner mostrar todos en la paginacion
+- poner para imprimir
+- poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
-- poner validaciones
-- poner ajax a las dataTables
+- poder poner numeros con coma
+
 
 abm_proovedores
 
 - sacar todos los porcentajes de ganancia y administrativos
-- se tiene que agregar un porcentaje loco (el proveedor le paga a la mutual por conseguirle un servicio, este le paga un porcentaje del total del servicio pero capaz estos servicios pueden tener un plus por ejemplo: si metes un servicio de un millon de pesos te corresponde el 10% pero si pasa el 1.5 millon tenes un plus del 5% de la diferencia) esto hay que charlarlo mejor en la reunion
+- poner mostrar todos en la paginacion
+- poner para imprimir
+- poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
-- poner validaciones
-- poner ajax a las dataTables
-- poner mostrar todos
+- poder poner numeros con coma
 
-abm_socios	
+abm_socios
 
+- poner mostrar todos en la paginacion
+- poner para imprimir
+- poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
-- poner validaciones
-- poner ajax a las dataTables
-- fixedHeader anda medio raro en las dataTables
-- poner mostrar todos
+- poder poner numeros con coma
 
 Cuentas corrientes
 
@@ -90,26 +113,13 @@ Cuentas corrientes
 - poner graficos 
 - poner la opcion de mostrar todos los registros
 - agregar filtro de que se pago y que no
-- no muestra los totales en pdf e impresion
+- poder imprimir, pdf, excel
+- en la abstraccion del nivel de cuotas se tiene que poder expandir todos los registros para ver todos los movimientos
 
 Cobranza
 
--fixed header cuando se achica la pantalla se va todo al carajo
--no muestra los totales en el pdf
-
-Pago Proovedores
-
--funcion pagar
-
-
-Cobrar organismos
-
-poner en el input el total de la cuota
-el algoritmo tiene que ser primero por fecha y despues por prioridad
-mostrar total en el final de esos input
-- agregar dos abstracciones mas para cobrar, por movimiento y por cuota para pagar
-
-Pantalla para ver que servicio tiene cada proovedor osea los servicio que se le otorgaron a las personas
+- pantalla para hacer la cobranza
+- se tiene que poder exportar a los modelos locos
 
 Pago proovedores
 
@@ -118,13 +128,71 @@ Pago proovedores
 -> campos de la tabla del detalle (legajo, socio, vto, monto de cuota, nro cuota, id servicio, nro credito, estado cobro
 
 Cancelacion de servicio
+- tiene que haber una tabla con los servicios para cancelar
+
+---------------- FIN -----------------------
+
+---------------- BACKEND -----------------------
+
+Cobro cuotas sociales
+
+- mandar datos para listar PENSAR BIEN COMO HACERLO
+- primero mandar por organismo
+- despues mandar por socio
+- despues mandar por cuotas con movimientos
+- accion de cobrar cuotas sociales
+
+
+Cuenta corrientes cuotas sociales
+- datos para listar
+- con filtros
+
+dar_servicio
+
+- puede haber colocacion es decir un servicio donde no se haga la gestion de cobanza solo se cobre un porcentaje del total del servicio
+- validaciones de capital y de cuotas
+
+abm_productos
+
+- poner validaciones
+
+abm_usuarios
+
+- poner validaciones
+
+abm_roles
+
+- poner validaciones
+
+abm_organismos
+
+- poner validaciones
+
+abm_proovedores
+
+- poner validaciones
+
+abm_socios
+
+- poner validaciones
+
+Cuentas corrientes
+
+-programar los filtros
+
+Cobranza
+
+-listar cosas
+
+Pago proovedores
+
+- enviar datos con detalles
+
+Cancelacion de servicio
+-listar los servicios para cancelar
 - un socio puede deber muchas cuotas y abonarlas todas de una, pueden pasar dos cosas en la gestion de cobranza
 1- si por ejemplo debe 400 pesos se cancela por 400 pesos es decir se da todo de pagado normal
 2- cancela pero el proveedor establece una quita, esta es arbitraria (puede ser un porcentaje o un valor) por ejemplo si debiese 400 pesos el proveedor puede decir que me pague 300
 
+---------------- FIN -----------------------
 
-Reporte deudas
-
--sacar producto y proovedor
-- se manda txt 
-- agregar dni y nro de legajo

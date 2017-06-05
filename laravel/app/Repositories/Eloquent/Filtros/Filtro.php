@@ -12,8 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 abstract class Filtro
 {
     private $app;
-    protected $model;
-    private $namespace;
+    protected static $model;
 
     public function __construct() {
         $this->app = new App();
@@ -22,7 +21,7 @@ abstract class Filtro
 
     public function makeModel() {
         $model = $this->app->make($this->model());
-        return $this->model = $model;
+        static::$model = $model;
     }
 
     abstract function model();
@@ -31,23 +30,23 @@ abstract class Filtro
      * @param $filters
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function apply(Request $filters)
+    public static function apply(Request $filters)
     {
         $query =
-            $this->applyDecoratorsFromRequest(
-                $filters, ($this->model)->newQuery()
+            static::applyDecoratorsFromRequest(
+                $filters, (static::$model)->newQuery()
             );
 
-        return $this->getResults($query);
+        return static::getResults($query);
     }
 
-    private function applyDecoratorsFromRequest(Request $request, Builder $query)
+    private static function applyDecoratorsFromRequest(Request $request, Builder $query)
     {
         foreach ($request->all() as $filterName => $value) {
 
-            $decorator = $this->createFilterDecorator($filterName);
+            $decorator = static::createFilterDecorator($filterName);
 
-            if ($this->isValidDecorator($decorator)) {
+            if (static::isValidDecorator($decorator)) {
                 $query = $decorator::apply($query, $value);
             }
 
@@ -55,19 +54,19 @@ abstract class Filtro
         return $query;
     }
 
-    private function createFilterDecorator($name)
+    private static function createFilterDecorator($name)
     {
-        return __NAMESPACE__ . '\\'.$this->name().'\\' .
+        return __NAMESPACE__ . '\\'.static::name().'\\' .
             str_replace(' ', '',
                 ucwords(str_replace('_', ' ', $name)));
     }
 
-    private function isValidDecorator($decorator)
+    private static function isValidDecorator($decorator)
     {
         return class_exists($decorator);
     }
 
-    private function getResults(Builder $query)
+    private static function getResults(Builder $query)
     {
         return $query->get();
     }

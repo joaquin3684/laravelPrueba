@@ -6,7 +6,7 @@
  * Time: 00:19
  */
 
-namespace App\Repositories\Eloquent\Gateway;
+namespace App\Repositories\Eloquent\Repos\Gateway;
 
 use App\Repositories\Contracts\abmInterface;
 use Illuminate\Container\Container as App;

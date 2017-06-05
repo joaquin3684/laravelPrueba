@@ -11,16 +11,16 @@ use Carbon\Carbon;
 
 class Fechas
 {
-    private $hoy;
+    private static $carbon;
 
     public function __construct()
     {
-        $carbon = new Carbon();
-        $this->hoy = $carbon->today()->toDateString();
+        static::$carbon = new Carbon();
+
     }
 
-    public function getFechaHoy()
+    public static function getFechaHoy()
     {
-        return $this->hoy;
+        return static::$carbon->today()->toDateString();;
     }
 }

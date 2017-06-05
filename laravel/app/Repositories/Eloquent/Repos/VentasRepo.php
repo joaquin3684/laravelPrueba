@@ -1,7 +1,7 @@
 <?php namespace App\Repositories\Eloquent\Repos;
-use App\Repositories\Eloquent\Gateway\Gateway;
-use App\Repositories\Eloquent\Gateway\VentasGateway;
-use App\Repositories\Eloquent\Mapper\VentasMapper;
+
+use App\Repositories\Eloquent\Repos\Gateway\VentasGateway;
+use App\Repositories\Eloquent\Repos\Mapper\VentasMapper;
 
 
 /**

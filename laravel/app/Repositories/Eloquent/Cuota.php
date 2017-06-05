@@ -36,11 +36,10 @@ class Cuota
 
     public function cobrar($monto)
     {
-        $montoACobrar = $this->importe - $this->totalEntradaDeMovimientosDeCuota();
-        $cobrado = $montoACobrar <= $monto && $monto > 0 ? $montoACobrar : $monto;
-        $this->estado = $cobrado == $this->importe ? 'Cobro Total' : 'Cobro Parcial';
-        $fecha = new Fechas();
-        $array = array('id_cuota' => $this->id, 'entrada' => $cobrado, 'fecha' => $fecha->getFechaHoy());
+        $cobrado = $this->montoACobrar($monto);
+        $this->determinarEstado($cobrado);
+        $fecha = Fechas::getFechaHoy();
+        $array = array('identificadores_id' => $this->id, 'identificadores_type' => 'App\Cuotas', 'entrada' => $cobrado, 'fecha' => $fecha);
         $this->addMovimiento($array);
         $cuotasRepo = new CuotasRepo();
         $data = $this->toArray($this);
@@ -48,7 +47,17 @@ class Cuota
         return $cobrado;
     }
 
+    public function determinarEstado($cobrado)
+    {
+        $this->estado = $cobrado == $this->importe ? 'Cobro Total' : 'Cobro Parcial';
+    }
 
+    public function montoACobrar($monto)
+    {
+        $montoACobrar = $this->importe - $this->totalEntradaDeMovimientosDeCuota();
+        $cobrado = $montoACobrar <= $monto && $monto > 0 ? $montoACobrar : $monto;
+        return $cobrado;
+    }
     public function setMovimientos($movimientos)
     {
         $this->movimientos =  $movimientos;
@@ -73,10 +82,10 @@ class Cuota
         });
     }
 
-    public function pagarProovedor($gastosAdmin, $ganancia)
+    public function pagarProovedor($ganancia)
     {
-        $this->movimientos->each(function ($movimiento) use ($gastosAdmin, $ganancia){
-            $movimiento->pagarProovedor($gastosAdmin, $ganancia);
+        $this->movimientos->each(function ($movimiento) use ($ganancia){
+            $movimiento->pagarProovedor($ganancia);
         });
     }
 

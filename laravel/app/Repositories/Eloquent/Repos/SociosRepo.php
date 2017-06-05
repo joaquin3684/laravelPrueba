@@ -1,6 +1,6 @@
 <?php namespace App\Repositories\Eloquent\Repos;
-use App\Repositories\Eloquent\Gateway\SociosGateway;
-use App\Repositories\Eloquent\Mapper\SociosMapper;
+use App\Repositories\Eloquent\Repos\Gateway\SociosGateway;
+use App\Repositories\Eloquent\Repos\Mapper\SociosMapper;
 
 /**
  * Created by PhpStorm.

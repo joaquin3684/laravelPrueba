@@ -1,4 +1,5 @@
-<?php   namespace App\Repositories\Eloquent\Gateway;
+<?php   namespace App\Repositories\Eloquent\Repos\Gateway;
+use App\Repositories\Eloquent\Cuota;
 use App\Repositories\Eloquent\Fechas;
 use App\Ventas;
 
@@ -15,16 +16,6 @@ class VentasGateway extends Gateway
         return 'App\Ventas';
     }
 
-    public function cuotas()
-    {
-        $cuotas = Ventas::find($this->idVenta)->cuotas();
-        $coleccion = collect();
-        $cuotas->each(function($cuota) use ($coleccion){
-            $a = new Cuota($cuota->id, $cuota->id_venta, $cuota->importe, $cuota->fecha_vencimiento, $cuota->fecha_inicio, $cuota->nro_cuota);
-            $coleccion->push($a);
-        });
-        return $coleccion;
-    }
 
     public function cuotasVencidas($id)
     {
@@ -43,7 +34,7 @@ class VentasGateway extends Gateway
                 $query->where('entrada', '>', 0);
                 $query->where('salida', '=', 0);
             }]);
-        }, 'producto.proovedor'])->has('movimientos')->whereHas('producto.proovedor', function($query) use ($id_proovedor){
+        }, 'producto.proovedor'])->has('cuotas.movimientos')->whereHas('producto.proovedor', function($query) use ($id_proovedor){
             $query->where('id', $id_proovedor);
         })->get();
     }

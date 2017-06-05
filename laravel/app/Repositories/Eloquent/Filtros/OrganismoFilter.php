@@ -10,7 +10,7 @@ namespace App\Repositories\Eloquent\Filtros;
 class OrganismoFilter extends Filtro
 {
 
-    public function name()
+    public static function name()
     {
         return 'Organismos';
     }

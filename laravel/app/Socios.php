@@ -23,4 +23,9 @@ class Socios extends Model
     {
     	return $this->hasMany('App\Ventas', 'id_asociado', 'id');
     }
+
+    public function cuotasSociales()
+    {
+        return $this->morphMany(Cuotas::class, 'cuotable');
+    }
 }

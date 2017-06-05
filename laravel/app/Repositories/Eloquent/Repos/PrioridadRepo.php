@@ -9,8 +9,8 @@
 namespace App\Repositories\Eloquent\Repos;
 
 
-use App\Repositories\Eloquent\Gateway\PrioridadGateway;
-use App\Repositories\Eloquent\Mapper\PrioridadMapper;
+use App\Repositories\Eloquent\Repos\Gateway\PrioridadGateway;
+use App\Repositories\Eloquent\Repos\Mapper\PrioridadMapper;
 
 class PrioridadRepo extends Repositorio
 {

@@ -6,7 +6,7 @@
  * Time: 02:55
  */
 
-namespace App\Repositories\Eloquent\Mapper;
+namespace App\Repositories\Eloquent\Repos\Mapper;
 
 use App\Repositories\Eloquent\Prioridad;
 

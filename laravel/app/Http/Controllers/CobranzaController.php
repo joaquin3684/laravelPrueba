@@ -82,37 +82,6 @@ class CobranzaController extends Controller
         ->make(true);
     }
 
-    public function mostrarPorSocio(Request $request)
-    {
-                $fechaHoy = Carbon::today();
-        $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('proovedores', function($join){
-                $join->on('productos.id_proovedor', '=', 'proovedores.id')->groupBy('proovedores.id');
-            })
-            ->groupBy('socios.id')
-            ->select('socios.nombre AS socio', 'socios.id AS id_asociado', DB::raw('SUM(cuotas.importe) - SUM(cuotas.cobro) AS deuda'))
-            ->where(function($query) use ($fechaHoy){
-                $query->where('cuotas.fecha_vencimiento', '<', $fechaHoy)
-                      ->orWhere(function($query2) use ($fechaHoy){
-                            $query2->where('cuotas.fecha_vencimiento', '>', $fechaHoy)
-                                   ->where('cuotas.fecha_inicio', '<', $fechaHoy);
-                        });
-            })
-            ->whereColumn('cuotas.cobro', '<', 'cuotas.importe')
-            ->where('organismos.id', '=', $request['id']);
-            
-        return  $tabla =  Datatables::of($ventas)
-           ->filter(function ($query) use ($request){
-                
-                $this->filtros($request,$query);
-            
-            })
-        ->make(true);
-    }
 
     public function traerDatosAutocomplete(Request $request)
     {

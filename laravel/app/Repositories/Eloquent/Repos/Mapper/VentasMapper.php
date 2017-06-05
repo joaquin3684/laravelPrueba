@@ -6,7 +6,7 @@
  * Time: 19:14
  */
 
-namespace App\Repositories\Eloquent\Mapper;
+namespace App\Repositories\Eloquent\Repos\Mapper;
 use App\Repositories\Eloquent\Fechas;
 use App\Repositories\Eloquent\Cuota;
 use App\Ventas as VentasModel;

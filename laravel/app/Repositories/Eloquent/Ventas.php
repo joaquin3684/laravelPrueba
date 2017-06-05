@@ -57,10 +57,10 @@ class Ventas
 
     public function pagarProovedor()
     {
-        $gastosAdmin = $this->getProcentajeGastosAdministrativos();
+
         $ganancia = $this->getPorcentajeGanancia();
-        $this->cuotas->each(function ($cuota) use ($gastosAdmin, $ganancia) {
-           $cuota->pagarProovedor($gastosAdmin, $ganancia);
+        $this->cuotas->each(function ($cuota) use ($ganancia) {
+           $cuota->pagarProovedor($ganancia);
         });
     }
 
@@ -77,11 +77,6 @@ class Ventas
     public function getPorcentajeGanancia()
     {
         return $this->producto->getGanancia();
-    }
-
-    public function getProcentajeGastosAdministrativos()
-    {
-        return $this->producto->getGastosAdministrativos();
     }
 
     public function setEstados($estados)

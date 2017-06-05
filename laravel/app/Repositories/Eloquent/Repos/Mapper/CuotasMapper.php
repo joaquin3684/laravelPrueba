@@ -6,7 +6,7 @@
  * Time: 19:30
  */
 
-namespace App\Repositories\Eloquent\Mapper;
+namespace App\Repositories\Eloquent\Repos\Mapper;
 use App\Repositories\Eloquent\Cuota;
 use App\Cuotas;
 

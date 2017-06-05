@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EstadoVenta;
+use App\Repositories\Eloquent\Filtros\OrganismoFilter;
 use App\Repositories\Eloquent\Repos\EstadoVentaRepo;
 use App\Repositories\Eloquent\Repos\VentasRepo;
 use Sentinel;
@@ -135,6 +136,24 @@ class VentasControlador extends Controller
     public function mostrarPorOrganismo(Request $request)
 
     {
+
+        $filtro = OrganismoFilter::apply($request->all());
+
+        $filtro->each(function($organismo){
+            $totalCobrado = $organismo->socios->sum(function($socio){
+               return $socio->ventas->sum(function($venta){
+                    return $venta->cuotas->sum(function($cuota){
+                       return $cuota->movimientos->sum(function($movimiento){
+                            return $movimiento->entrada;
+                        });
+                    });
+                });
+
+            });
+            $organismo->totalCobrado = $totalCobrado;
+        });
+
+
         $ventas = DB::table('ventas')
             ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')

@@ -1,7 +1,7 @@
 <?php   namespace App\Repositories\Eloquent\Repos;
-use App\Repositories\Eloquent\Gateway\CuotasGateway;
-use App\Repositories\Eloquent\Gateway\Gateway;
-use App\Repositories\Eloquent\Mapper\CuotasMapper;
+use App\Repositories\Eloquent\Repos\Gateway\CuotasGateway;
+
+use App\Repositories\Eloquent\Repos\Mapper\CuotasMapper;
 
 /**
  * Created by PhpStorm.

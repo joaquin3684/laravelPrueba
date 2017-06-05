@@ -1,7 +1,7 @@
-<?php namespace App\Repositories\Eloquent\Gateway;
+<?php namespace App\Repositories\Eloquent\Repos\Gateway;
 
 use App\Cuotas;
-use App\Repositories\Eloquent\Gateway\Gateway;
+use App\Repositories\Eloquent\Repos\Gateway\Gateway;
 /**
  * Created by PhpStorm.
  * User: joaquin

@@ -1,6 +1,6 @@
-<?php   namespace App\Repositories\Eloquent\Gateway;
+<?php   namespace App\Repositories\Eloquent\Repos\Gateway;
 
-use App\Movimientos;
+
 
 /**
  * Created by PhpStorm.

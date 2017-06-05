@@ -113,9 +113,10 @@ class CobrarController extends Controller
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+            ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('ventas.id')
             ->where('socios.id', '=', $request['id'])
+            ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->select('ventas.id AS id_venta', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
 
         $cobrado = $this->unirColecciones($ventas, $movimientos, ["id_venta"], ['totalCobrado' => 0]);
@@ -145,35 +146,7 @@ class CobrarController extends Controller
         }
 
     }
-    public function repasarDeudores($deudores, &$plataDisponible)
-    {
-        $fechaHoy = Carbon::today();
-        if($deudores->count() > 0 && $plataDisponible > 0)
-        {
-            $deudores2 = collect();
-            $plataTotal2 = $plataDisponible / $deudores->count();
-                    $deudores->each(function ($item, $key) use (&$plataTotal2, &$plataDisponible, &$deudores2, $fechaHoy) {
-                        $entrada = Movimientos::where('nro_cuota', $item['nro_cuota'])
-                                                    ->where('id_venta', $item['id_venta'])->get()->sum('entrada');
-                        $diferencia = $item['importe'] - $entrada;
-                        if($diferencia <= $plataTotal2)
-                        {
-                            $cuotaTotal = $diferencia;
-                            $plataDisponible -= ($diferencia);
-                        }
-                        else if($diferencia > $plataTotal2)
-                        {
-                            $cuotaTotal = $plataTotal2;
-                            $plataDisponible -= $plataTotal2;
-                            $deudores2->push($item);
-                        }
-                        $cuota = Movimientos::Create(['entrada' => $cuotaTotal, 'fecha' => $fechaHoy, 'nro_cuota' => $item['nro_cuota'], 'id_venta' => $item['id_venta'] ]);
 
-                    });
-        $this->repasarDeudores($deudores2, $plataDisponible);
-        }
-
-    }
     public function traerDatosAutocomplete(Request $request)
     {
         $ventas = DB::table('cuotas')

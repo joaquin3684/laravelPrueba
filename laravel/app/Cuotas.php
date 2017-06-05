@@ -17,11 +17,17 @@ class Cuotas extends Model
 
     public function movimientos()
     {
-    	return $this->hasMany('App\Movimientos', 'id_cuota', 'id');
+    	return $this->morphMany(Movimientos::class, 'identificadores');
     }
 
      public function venta()
     {
     	return $this->belongsTo('App\Ventas', 'id_venta', 'id');
     }
+
+    public function cuotable()
+    {
+        return $this->morphTo();
+    }
+
 }

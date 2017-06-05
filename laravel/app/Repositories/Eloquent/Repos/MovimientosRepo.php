@@ -9,8 +9,8 @@
 namespace App\Repositories\Eloquent\Repos;
 
 
-use App\Repositories\Eloquent\Gateway\MovimientosGateway;
-use App\Repositories\Eloquent\Mapper\MovimientoMapper;
+use App\Repositories\Eloquent\Repos\Gateway\MovimientosGateway;
+use App\Repositories\Eloquent\Repos\Mapper\MovimientoMapper;
 
 class MovimientosRepo extends Repositorio
 {
