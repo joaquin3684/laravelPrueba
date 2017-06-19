@@ -28,6 +28,7 @@ class Socio
     private $fecha_ingreso;
     private $legajo;
     private $grupo_familiar;
+    private $cuotasSociales;
 
 
     public function __construct($id, $nombre, $fecha_nacimiento, $cuit, $dni, $domicilio, $localidad, $codigo_postal, $telefono, $fecha_ingreso, $legajo)
@@ -45,7 +46,6 @@ class Socio
         $this->legajo = $legajo;
     }
 
-
     public function setVentas($ventas)
     {
         $this->ventas = $ventas;
@@ -56,6 +56,22 @@ class Socio
         return $this->ventas;
     }
 
+    public function setCuotasSociales($cuotas)
+    {
+        $this->cuotasSociales = $cuotas;
+    }
+
+    public function getCuotasSociales()
+    {
+        return $this->cuotasSociales;
+    }
+
+    public function cuotasSocialesVencidas()
+    {
+        return $this->cuotasSociales->filter(function ($cuota){
+            return $cuota->estaVencida();
+        });
+    }
     /**
      * @return Socios
      */

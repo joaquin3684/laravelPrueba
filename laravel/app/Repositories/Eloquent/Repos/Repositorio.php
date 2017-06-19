@@ -38,8 +38,8 @@ abstract class Repositorio implements abmInterface
 
     public function destroy($id)
     {
-        $obj = $this->gateway->destroy($id);
-        return $this->mapper->map($obj);
+        return $this->gateway->destroy($id);
+
     }
 
     public function all()

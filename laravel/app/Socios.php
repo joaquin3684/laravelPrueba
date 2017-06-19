@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Socios extends Model
 {
  	use SoftDeletes;
+ 	protected $table = 'socios';
 	
     protected $fillable = [
         'nombre', 'fecha_nacimiento', 'cuit', 'dni', 'domicilio', 'localidad', 'codigo_postal', 'telefono', 'id_organismo', 'legajo', 'fecha_ingreso', 'grupo_familiar'];

@@ -41,8 +41,8 @@ class Cuota
         $fecha = Fechas::getFechaHoy();
         $array = array('identificadores_id' => $this->id, 'identificadores_type' => 'App\Cuotas', 'entrada' => $cobrado, 'fecha' => $fecha);
         $this->addMovimiento($array);
-        $cuotasRepo = new CuotasRepo();
         $data = $this->toArray($this);
+        $cuotasRepo = new CuotasRepo();
         $cuotasRepo->update($data, $this->id);
         return $cobrado;
     }

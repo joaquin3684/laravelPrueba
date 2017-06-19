@@ -28,6 +28,8 @@ class PagoProovedoresController extends Controller
             $q->has('ventas.movimientos');
             $q->with(['ventas' => function($q){
                 $q->has('movimientos');
+                $q->with('cuotas');
+                $q->with('socio');
                 $q->with(['movimientos' => function($q){
                     $q->where('salida', 0);
                     $q->where('entrada', '>', 0);

@@ -13,5 +13,5 @@ use Illuminate\Database\Eloquent\Builder;
 
 interface filtros
 {
-    public static function apply(Builder $builder, $value);
+    public static function apply( $builder, $value);
 }

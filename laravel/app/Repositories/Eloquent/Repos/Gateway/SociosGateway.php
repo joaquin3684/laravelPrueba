@@ -34,4 +34,13 @@ class SociosGateway extends Gateway
         }, 'ventas.producto.proovedor.prioridad'])->find($id);
 
     }
+
+    public function cuotasSocialesVencidas($id)
+    {
+        $hoy = Fechas::getFechaHoy();
+        return Socios::with(['cuotasSociales' => function($q) use($hoy){
+            $q->where('fecha_inicio', '<', $hoy);
+            $q->with('movimientos');
+        }])->find($id);
+    }
 }

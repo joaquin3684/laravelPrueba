@@ -10,7 +10,7 @@ class Cuotas extends Model
     use SoftDeletes;
 
 	protected $fillable = [
-        'id_venta', 'importe', 'estado', 'nro_cuota', 'fecha_vencimiento', 'fecha_inicio'
+        'cuotable_id', 'cuotable_type', 'importe', 'estado', 'nro_cuota', 'fecha_vencimiento', 'fecha_inicio'
     ];
 
     protected $dates = ['deleted_at'];

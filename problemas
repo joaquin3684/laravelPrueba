@@ -136,16 +136,6 @@ Cancelacion de servicio
 
 Cobro cuotas sociales
 
-- mandar datos para listar PENSAR BIEN COMO HACERLO
-- primero mandar por organismo
-- despues mandar por socio
-- despues mandar por cuotas con movimientos
-- accion de cobrar cuotas sociales
-
-
-Cuenta corrientes cuotas sociales
-- datos para listar
-- con filtros
 
 dar_servicio
 
@@ -184,9 +174,6 @@ Cobranza
 
 -listar cosas
 
-Pago proovedores
-
-- enviar datos con detalles
 
 Cancelacion de servicio
 -listar los servicios para cancelar

@@ -12,6 +12,7 @@
 */
 
 use App\Cuotas;
+use App\Repositories\Eloquent\Cobranza\CobrarCuotasSociales;
 use App\Repositories\Eloquent\Cobranza\CobrarPorSocio;
 use App\Repositories\Eloquent\Cobranza\CobrarPorVenta;
 use App\Repositories\Eloquent\Repos\Mapper\SociosMapper;
@@ -23,6 +24,7 @@ use App\Repositories\Eloquent\Socio;
 use App\Ventas;
 use Carbon\Carbon;
 use App\Repositories\Eloquent\Filtros\OrganismoFilter;
+use Illuminate\Http\Request;
 
 //--------- INICIO ----------
 
@@ -148,9 +150,62 @@ Route::post('cobroCuotasSociales/cobrar', 'CobroCuotasSocialesController@cobrar'
 
 //---------------- PRUEBAS ------------------------------
 
-Route::get('pruebas', function(){
+Route::post('pruebas', function(Request $request){
 
 
+     $ventas = DB::table('ventas')
+        ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
+        ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+        ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+        ->join('productos', 'productos.id', '=', 'ventas.id_producto')
+        ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
+        ->select('organismos.nombre')
+        ->groupBy('organismos.id');
+         $organismos = \App\Repositories\Eloquent\Filtros\VentasFilter::apply($request, $ventas);
+
+      return $organismos;
+    $socioRepo = new SociosRepo();
+    $socio = $socioRepo->cuotasSocialesVencidas(1);
+    $cobrarObj = new CobrarCuotasSociales();
+    $cobrarObj->cobrar($socio, 60);
+
+return 1;
+    return $f = \App\Organismos::find(1)->with('socios')->get();
+
+
+
+
+
+
+
+
+
+
+    $organismos->each(function($organismo){
+        $totalCobrado = $organismo->socios->sum(function($socio){
+            return $socio->ventas->sum(function($venta){
+                return $venta->cuotas->sum(function($cuota){
+                    return $cuota->movimientos->sum(function($movimiento){
+                        return $movimiento->entrada;
+                    });
+                });
+            });
+
+        });
+        $totalACobrar = $organismo->socios->sum(function($socio){
+            return $socio->ventas->sum(function($venta){
+                return $venta->cuotas->sum(function($cuota){
+                    return $cuota->importe;
+                });
+            });
+
+        });
+        $organismo->totalCobrado = $totalCobrado;
+        $organismo->totalACobrar = $totalACobrar;
+        $organismo->diferencia = $totalACobrar - $totalCobrado;
+    });
+
+    return $organismos;
    // $cu = Cuotas::with('movimientos')->has('movimientos')->get();
     $ventasRepo = new VentasRepo();
     $ventaCuotasVencidas = $ventasRepo->cuotasVencidas(1);

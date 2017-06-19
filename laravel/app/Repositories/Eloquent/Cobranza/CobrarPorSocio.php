@@ -9,8 +9,6 @@
 namespace App\Repositories\Eloquent\Cobranza;
 use App\Repositories\Eloquent\ConsultasCuotas;
 use App\Repositories\Eloquent\ConsultasMovimientos;
-use App\Repositories\Eloquent\Mapper\CuotasMapper;
-use App\Repositories\Eloquent\Mapper\SociosMapper;
 use App\Repositories\Eloquent\Repos\SociosRepo;
 use App\Repositories\Eloquent\Socio;
 use App\Repositories\Eloquent\Ventas;

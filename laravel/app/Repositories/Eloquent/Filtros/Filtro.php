@@ -3,44 +3,26 @@ namespace App\Repositories\Eloquent\Filtros;
 use Illuminate\Container\Container as App;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
-/**
- * Created by PhpStorm.
- * User: joaquin
- * Date: 02/06/17
- * Time: 13:14
- */
+
 abstract class Filtro
 {
-    private $app;
-    protected static $model;
 
-    public function __construct() {
-        $this->app = new App();
-        $this->makeModel();
-    }
-
-    public function makeModel() {
-        $model = $this->app->make($this->model());
-        static::$model = $model;
-    }
-
-    abstract function model();
-
-    /**
+    protected $model;
+        /**
      * @param $filters
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public static function apply(Request $filters)
+    public static function apply(Request $filters, $queryNueva)
     {
         $query =
             static::applyDecoratorsFromRequest(
-                $filters, (static::$model)->newQuery()
+                $filters, $queryNueva
             );
 
         return static::getResults($query);
     }
 
-    private static function applyDecoratorsFromRequest(Request $request, Builder $query)
+    private static function applyDecoratorsFromRequest(Request $request,  $query)
     {
         foreach ($request->all() as $filterName => $value) {
 
@@ -66,7 +48,7 @@ abstract class Filtro
         return class_exists($decorator);
     }
 
-    private static function getResults(Builder $query)
+    private static function getResults($query)
     {
         return $query->get();
     }

@@ -21,6 +21,6 @@ class Fechas
 
     public static function getFechaHoy()
     {
-        return static::$carbon->today()->toDateString();;
+        return Carbon::today()->toDateString();
     }
 }

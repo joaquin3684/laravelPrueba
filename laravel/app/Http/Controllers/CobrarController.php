@@ -135,6 +135,7 @@ class CobrarController extends Controller
 
 
     }
+
     public function cobrarPorPrioridad(Request $request)
     {
         foreach($request->all() as $socio)

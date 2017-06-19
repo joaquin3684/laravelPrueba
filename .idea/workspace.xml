@@ -2,52 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1f7bd1c-f905-4491-8fe5-0fd9fc592091" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/CuotasGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/CuotasGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/EstadoVentaGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/EstadoVentaGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/Gateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/Gateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/MovimientosGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/MovimientosGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/OrganismosGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/OrganismosGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/PrioridadGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/PrioridadGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/ProductosGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/ProductosGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/ProveedoresGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/ProveedoresGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/SociosGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/VentasGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/VentasGateway.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/CuotasMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/CuotasMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/EstadoVentaMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/EstadoVentaMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/MovimientoMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/MovimientoMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/OrganismosMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/OrganismosMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/PrioridadMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/PrioridadMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/ProductosMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/ProductosMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/ProveedoresMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/ProveedoresMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/SociosMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/VentasMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/VentasMapper.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Organismos/Nombre.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/tests/GeneradorDeConsultasTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/tests/OrganismosTest.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/tests/ProovedoresTest.php" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/VentasFilter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/laravelPrueba.iml" afterPath="$PROJECT_DIR$/.idea/laravelPrueba.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Cuotas.php" afterPath="$PROJECT_DIR$/laravel/app/Cuotas.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobranzaController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobranzaController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_asociados.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_asociados.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_organismos.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_organismos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_prioridades.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_prioridades.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_productos.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_productos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/AprobacionServiciosController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/AprobacionServiciosController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CC_CuotasSocialesController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CC_CuotasSocialesController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobroCuotasSocialesController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobroCuotasSocialesController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/Dar_Servicio.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/Dar_Servicio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/PagoProovedoresController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/PagoProovedoresController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Movimientos.php" afterPath="$PROJECT_DIR$/laravel/app/Movimientos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Middleware/VerifyCsrfToken.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Contracts/filtros.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Contracts/filtros.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza/CobrarPorSocio.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza/CobrarPorSocio.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Movimiento.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Movimiento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Producto.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Producto.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/CuotasRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/CuotasRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/EstadoVentaRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/EstadoVentaRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/MovimientosRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/MovimientosRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/OrganismosRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/OrganismosRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/PrioridadRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/PrioridadRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProductosRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProductosRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProveedoresRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProveedoresRepo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Repositorio.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Repositorio.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/SociosRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/SociosRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/VentasRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/VentasRepo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Socio.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Socio.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Ventas.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Ventas.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Socios.php" afterPath="$PROJECT_DIR$/laravel/app/Socios.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Ventas.php" afterPath="$PROJECT_DIR$/laravel/app/Ventas.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/database/migrations/2017_03_04_046515_create_cuotas_table.php" afterPath="$PROJECT_DIR$/laravel/database/migrations/2017_03_04_046515_create_cuotas_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/database/migrations/2017_04_07_174005_movimientos.php" afterPath="$PROJECT_DIR$/laravel/database/migrations/2017_04_07_174005_movimientos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/bootstrap/app.php" afterPath="$PROJECT_DIR$/laravel/bootstrap/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/composer.json" afterPath="$PROJECT_DIR$/laravel/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/composer.lock" afterPath="$PROJECT_DIR$/laravel/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/phpunit.xml" afterPath="$PROJECT_DIR$/laravel/phpunit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/resources/views/ABM_organismos.blade.php" afterPath="$PROJECT_DIR$/laravel/resources/views/ABM_organismos.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/routes/web.php" afterPath="$PROJECT_DIR$/laravel/routes/web.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/tests/AsociadosTest.php" afterPath="$PROJECT_DIR$/laravel/tests/AsociadosTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/tests/ExampleTest.php" afterPath="$PROJECT_DIR$/laravel/tests/ExampleTest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/problemas" afterPath="$PROJECT_DIR$/problemas" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,7 +55,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings" phpInterpreterId="ba249d8b-1408-4601-9c07-60a62fd9314d">
+    <pharPath>$PROJECT_DIR$/composer.phar</pharPath>
+  </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/laravelPrueba$AsociadosTest.coverage" NAME="AsociadosTest Coverage Results" MODIFIED="1497300507740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/laravelPrueba$GeneradorDeConsultasTest.coverage" NAME="GeneradorDeConsultasTest Coverage Results" MODIFIED="1493335979676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="DatabaseView">
@@ -74,7 +76,27 @@
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="http://localhost/phpmyadmin" />
+        <option name="myItemId" value="prueba@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="localhost/" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="@localhost" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -85,109 +107,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="problemas" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/problemas">
+      <file leaf-file-name="FeatureContext.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/features/bootstrap/FeatureContext.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+              <folding>
+                <element signature="e#7#39#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ABM_organismos.feature" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/features/ABM_organismos.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dar_Servicio.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/Dar_Servicio.php">
+      <file leaf-file-name="MinkContext.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/mink-extension/src/Behat/MinkExtension/Context/MinkContext.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-6034">
+              <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/resources/views/login.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-480">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#237#427#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CC_CuotasSocialesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CC_CuotasSocialesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CobroCuotasSocialesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CobroCuotasSocialesController.php">
+      <file leaf-file-name="behat.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="160">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/routes/web.php">
+      <file leaf-file-name=".env.behat" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/.env.behat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-              <folding>
-                <element signature="e#6486#8069#1#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cuota.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="44" column="38" lean-forward="false" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Filtro.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
-              <caret line="68" column="18" lean-forward="false" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VentasControlador.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="144" column="64" lean-forward="true" selection-start-line="144" selection-start-column="64" selection-end-line="144" selection-end-column="64" />
-              <folding>
-                <element signature="e#904#2689#0#PHP" expanded="false" />
-                <element signature="e#3193#3576#0#PHP" expanded="false" />
-                <element signature="e#3582#5115#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrganismoFilter.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Fechas.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="23" column="57" lean-forward="false" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+            <state relative-caret-position="220">
+              <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -197,16 +173,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>unirColecciones</find>
-      <find>$cuota</find>
-      <find>@</find>
-      <find>asociados</find>
-      <find>bienvenido</find>
-      <find>DB_HOST</find>
-      <find>Sentinel</find>
-      <find>Cobrar</find>
-      <find>table</find>
-      <find>$registro</find>
       <find>id_proovedor</find>
       <find>totalEntradaDeMovimientosDeCuota</find>
       <find>canti</find>
@@ -227,6 +193,16 @@
       <find>usu</find>
       <find>apro</find>
       <find>cobrar</find>
+      <find>proov</find>
+      <find>Reques</find>
+      <find>cuotasMa</find>
+      <find>sociosma</find>
+      <find>organismos</find>
+      <find>traerRelacionPrio</find>
+      <find>$app-&gt;</find>
+      <find>send</find>
+      <find>@</find>
+      <find>get</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -246,57 +222,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/laravel/database/migrations/2017_04_07_174005_movimientos.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Movimientos.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Gateway/VentasGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Ventas.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Producto.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/ProductosMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper/MovimientoMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Movimiento.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/CobranzaController.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/EstadoVentaGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/Gateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/MovimientosGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/OrganismosGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/PrioridadGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/ProductosGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/ProveedoresGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/CuotasMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/EstadoVentaMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/MovimientoMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/OrganismosMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/PrioridadMapper.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php" />
         <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/VentasMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/VentasGateway.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza/CobrarPorSocio.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Socio.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Ventas.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza/CobrarCuotasSociales.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Contracts/filtros.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Organismos/Proveedor.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/VentasFilter.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/FechaVencimiento.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/FechaVencimientoCuota.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/Proveedor.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/FechaInicioCuota.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_asociados.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_productos.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_prioridades.php" />
+        <option value="$PROJECT_DIR$/laravel/routes/web.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/AprobacionServiciosController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php" />
         <option value="$PROJECT_DIR$/laravel/app/Cuotas.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Socios.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Ventas.php" />
-        <option value="$PROJECT_DIR$/laravel/database/migrations/2017_03_04_046515_create_cuotas_table.php" />
-        <option value="$PROJECT_DIR$/laravel/database/seeds/VentasTablaSeeder.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/CuotasRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/CuotasGateway.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/EstadoVentaRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/MovimientosRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/OrganismosRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/PrioridadRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/VentasRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/SociosRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProveedoresRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProductosRepo.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/ProveedoresMapper.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/ProductosMapper.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/Producto.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/FechaVencimientoDesdeCuota.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/FechaVencimientoHastaCuota.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/FechaInicioHastaCuota.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/TieneCreditos.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas/TieneProductos.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php" />
         <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/CobroCuotasSocialesController.php" />
         <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/CC_CuotasSocialesController.php" />
-        <option value="$PROJECT_DIR$/laravel/routes/web.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/CC_CuotasSocialesFilter.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/PagoProovedoresController.php" />
+        <option value="$PROJECT_DIR$/problemas" />
+        <option value="$PROJECT_DIR$/laravel/bootstrap/app.php" />
+        <option value="$PROJECT_DIR$/laravel/tests/OrganismosTest.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Socios.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/Dar_Servicio.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php" />
+        <option value="$PROJECT_DIR$/laravel/.env.behat" />
+        <option value="$PROJECT_DIR$/laravel/.env" />
+        <option value="$PROJECT_DIR$/laravel/tests/aTest.php" />
+        <option value="$PROJECT_DIR$/laravel/tests/ExampleTest.php" />
+        <option value="$PROJECT_DIR$/laravel/tests/AsociadosTest.php" />
+        <option value="$PROJECT_DIR$/laravel/phpunit.xml" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_organismos.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/ABM_organismos.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/features/ABM_organismos.feature" />
+        <option value="$PROJECT_DIR$/laravel/behat.yml" />
+        <option value="$PROJECT_DIR$/laravel/features/bootstrap/FeatureContext.php" />
       </list>
     </option>
   </component>
@@ -364,7 +340,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -410,167 +385,26 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Repositories" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Repositories" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Eloquent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Repositories" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Eloquent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Filtros" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/laravel/vendor/behat/behat/bin/behat" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.behat" />
     <property name="Constants" value="false" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Ventas" />
       <recent name="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos" />
       <recent name="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros" />
       <recent name="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza" />
       <recent name="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/ABMS" />
-      <recent name="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Mapper" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -585,24 +419,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHPUnit.CuotasMapperTest">
-    <configuration default="false" name="GeneradorDeConsultasTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="GeneradorDeConsultasTest" configuration_file="$PROJECT_DIR$/laravel/phpunit.xml" file="$PROJECT_DIR$/laravel/tests/GeneradorDeConsultasTest.php" scope="Class" use_alternative_configuration_file="true" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Behat.ABM_organismos.feature">
     <configuration default="false" name="AsociadosTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="AsociadosTest" configuration_file="$PROJECT_DIR$/laravel/phpunit.xml" file="$PROJECT_DIR$/laravel/tests/AsociadosTest.php" scope="Class" use_alternative_configuration_file="true" />
       <method />
     </configuration>
-    <configuration default="false" name="ProovedoresTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="ProovedoresTest" file="$PROJECT_DIR$/laravel/tests/ProovedoresTest.php" scope="Class" />
+    <configuration default="false" name="OrganismosTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="OrganismosTest" file="$PROJECT_DIR$/laravel/tests/OrganismosTest.php" scope="Class" />
       <method />
     </configuration>
-    <configuration default="false" name="ConsultasCuotas.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/laravelPrueba/laravel/app/Repositories/Eloquent/ConsultasCuotas.php">
+    <configuration default="false" name="aTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="aTest" file="$PROJECT_DIR$/laravel/tests/aTest.php" scope="Class" />
       <method />
     </configuration>
-    <configuration default="false" name="CuotasMapperTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="CuotasMapperTest" file="$PROJECT_DIR$/laravel/tests/CuotasMapperTest.php" scope="Class" />
+    <configuration default="false" name="ExampleTest.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/laravelPrueba/ExampleTest.php">
+      <method />
+    </configuration>
+    <configuration default="false" name="ExampleTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="ExampleTest" configuration_file="$PROJECT_DIR$/laravel/phpunit.xml" directory="$PROJECT_DIR$/laravel/tests" file="$PROJECT_DIR$/laravel/tests/ExampleTest.php" use_alternative_configuration_file="true" />
       <method />
     </configuration>
     <configuration default="true" type="ChromiumRemoteDebugType" factoryName="Chromium Remote">
@@ -640,6 +474,12 @@
     </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
       <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request">
       <method />
     </configuration>
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
@@ -685,21 +525,31 @@
       <TestRunner />
       <method />
     </configuration>
-    <list size="6">
+    <configuration default="false" name="ABM_organismos.feature" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner file="$PROJECT_DIR$/laravel/features/ABM_organismos.feature" scenario="" scope="File" />
+      <method />
+    </configuration>
+    <configuration default="false" name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner directory="$PROJECT_DIR$/laravel/tests" />
+      <method />
+    </configuration>
+    <list size="8">
       <item index="0" class="java.lang.String" itemvalue="PHPUnit.Unnamed" />
-      <item index="1" class="java.lang.String" itemvalue="PHPUnit.GeneradorDeConsultasTest" />
-      <item index="2" class="java.lang.String" itemvalue="PHPUnit.AsociadosTest" />
-      <item index="3" class="java.lang.String" itemvalue="PHPUnit.ProovedoresTest" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.ConsultasCuotas.php" />
-      <item index="5" class="java.lang.String" itemvalue="PHPUnit.CuotasMapperTest" />
+      <item index="1" class="java.lang.String" itemvalue="Behat.ABM_organismos.feature" />
+      <item index="2" class="java.lang.String" itemvalue="PHPUnit.tests" />
+      <item index="3" class="java.lang.String" itemvalue="PHPUnit.AsociadosTest" />
+      <item index="4" class="java.lang.String" itemvalue="PHPUnit.OrganismosTest" />
+      <item index="5" class="java.lang.String" itemvalue="PHPUnit.aTest" />
+      <item index="6" class="java.lang.String" itemvalue="JavaScript Debug.ExampleTest.php" />
+      <item index="7" class="java.lang.String" itemvalue="PHPUnit.ExampleTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="PHPUnit.CuotasMapperTest" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.ConsultasCuotas.php" />
-        <item index="2" class="java.lang.String" itemvalue="PHPUnit.GeneradorDeConsultasTest" />
-        <item index="3" class="java.lang.String" itemvalue="PHPUnit.ProovedoresTest" />
-        <item index="4" class="java.lang.String" itemvalue="PHPUnit.AsociadosTest" />
+        <item index="0" class="java.lang.String" itemvalue="PHPUnit.AsociadosTest" />
+        <item index="1" class="java.lang.String" itemvalue="PHPUnit.ExampleTest" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.ExampleTest.php" />
+        <item index="3" class="java.lang.String" itemvalue="PHPUnit.aTest" />
+        <item index="4" class="java.lang.String" itemvalue="PHPUnit.OrganismosTest" />
       </list>
     </recent_temporary>
   </component>
@@ -782,44 +632,54 @@
       <workItem from="1496462603155" duration="4153000" />
       <workItem from="1496545646749" duration="1189000" />
       <workItem from="1496595279271" duration="12805000" />
-      <workItem from="1496666296645" duration="1887000" />
+      <workItem from="1496666296645" duration="18892000" />
+      <workItem from="1496853795357" duration="599000" />
+      <workItem from="1497030153206" duration="4333000" />
+      <workItem from="1497059276351" duration="3882000" />
+      <workItem from="1497120801945" duration="10331000" />
+      <workItem from="1497224972613" duration="4465000" />
+      <workItem from="1497273624073" duration="10713000" />
+      <workItem from="1497298759457" duration="1401000" />
+      <workItem from="1497561895078" duration="9619000" />
+      <workItem from="1497664756743" duration="14556000" />
+      <workItem from="1497745651493" duration="12054000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CuotasMapperTest - 2017.05.13 at 01h 58m 55s.xml">
-      <configuration name="CuotasMapperTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 11m 38s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="CuotasMapperTest - 2017.05.13 at 02h 00m 32s.xml">
-      <configuration name="CuotasMapperTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 11m 41s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="CuotasMapperTest - 2017.05.13 at 02h 01m 47s.xml">
-      <configuration name="CuotasMapperTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 11m 46s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="GeneradorDeConsultasTest - 2017.04.29 at 00h 36m 11s.xml">
-      <configuration name="GeneradorDeConsultasTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 14m 09s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="GeneradorDeConsultasTest - 2017.04.29 at 00h 37m 01s.xml">
-      <configuration name="GeneradorDeConsultasTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 14m 19s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="GeneradorDeConsultasTest - 2017.04.29 at 00h 37m 25s.xml">
-      <configuration name="GeneradorDeConsultasTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 14m 31s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="GeneradorDeConsultasTest - 2017.04.29 at 00h 38m 05s.xml">
-      <configuration name="GeneradorDeConsultasTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 27m 09s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="GeneradorDeConsultasTest - 2017.05.04 at 19h 46m 09s.xml">
-      <configuration name="GeneradorDeConsultasTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 28m 10s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="ProovedoresTest - 2017.04.28 at 23h 02m 11s.xml">
-      <configuration name="ProovedoresTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 28m 36s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
-    <history-entry file="ProovedoresTest - 2017.04.28 at 23h 02m 26s.xml">
-      <configuration name="ProovedoresTest" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ABM_organismos_feature - 2017.06.17 at 23h 28m 48s.xml">
+      <configuration name="ABM_organismos.feature" configurationId="PhpBehatConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="512311000" />
+    <option name="totallyTimeSpent" value="601269000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -832,24 +692,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33705178" sideWeight="0.5196305" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3800797" sideWeight="0.5196305" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.503096" sideWeight="0.38247013" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15936255" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29256967" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46904024" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="69" y="327" width="1257" height="238" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23585658" sideWeight="0.4803695" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29411766" sideWeight="0.49083665" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36842105" sideWeight="0.49083665" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24462152" sideWeight="0.51857585" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40712073" sideWeight="0.61752987" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45665634" sideWeight="0.61752987" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15170279" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40557274" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -912,420 +772,426 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/laravel/config/database.php</url>
-          <line>70</line>
-          <option name="timeStamp" value="137" />
+          <url>file://$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_prioridades.php</url>
+          <line>80</line>
+          <option name="timeStamp" value="287" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/laravel/config/database.php</url>
-          <line>56</line>
-          <option name="timeStamp" value="138" />
+          <url>file://$PROJECT_DIR$/laravel/tests/AsociadosTest.php</url>
+          <line>92</line>
+          <option name="timeStamp" value="297" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/laravel/app/Http/Controllers/PagoProovedoresController.php</url>
-          <line>97</line>
-          <option name="timeStamp" value="253" />
+          <url>file://$PROJECT_DIR$/laravel/features/bootstrap/FeatureContext.php</url>
+          <line>44</line>
+          <option name="timeStamp" value="302" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="278" />
+      <option name="time" value="305" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php">
+    <entry file="file://$PROJECT_DIR$/laravel/tests/GeneradorDeConsultasTest.php" />
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/composer/ClassLoader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding>
-            <element signature="e#5506#7118#0#PHP" expanded="false" />
-          </folding>
+        <state relative-caret-position="551">
+          <caret line="374" column="0" lean-forward="false" selection-start-line="374" selection-start-column="0" selection-end-line="374" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php">
+    <entry file="phar://$PROJECT_DIR$/phpunit.phar/phpunit/Framework/TestCase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="820">
+          <caret line="929" column="0" lean-forward="false" selection-start-line="929" selection-start-column="0" selection-end-line="929" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Ventas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="62" column="26" lean-forward="false" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Movimiento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="23" column="73" lean-forward="false" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Producto.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CobranzaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1600">
-          <caret line="88" column="1" lean-forward="true" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Movimientos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="51" lean-forward="false" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Cuotas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Socios.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Ventas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="19" column="56" lean-forward="false" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/database/migrations/2017_03_04_046515_create_cuotas_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="19" column="44" lean-forward="false" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/database/seeds/VentasTablaSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="26" column="48" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/OrganismosGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="58" lean-forward="false" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/PrioridadGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="50" lean-forward="false" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/ProductosGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="58" lean-forward="false" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/ProveedoresGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="58" lean-forward="false" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="58" lean-forward="false" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/VentasGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#59#95#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/CuotasGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="35" lean-forward="false" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/EstadoVentaGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/Gateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="8" column="50" lean-forward="false" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/MovimientosGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/VentasRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/SociosRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Repositorio.php">
+    <entry file="file://$PROJECT_DIR$/laravel/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#134#178#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProductosRepo.php">
+    <entry file="file://$PROJECT_DIR$/laravel/tests/OrganismosTest.php" />
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/PagoProovedoresController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/PrioridadRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/OrganismosRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/MovimientosRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/EstadoVentaRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="12" column="36" lean-forward="false" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/CuotasRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="36" lean-forward="false" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/ProveedoresRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/VentasMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/ProveedoresMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/ProductosMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="36" lean-forward="false" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/PrioridadMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/OrganismosMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/MovimientoMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/EstadoVentaMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/CuotasMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding>
-            <element signature="e#139#175#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problemas">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state relative-caret-position="440">
+          <caret line="32" column="56" lean-forward="false" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/Dar_Servicio.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="260">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="e#237#427#0#PHP" expanded="false" />
+            <element signature="e#240#430#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CC_CuotasSocialesController.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/ConsultasMovimientos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/features/basket.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/ABM_proovedores.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1920">
+          <caret line="96" column="40" lean-forward="false" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/ABM_socios.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+          <folding>
+            <element signature="e#1452#2150#0#PHP" expanded="false" />
+            <element signature="e#2155#2900#0#PHP" expanded="false" />
+            <element signature="e#2905#5156#0#PHP" expanded="false" />
+            <element signature="e#5162#5501#0#PHP" expanded="false" />
+            <element signature="e#5507#7119#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/8e552b55/8437ff7a-af67-4038-8678-765b923edf25/prueba.cuotas">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/8437ff7a-af67-4038-8678-765b923edf25/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="3350" column="0" lean-forward="false" selection-start-line="3350" selection-start-column="0" selection-end-line="3350" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Socios.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/tests/TestCase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/tests/aTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/tests/ExampleTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding>
+            <element signature="e#7#59#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpunit.phar.1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-555039">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/bootstrap/app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/phpunit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_organismos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/ABM_organismos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4507">
+          <caret line="277" column="1" lean-forward="false" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/tests/AsociadosTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+        <state relative-caret-position="677">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Testwork/Call/CallCenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Behat/Tester/Runtime/RuntimeStepTester.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Behat/Tester/StepContainerTester.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Behat/Tester/Runtime/RuntimeScenarioTester.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Testwork/Tester/Runtime/RuntimeExercise.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Testwork/Tester/Cli/ExerciseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Testwork/Cli/Command.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/symfony/console/Command/Command.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/symfony/console/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Behat/Tester/Runtime/RuntimeFeatureTester.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Behat/Tester/Runtime/IsolatingScenarioTester.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Testwork/Tester/Runtime/RuntimeSuiteTester.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/.env.behat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/behat/behat/src/Behat/Behat/Context/Context.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="17" column="10" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Behat/Context/Context.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="17" column="10" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/mink/src/Mink.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="112" column="8" lean-forward="false" selection-start-line="112" selection-start-column="8" selection-end-line="112" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/mink-extension/src/Behat/MinkExtension/Context/RawMinkContext.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="107" column="40" lean-forward="false" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-480">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/behat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/mink-extension/src/Behat/MinkExtension/Context/MinkContext.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6034">
+          <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/behat/src/Behat/Testwork/Call/Handler/RuntimeCallHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/features/bootstrap/FeatureContext.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
-            <element signature="e#6486#8069#1#PHP" expanded="false" />
+            <element signature="e#7#39#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php">
+    <entry file="file://$PROJECT_DIR$/laravel/features/ABM_organismos.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="23" column="57" lean-forward="false" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+        <state relative-caret-position="80">
+          <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CobroCuotasSocialesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="68" column="18" lean-forward="false" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="44" column="38" lean-forward="false" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="144" column="64" lean-forward="true" selection-start-line="144" selection-start-column="64" selection-end-line="144" selection-end-column="64" />
-          <folding>
-            <element signature="e#904#2689#0#PHP" expanded="false" />
-            <element signature="e#3193#3576#0#PHP" expanded="false" />
-            <element signature="e#3582#5115#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

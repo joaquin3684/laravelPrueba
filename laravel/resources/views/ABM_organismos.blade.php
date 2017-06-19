@@ -22,7 +22,6 @@
         <div class="" >
          
           <div class="clearfix"></div>
-@if(Sentinel::check()->hasAccess('organismos.crear'))
           <div class="row" >
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
@@ -89,8 +88,7 @@
           </div>
         </div>
 
-       @endif
-       @if(Sentinel::check()->hasAccess('organismos.visualizar'))
+
 
       </div>
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -133,8 +131,8 @@
                                 <td>{{ $registro->nombre }}</td>
                                 <td>{{ $registro->cuit }}</td>
                                 <td>{{ $registro->cuota_social }}</td>
-                                <td>@if(Sentinel::check()->hasAccess('organismos.editar'))<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', {{$registro->id}})"><span class="glyphicon glyphicon-pencil"></span></button>@endif
-                              @if(Sentinel::check()->hasAccess('organismos.borrar'))  <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>@endif
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', {{$registro->id}})"><span class="glyphicon glyphicon-pencil"></span></button>
+                               <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', {{$registro->id}})"><span class="glyphicon glyphicon-remove"></span></button>
                                 </td>
                                 
 
@@ -146,7 +144,8 @@
                       </div>
                     </div>
                   </div>
-                  @endif
+
+
       <!-- /page content -->
     </div>
 

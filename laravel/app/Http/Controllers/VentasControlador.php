@@ -15,22 +15,9 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Organismos;
 use App\Repositories\Eloquent\Ventas as RepoVentas;
+use App\Repositories\Eloquent\Filtros\VentasFilter;
 class VentasControlador extends Controller
 {
-    private $ventas;              
-    private $cuotas;          
-    private $socios;           
-    private $productos;      
-    private $proovedores;         
-    private $movimientos;       
-    private $movimientosPorVenta;
-    private $organismos;         
-
-    public function __construct()
-    {
-
-    }
-
     public function index()
     {
         return view('CuentasCorrientes');
@@ -40,25 +27,32 @@ class VentasControlador extends Controller
     {
 
         $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+            ->join('productos', 'productos.id', '=', 'ventas.id_producto')
             ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
             ->groupBy('ventas.id')
             ->where('socios.id', '=', $request['id'])
-            ->select('socios.nombre AS socio', 'ventas.id AS id_venta', 'ventas.fecha', 'proovedores.nombre AS proovedor', 'productos.nombre AS producto', 'ventas.nro_cuotas', DB::raw('SUM(cuotas.importe) AS totalACobrar'))->get();
+            ->where('cuotas.cuotable_type', 'App\Ventas')
+            ->select('socios.nombre AS socio', 'ventas.id AS id_venta', 'ventas.fecha', 'proovedores.nombre AS proovedor', 'productos.nombre AS producto', 'ventas.nro_cuotas', DB::raw('SUM(cuotas.importe) AS totalACobrar'));
+
+        $ventas1 = VentasFilter::apply($request, $ventas);
 
         $movimientos = DB::table('ventas')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
-            ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+            ->join('productos', 'productos.id', '=', 'ventas.id_producto')
+            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
+            ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('ventas.id')
+            ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->where('socios.id', '=', $request['id'])
-            ->select('ventas.id AS id_venta', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
+            ->select('ventas.id AS id_venta', DB::raw('SUM(movimientos.entrada) AS totalCobrado'));
 
-        $ventasPorVenta = $this->unirColecciones($ventas, $movimientos, ["id_venta"], ['totalCobrado' => 0]);
+        $ventas2 = VentasFilter::apply($request, $movimientos);
+
+
+        $ventasPorVenta = $this->unirColecciones($ventas1, $ventas2, ["id_venta"], ['totalCobrado' => 0]);
 
         $ventasPorVenta = $ventasPorVenta->each(function ($item, $key){
             $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
@@ -66,9 +60,6 @@ class VentasControlador extends Controller
             return $item;
         });
 
-
-
-       // return  $tabla =  Datatables::of($ventasPorVenta)->make(true);
         return $ventasPorVenta->toJson();
     }
 
@@ -81,10 +72,10 @@ class VentasControlador extends Controller
                     });
                     $cuota->cobrado = $s;
                 });
-                return $a;
+        return $a;
 
 
-        return $ventasPorCuota->toJson();
+
     }
 
     public function store(Request $request)
@@ -101,33 +92,41 @@ class VentasControlador extends Controller
     public function mostrarPorSocio(Request $request)
     {
         $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
+            ->join('productos', 'productos.id', '=', 'ventas.id_producto')
+            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
             ->groupBy('socios.id')
             ->where('organismos.id', '=', $request['id'])
-            ->select('socios.nombre AS socio', 'socios.id AS id_socio',  DB::raw('SUM(cuotas.importe) AS totalACobrar'))->get();
+            ->where('cuotas.cuotable_type', 'App\Ventas')
+            ->select('socios.nombre AS socio', 'socios.id AS id_socio',  DB::raw('SUM(cuotas.importe) AS totalACobrar'));
+
+        $socios = VentasFilter::apply($request, $ventas);
+
 
         $movimientos = DB::table('ventas')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+            ->join('productos', 'productos.id', '=', 'ventas.id_producto')
+            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
+            ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('socios.id')
+            ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->where('organismos.id', '=', $request['id'])
-            ->select('socios.id AS id_socio', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
+            ->select('socios.id AS id_socio', DB::raw('SUM(movimientos.entrada) AS totalCobrado'));
 
-        $ventasPorSocio = $this->unirColecciones($ventas, $movimientos, ["id_socio"], ['totalCobrado' => 0]);
+        $socios2 = VentasFilter::apply($request, $movimientos);
+
+
+        $ventasPorSocio = $this->unirColecciones($socios, $socios2, ["id_socio"], ['totalCobrado' => 0]);
 
         $ventasPorSocio = $ventasPorSocio->each(function ($item, $key){
             $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
             $item->put('diferencia', $diferencia);
             return $item;
         });
-
-
-
-       // return  $tabla =  Datatables::of($ventasPorSocio)->make(true);
 
         return $ventasPorSocio->toJson();
 
@@ -137,42 +136,31 @@ class VentasControlador extends Controller
 
     {
 
-        $filtro = OrganismoFilter::apply($request->all());
-
-        $filtro->each(function($organismo){
-            $totalCobrado = $organismo->socios->sum(function($socio){
-               return $socio->ventas->sum(function($venta){
-                    return $venta->cuotas->sum(function($cuota){
-                       return $cuota->movimientos->sum(function($movimiento){
-                            return $movimiento->entrada;
-                        });
-                    });
-                });
-
-            });
-            $organismo->totalCobrado = $totalCobrado;
-        });
-
-
         $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('productos', 'ventas.id_producto', '=', 'productos.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->groupBy('organismos.id')
-            ->select('organismos.nombre AS organismo', 'organismos.id AS id_organismo', 'productos.id As id_producto', DB::raw('SUM(cuotas.importe) AS totalACobrar'))->get();
+            ->join('productos', 'productos.id', '=', 'ventas.id_producto')
+            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
+            ->where('cuotas.cuotable_type', 'App\Ventas')
+            ->select('organismos.nombre AS organismo', 'organismos.id AS id_organismo', DB::raw('SUM(cuotas.importe) AS totalACobrar'))
+            ->groupBy('organismos.id');
+        $organismos = VentasFilter::apply($request, $ventas);
 
         $movimientos = DB::table('ventas')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
-
+            ->join('productos', 'productos.id', '=', 'ventas.id_producto')
+            ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
+            ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
+            ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->groupBy('organismos.id')
-            ->select('organismos.id AS id_organismo', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
+            ->select('organismos.id AS id_organismo', DB::raw('SUM(movimientos.entrada) AS totalCobrado'));
 
-        //return [$ventas, $movimientos];
-        $ventasPorOrganismo = $this->unirColecciones($ventas, $movimientos, ["id_organismo"], ['totalCobrado' => 0]);
+        $organismos2 = VentasFilter::apply($request, $movimientos);
+
+        $ventasPorOrganismo = $this->unirColecciones($organismos, $organismos2, ["id_organismo"], ['totalCobrado' => 0]);
 
         $ventasPorOrganismo = $ventasPorOrganismo->each(function ($item, $key){
             $diferencia = $item['totalACobrar'] - $item['totalCobrado'];
@@ -180,14 +168,10 @@ class VentasControlador extends Controller
             return $item;
         });
 
-
-        //return  $tabla =  Datatables::of($ventasPorOrganismo)->make(true);
-
         return $ventasPorOrganismo->toJson();
 
 
     }
-
 
     public function traerDatosAutocomplete(Request $request)
     {

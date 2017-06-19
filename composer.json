@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+    },
+    "require": {
+        "phpunit/dbunit": "3.0.0",
+        "behat/behat": "3.2.x-dev"
+    }
+}

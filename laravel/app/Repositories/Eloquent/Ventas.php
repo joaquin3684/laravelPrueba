@@ -37,7 +37,6 @@ class Ventas
         $this->fecha_vencimiento = $fecha_vencimiento;
     }
 
-
     public function cuotasVencidas()
     {
         return $this->cuotas->filter(function ($cuota){

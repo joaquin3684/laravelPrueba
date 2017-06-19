@@ -10,10 +10,10 @@ use App\Socios;
 class Dar_Servicio extends Controller
 {
     public function index()
-  {
-  	
-    return view('Dar_servicio');
-  }
+    {
+  	   return view('Dar_servicio');
+    }
+
   public function sociosQueCumplenConFiltro(Request $request)
   {
   	

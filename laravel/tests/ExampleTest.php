@@ -3,8 +3,9 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-class ExampleTest extends TestCase
+use App\Socios;
+use test\aTest;
+class ExampleTest extends ATest
 {
 
     /**
@@ -14,6 +15,6 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-      
+        $socios = Socios::all();
     }
 }

@@ -33,6 +33,7 @@ class SociosMapper
     public function __construct()
     {
         $this->ventasMapper = new VentasMapper();
+        $this->cuotasMapper = new CuotasMapper();
     }
 
     public function map(Socios $socio)
@@ -44,6 +45,13 @@ class SociosMapper
                 return $this->ventasMapper->map($venta);
             });
             $socioNuevo->setVentas($ventas);
+        }
+        if($socio->relationLoaded('cuotasSociales'))
+        {
+            $cuotas = $socio->cuotasSociales->map(function($cuota){
+                return $this->cuotasMapper->map($cuota);
+            });
+            $socioNuevo->setCuotasSociales($cuotas);
         }
         return $socioNuevo;
     }
