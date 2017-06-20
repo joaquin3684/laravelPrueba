@@ -2,51 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1f7bd1c-f905-4491-8fe5-0fd9fc592091" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Organismos/Nombre.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/tests/GeneradorDeConsultasTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/tests/OrganismosTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/laravel/tests/ProovedoresTest.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/OrganismoFilter.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/VentasFilter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/laravelPrueba.iml" afterPath="$PROJECT_DIR$/.idea/laravelPrueba.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Cuotas.php" afterPath="$PROJECT_DIR$/laravel/app/Cuotas.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_asociados.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_asociados.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_organismos.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_organismos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_prioridades.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_prioridades.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_productos.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/ABM_productos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/AprobacionServiciosController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/AprobacionServiciosController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CC_CuotasSocialesController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CC_CuotasSocialesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobrarController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobroCuotasSocialesController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CobroCuotasSocialesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/Dar_Servicio.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/Dar_Servicio.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/PagoProovedoresController.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/PagoProovedoresController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/VentasControlador.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/laravel/app/Http/Middleware/VerifyCsrfToken.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Contracts/filtros.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Contracts/filtros.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza/CobrarPorSocio.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza/CobrarPorSocio.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cuota.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Filtros/Filtro.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Repositorio.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Repositorio.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/SociosRepo.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/SociosRepo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Socio.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Socio.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Ventas.php" afterPath="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Ventas.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Socios.php" afterPath="$PROJECT_DIR$/laravel/app/Socios.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/bootstrap/app.php" afterPath="$PROJECT_DIR$/laravel/bootstrap/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/composer.json" afterPath="$PROJECT_DIR$/laravel/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/composer.lock" afterPath="$PROJECT_DIR$/laravel/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/phpunit.xml" afterPath="$PROJECT_DIR$/laravel/phpunit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/resources/views/ABM_organismos.blade.php" afterPath="$PROJECT_DIR$/laravel/resources/views/ABM_organismos.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/routes/web.php" afterPath="$PROJECT_DIR$/laravel/routes/web.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/tests/AsociadosTest.php" afterPath="$PROJECT_DIR$/laravel/tests/AsociadosTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/tests/ExampleTest.php" afterPath="$PROJECT_DIR$/laravel/tests/ExampleTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/problemas" afterPath="$PROJECT_DIR$/problemas" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -110,7 +66,7 @@
       <file leaf-file-name="FeatureContext.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/features/bootstrap/FeatureContext.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="1600">
               <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding>
                 <element signature="e#7#39#0#PHP" expanded="true" />
@@ -119,11 +75,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ABM_organismos.feature" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ABM_organismos.feature" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/features/ABM_organismos.feature">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
-              <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+              <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="env.example" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/env.example">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="640">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -132,7 +108,7 @@
       <file leaf-file-name="MinkContext.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/mink-extension/src/Behat/MinkExtension/Context/MinkContext.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6034">
+            <state relative-caret-position="280">
               <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
               <folding />
             </state>
@@ -142,7 +118,7 @@
       <file leaf-file-name="login.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/resources/views/login.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-480">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -153,7 +129,7 @@
         <entry file="file://$PROJECT_DIR$/laravel/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -222,7 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Fechas.php" />
         <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Mapper/SociosMapper.php" />
         <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Cobranza/CobrarPorSocio.php" />
         <option value="$PROJECT_DIR$/laravel/app/Repositories/Eloquent/Repos/Gateway/SociosGateway.php" />
@@ -273,6 +248,7 @@
         <option value="$PROJECT_DIR$/laravel/features/ABM_organismos.feature" />
         <option value="$PROJECT_DIR$/laravel/behat.yml" />
         <option value="$PROJECT_DIR$/laravel/features/bootstrap/FeatureContext.php" />
+        <option value="$PROJECT_DIR$/laravel/env.example" />
       </list>
     </option>
   </component>
@@ -340,7 +316,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -367,27 +343,9 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravelPrueba" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -643,6 +601,8 @@
       <workItem from="1497561895078" duration="9619000" />
       <workItem from="1497664756743" duration="14556000" />
       <workItem from="1497745651493" duration="12054000" />
+      <workItem from="1497878511315" duration="662000" />
+      <workItem from="1497983255170" duration="494000" />
     </task>
     <servers />
   </component>
@@ -679,7 +639,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="601269000" />
+    <option name="totallyTimeSpent" value="602425000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -692,15 +652,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3800797" sideWeight="0.5196305" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39282867" sideWeight="0.5196305" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.503096" sideWeight="0.38247013" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15936255" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46904024" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="69" y="327" width="1257" height="238" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23585658" sideWeight="0.4803695" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36842105" sideWeight="0.49083665" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36842105" sideWeight="0.49083665" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24462152" sideWeight="0.51857585" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45665634" sideWeight="0.61752987" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -792,7 +753,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/tests/GeneradorDeConsultasTest.php" />
     <entry file="file://$PROJECT_DIR$/laravel/vendor/composer/ClassLoader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
@@ -819,7 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="32" column="56" lean-forward="false" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -827,9 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#240#430#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -865,25 +821,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
           <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-          <folding>
-            <element signature="e#1452#2150#0#PHP" expanded="false" />
-            <element signature="e#2155#2900#0#PHP" expanded="false" />
-            <element signature="e#2905#5156#0#PHP" expanded="false" />
-            <element signature="e#5162#5501#0#PHP" expanded="false" />
-            <element signature="e#5507#7119#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/8e552b55/8437ff7a-af67-4038-8678-765b923edf25/prueba.cuotas">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -898,7 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-86">
           <caret line="3350" column="0" lean-forward="false" selection-start-line="3350" selection-start-column="0" selection-end-line="3350" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -906,7 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-17">
           <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,7 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -929,9 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-          <folding>
-            <element signature="e#7#59#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -947,14 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -977,9 +912,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -987,7 +919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4507">
           <caret line="277" column="1" lean-forward="false" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,7 +936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="677">
           <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,7 +943,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1021,7 +950,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,7 +957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1037,7 +964,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
           <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1045,7 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,7 +978,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,7 +985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
           <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1069,7 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
           <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1077,7 +999,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1085,7 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1093,7 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1101,7 +1020,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,7 +1035,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="17" column="10" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,7 +1042,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="17" column="10" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,7 +1049,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="112" column="8" lean-forward="false" selection-start-line="112" selection-start-column="8" selection-end-line="112" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1147,7 +1062,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/resources/views/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1156,14 +1071,14 @@
     <entry file="file://$PROJECT_DIR$/laravel/behat.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/vendor/behat/mink-extension/src/Behat/MinkExtension/Context/MinkContext.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6034">
+        <state relative-caret-position="280">
           <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
           <folding />
         </state>
@@ -1173,13 +1088,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/features/bootstrap/FeatureContext.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="1600">
           <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
             <element signature="e#7#39#0#PHP" expanded="true" />
@@ -1190,7 +1104,23 @@
     <entry file="file://$PROJECT_DIR$/laravel/features/ABM_organismos.feature">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
-          <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/env.example">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
