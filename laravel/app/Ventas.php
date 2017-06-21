@@ -32,7 +32,7 @@ class Ventas extends Model
 
     public function movimientos()
     {
-        return $this->hasManyThrough('App\Movimientos', 'App\Cuotas', 'id_venta', 'identificadores_id', 'id');
+        return $this->hasManyThrough('App\Movimientos', 'App\Cuotas', 'cuotable_id', 'identificadores_id', 'id');
     }
 
     public function estados()

@@ -25,9 +25,11 @@ class ConsultasMovimientos
         $hoy = $this->hoy;
         $movimientos = DB::table('ventas')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+            ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
+            ->where('cuotas.cuotable_type', 'App\Ventas')
+            ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->groupBy('organismos.id')
             ->select('organismos.id AS id_organismo', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))
                         ->get();
@@ -39,12 +41,14 @@ class ConsultasMovimientos
         $hoy = $this->hoy;
         $movimientos = DB::table('ventas')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
-            ->join('movimientos', 'movimientos.id_cuota', '=', 'cuotas.id')
+            ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('socios.id')
             ->select('socios.id AS id_socio', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))
             ->where('organismos.id', '=', $id)
+            ->where('cuotas.cuotable_type', 'App\Ventas')
+            ->where('movimientos.identificadores_id', 'App\Cuotas')
             ->get();
         return $movimientos;
     }

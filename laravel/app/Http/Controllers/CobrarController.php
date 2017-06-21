@@ -93,7 +93,7 @@ class CobrarController extends Controller
     {
         $hoy = Carbon::today()->toDateString();
         $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('productos', 'ventas.id_producto', '=', 'productos.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
@@ -106,16 +106,18 @@ class CobrarController extends Controller
                             ->where('cuotas.fecha_inicio', '<=', $hoy);
                     });
             })
+            ->where('cuotas.cuotable_type', 'App\Ventas')
             ->where('socios.id', '=', $request['id'])
             ->select('socios.nombre AS socio', 'ventas.id AS id_venta', 'proovedores.nombre AS proovedor', DB::raw('SUM(cuotas.importe) AS totalACobrar'))->get();
 
         $movimientos = DB::table('ventas')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
-            ->join('cuotas', 'cuotas.id_venta', '=', 'ventas.id')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('ventas.id')
             ->where('socios.id', '=', $request['id'])
+            ->where('cuotas.cuotable_type', 'App\Ventas')
             ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->select('ventas.id AS id_venta', DB::raw('SUM(movimientos.entrada) AS totalCobrado'))->get();
 

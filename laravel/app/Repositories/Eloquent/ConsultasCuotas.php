@@ -24,11 +24,12 @@ class ConsultasCuotas
     {
         $hoy = $this->hoy;
         $ventas = DB::table('cuotas')
-            ->join('ventas', 'ventas.id', '=', 'cuotas.id_venta')
+            ->join('ventas', 'ventas.id', '=', 'cuotas.cuotable_id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->groupBy('organismos.id')
             ->select('organismos.nombre AS organismo', 'organismos.id AS id_organismo', DB::raw('SUM(cuotas.importe) AS totalACobrar'))
+            ->where('cuotas.cuotable_type', 'App\Ventas')
             ->where(function($query) use ($hoy){
                 $query->where('cuotas.fecha_vencimiento', '<=', $hoy)
                     ->orWhere(function($query2) use ($hoy){
@@ -41,11 +42,12 @@ class ConsultasCuotas
     public function cuotasVencidasDeSociosDelOrganismo($id){
         $hoy = $this->hoy;
         $cuotas = DB::table('cuotas')
-            ->join('ventas', 'ventas.id', '=', 'cuotas.id_venta')
+            ->join('ventas', 'ventas.id', '=', 'cuotas.cuotable_id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->groupBy('socios.id')
             ->select('socios.nombre AS socio', 'socios.id AS id_socio', DB::raw('SUM(cuotas.importe) AS totalACobrar'))
+            ->where('cuotas.cuotable_type', 'App\Ventas')
             ->where(function($query) use ($hoy){
                 $query->where('cuotas.fecha_vencimiento', '<=', $hoy)
                     ->orWhere(function($query2) use ($hoy){
@@ -61,7 +63,7 @@ class ConsultasCuotas
     {
         $hoy = $this->hoy;
         $cuotas = DB::table('cuotas')
-            ->join('ventas', 'ventas.id', '=', 'cuotas.id_venta')
+            ->join('ventas', 'ventas.id', '=', 'cuotas.cuotable_id')
             ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
             ->join('productos', 'ventas.id_producto', '=', 'productos.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
@@ -74,6 +76,7 @@ class ConsultasCuotas
                             ->where('cuotas.fecha_inicio', '<=', $hoy);
                     });
             })
+            ->where('cuotas.cuotable_type', 'App\Ventas')
             ->where('socios.id', '=', $id)->get();
     }
 }
