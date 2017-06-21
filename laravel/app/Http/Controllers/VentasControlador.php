@@ -45,6 +45,7 @@ class VentasControlador extends Controller
             ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
             ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('ventas.id')
+            ->where('cuotas.cuotable_type', 'App\Ventas')
             ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->where('socios.id', '=', $request['id'])
             ->select('ventas.id AS id_venta', DB::raw('SUM(movimientos.entrada) AS totalCobrado'));
@@ -113,6 +114,8 @@ class VentasControlador extends Controller
             ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
             ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('socios.id')
+            ->where('cuotas.cuotable_type', 'App\Ventas')
+
             ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->where('organismos.id', '=', $request['id'])
             ->select('socios.id AS id_socio', DB::raw('SUM(movimientos.entrada) AS totalCobrado'));
@@ -154,6 +157,8 @@ class VentasControlador extends Controller
             ->join('productos', 'productos.id', '=', 'ventas.id_producto')
             ->join('proovedores', 'proovedores.id', '=', 'productos.id_proovedor')
             ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
+            ->where('cuotas.cuotable_type', 'App\Ventas')
+
             ->where('movimientos.identificadores_type', 'App\Cuotas')
             ->groupBy('organismos.id')
             ->select('organismos.id AS id_organismo', DB::raw('SUM(movimientos.entrada) AS totalCobrado'));

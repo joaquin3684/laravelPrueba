@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Eloquent\Filtros\CC_CuotasSocialesFilter;
+use App\Socios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CC_CuotasSocialesController extends Controller
 {
@@ -14,9 +16,8 @@ class CC_CuotasSocialesController extends Controller
 
     public function mostrarPorOrganismos(Request $request)
     {
-        $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+        $ventas = DB::table('socios')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'socios.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->where('cuotas.cuotable_type', 'App\Socios')
             ->select('organismos.nombre AS organismo', 'organismos.id AS id_organismo', DB::raw('SUM(cuotas.importe) AS totalACobrar'))
@@ -24,9 +25,8 @@ class CC_CuotasSocialesController extends Controller
 
         $organismos = CC_CuotasSocialesFilter::apply($request, $ventas);
 
-        $movimientos = DB::table('ventas')
-            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+        $movimientos = DB::table('socios')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'socios.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->where('movimientos.identificadores_type', 'App\Cuotas')
@@ -48,9 +48,8 @@ class CC_CuotasSocialesController extends Controller
 
     public function mostrarPorSocios(Request $request)
     {
-        $ventas = DB::table('ventas')
-            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+        $ventas = DB::table('socios')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'socios.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->groupBy('socios.id')
             ->where('organismos.id', '=', $request['id'])
@@ -60,9 +59,8 @@ class CC_CuotasSocialesController extends Controller
         $socios = CC_CuotasSocialesFilter::apply($request, $ventas);
 
 
-        $movimientos = DB::table('ventas')
-            ->join('cuotas', 'cuotas.cuotable_id', '=', 'ventas.id')
-            ->join('socios', 'ventas.id_asociado', '=', 'socios.id')
+        $movimientos = DB::table('socios')
+            ->join('cuotas', 'cuotas.cuotable_id', '=', 'socios.id')
             ->join('organismos', 'organismos.id', '=', 'socios.id_organismo')
             ->join('movimientos', 'movimientos.identificadores_id', '=', 'cuotas.id')
             ->groupBy('socios.id')
