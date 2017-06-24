@@ -1,0 +1,73 @@
+cuotas Sociales
+
+se cargan todos los primeros del mes automaticamente
+agregar titulo de cuotas sociales
+
+
+comercializadora
+
+plata terecros
+
+
+
+1- mutual/ cooperativa unicamente comercializa en este caso yo mutual como agente comercializador
+obtengo socios que quieran creditos, entonces a un tercero le pido apruebe el credito
+este tercero se encarga de toda la gestion del credito.
+si el tercero aprueba el credito entonces el tercero me da un porcentaje del total del credito
+si lo rechaza nada
+aclaracion: el porcentaje en este caso es fijo
+
+
+2- mutual/cooperativa comercializa y gestiona el prestamo y cobranza con fondos de terceros pero no tiene la facultad
+de aprobar o no el credito ya que opera con fondos de terceros
+
+aclaracion: el porcentaje puede ser variable por ejemplo(si cobras un palo tenes tal porcentaje pero si cobras  un palo y medio tenes otro )
+este no es por producto sino para todos los servicios del proveedor
+
+3- mutual/cooperativa que sea comercializadora y gestiona el  prestamo y cobranza con fodos propios Y de terceros
+la mutual tiene un empleado que recibe los clientes con los prestamos,
+cuando es plata propia todos los intereses van para mi, no tengo que pagar comercializador ni gestion, todo es mio
+mutual/cooperativa comercializa y gestiona el prestamo pero no tiene la facultad
+de aprobar o no el credito ya que opera con fondos de terceros
+
+aclaracion: el porcentaje puede ser variable por ejemplo(si cobras un palo tenes tal porcentaje pero si cobras  un palo y medio tenes otro )
+este no es por producto sino para todos los servicios del proveedor
+
+4- mutual/cooperativa comercializa y gestiona el prestamo y cobranza todo con fondos propios
+ mutual/cooperativa que sea comercializadora y gestiona el  prestamo con fodos propios Y de terceros
+la mutual tiene un empleado que recibe los clientes con los prestamos,
+cuando es plata propia todos los intereses van para mi, no tengo que pagar comercializador ni gestion, todo es mio
+
+5- mutual/cooperativa gestiona el prestamo y cobranza con fondos propios pero no comercializa
+por ende le tengo que pagar un porcentaje del total del credito a una persona que actue
+de comercialiazadora
+
+6- mutual/cooperativa gestiona el prestamo y cobraza con fondos de terceros y no comercializa
+
+7- gestiona prestamos y cobranza con fodos propios y de terceros
+
+8- gestiona prestamos con fodos propios
+
+9- gestiona prestamos con fodos de terceros
+
+10- gestiona prestamos con fodos propios y de terceros
+
+7- mutual/cooperativa gestiona prestamo y  cobranza y comercializa pero tambien tiene comercializadores externos a la empresa con fondos propios
+
+8-mutual/cooperativa gestiona prestamo y cobranza y comercializa pero tambien tiene comercializadores externos a la empresa con fondos de terceros
+
+9-mutual/cooperativa gestiona prestamo y  cobranza y comercializa pero tambien tiene comercializadores externos a la empresa con fondos propios y de terceros
+
+
+
+/// gestion de prestamos
+
+en gestion de prestamos se puede tener un comercializador ( es el que trae el contacto del credito ) o no, en esta gestion basicamente
+lo que se hace es chequear que se le puede dar el prestamo, para esto el comercializador tiene un contacto directo con el ciente
+EL CUAL NO NECESARIAMENTE TIENE QUE SER SOCIO DE LA MUTUAL, el comecializador nos pasa los datos del socio, y el gestor de prestamos
+trata de verificar que con el inversor si se le va a otorgar el prestamo o no, todo esto se hace atravez de informacion y documentacion
+
+
+
+
+
