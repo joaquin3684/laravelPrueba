@@ -9,59 +9,7 @@
   <link href="js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <script>
-   function enviarFormulario(tipoSolicitud, id = ''){
-        var form = '';
-         var abm = $("#tipo_tabla").val();
-         switch(tipoSolicitud)
-         {
-            case 'Editar':
-               var metodo = 'put';
-               var form = $("#formularioEditar").serialize();
-               var id = $('input[name=id]').val();
-               break;
-            case 'Alta':
-               var metodo = 'post';
-               var form = $("#formulario").serialize();
-               break;
-            case 'Borrar':
-               var metodo = 'delete';
-               break;
-            case 'Mostrar':
-               var metodo = 'get';
-               break;
-            default:
-               console.log("el tipo de solicitud no existe");
-               break;
-         }
-         var url = id == '' ? abm : abm+'/'+id;
-         
-         $.ajax({
-            url: url,
-            method: metodo,
-            data: form,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            success: function (response)
-            {
-               if(tipoSolicitud == 'Mostrar')
-                  {
-                     console.log(response);
-                     llenarFormulario('formularioEditar',response);
-                  } 
-               
-               $('#formulario')[0].reset();
-               $scope.errores = '';
-               console.log(response.data);
-            },
-            error: function (data)
-            {
-               console.log(data);
-               $scope.errores = data.data;
-            }
-          });
-            
-   }
-  </script>
+  
 <div class="nav-md" ng-controller="ABM" >
 
   <div class="container body" >
@@ -233,7 +181,7 @@
                         </ul>
                         <div class="clearfix"></div>
                       </div>
-                      <div class="x_content">
+<!--                       <div class="x_content">
                        
                         <table id="datatable-responsive" cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" cellspacing="0" width="100%">
                           <thead>
@@ -282,7 +230,39 @@
                           </tbody>
                         </table>
 
-                      </div>
+                      </div> -->
+
+                                            <div class="x_content">
+                            <div id="pruebaExpandir">
+                                <div class="span12 row-fluid">
+                                    <!-- START $scope.[model] updates -->
+                                    <!-- END $scope.[model] updates -->
+                                    <!-- START TABLE -->
+                                    <div>
+                                        <table ng-table="paramsABMS" class="table table-hover table-bordered">
+                                            <tbody data-ng-repeat="abm in $data" data-ng-switch on="dayDataCollapse[$index]">
+                                            <tr class="clickableRow" title="Datos">
+                                                <td title="'Nombre'" sortable="'nombre'">
+                                                    {[{abm.nombre}]}
+                                                </td>
+                                                <td title="'Fecha de Nacimiento'" sortable="'fecha_nacimiento'">
+                                                    {[{abm.fecha_nacimiento}]}
+                                                </td>
+                                                <td title="'Cuit'" sortable="'cuit'">
+                                                    {[{abm.cuit}]}
+                                                </td>
+                                                <td>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', abm.id)"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', abm.id)"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- END TABLE -->
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                    
                   </div>
@@ -311,10 +291,6 @@
       </div>
       <div class="modal-body">
          <form class="form-horizontal form-label-left" ng-submit="enviarFormulario('Editar')" id="formularioEditar" >
-                   {{ csrf_field() }}
-                    <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
-                    </p>
-                    <span class="section">Personal Info</span>
 
                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span>
@@ -446,64 +422,7 @@
 
 
 
-         <script>
-          
-        </script>
-        <script type="text/javascript">
-          $( document ).ready(function() {
-            function puto(){
-              console.log('forro');
-            }
-       $("#datatable-responsive").DataTable({
-              /* ajax:{
-                  method: "GET",
-                  url: "asociados/traerDatos",
-                  dataSrc: "",
-               },*/
-              /* columns:[
-                  {"data": "nombre"},
-                  {"data": "fecha_nacimiento"},
-                  {"data": "cuit"},
-                  {"data": "dni"},
-                  {"data": "domicilio"},
-                  {"data": "localidad"},
-                  {"data": "codigo_postal"},
-                  {"data": "telefono"},
-                  {"data": "legajo"},
-                  {"data": "fecha_ingreso"},
-                  {"data": "grupo_familiar"},
-                  {"data": "id_organismo"},
-                  {"render": function (data){
-                     
-                     return '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario("Mostrar", 10)"><span class="glyphicon glyphicon-pencil"></span></button>';
-                  }},
-               ],*/
-
-               
-              select: true,
-              fixedHeader: true,
-               language: {
-                info: "Mostrando del _PAGE_ al _END_ de _TOTAL_ registros",
-                lengthMenu: "Mostrar _MENU_ registros",
-                paginate: {
-                  next: "Siguiente",
-                  previous: "Anterior"
-                },
-                search: "Buscar:"
-
-
-               },
-              dom: 'Blfrtip',
-              buttons: [
-                  'copy', 'excel', 'pdf'
-               ],
-               lengthChange: true,
-               
-
-          });
-          });
-        </script>
-
+     
 </div>
 
 

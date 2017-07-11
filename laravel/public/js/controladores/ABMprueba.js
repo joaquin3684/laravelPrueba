@@ -1,7 +1,7 @@
-var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize']).config(function($interpolateProvider){
+var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'ngTable']).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
-app.controller('ABM', function($scope, $http, $compile, $sce) {
+app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $filter) {
    
   // manda las solicitud http necesarias para manejar los requerimientos de un abm
    $scope.enviarFormulario = function(tipoSolicitud, id = '')
@@ -49,38 +49,58 @@ app.controller('ABM', function($scope, $http, $compile, $sce) {
                $('#formulario')[0].reset();
                $scope.errores = '';
                console.log(response.data);
+               $scope.traerRelaciones();
             }, function errorCallback(data)
             {
                console.log(data);
                $scope.errores = data.data;
             });
-        var tabla =   $("#datatable-responsive").DataTable();
-         tabla.draw();
+        
    }
 
    $scope.traerRelaciones = function(relaciones)
    {  
-      for(x in relaciones)
-      {
-       
-         var url = relaciones[x].tabla + '/traerRelacion'+relaciones[x].tabla;
-         $http({
-            url: url,
-            method: 'get',
-         }).then(function successCallback(response)
-         {
-          
-          console.log(response);
-            $.each(response.data, function(val, text) {
-               console.log(relaciones[x].select);
-               $(relaciones[x].select).append($("<option />").val(text.id).text(text.nombre));
-               $(relaciones[x].select+'_Editar').append($("<option />").val(text.id).text(text.nombre));
-            });
-         }, function errorCallback(data)
-         {
-            console.log(data);
-         });
+
+      var abm = $("#tipo_tabla").val();
+      if(abm == 'asociados'){
+         var urlabm = abm + "/traerDatos";
+      }else{
+         if(abm == 'productos'){
+            var urlabm = abm + "/TraerProductos";
+         }else {
+
+         var urlabm = abm + "/traerRelacion" + abm;
+         }
       }
+      $http({
+            url: urlabm,
+            method: 'get'
+        }).then(function successCallback(response)
+        {
+            if(typeof response.data === 'string')
+            {
+                return [];
+            }
+            else
+            {
+                console.log(response);
+                $scope.datosabm = response.data;
+                $scope.paramsABMS = new NgTableParams({
+                    page: 1,
+                    count: 10
+                }, {
+                    total: $scope.datosabm.length,
+                    getData: function (params) {
+                        $scope.datosabm = $filter('orderBy')($scope.datosabm, params.orderBy());
+                        return $scope.datosabm.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    }
+                });
+            }
+
+        }, function errorCallback(data)
+        {
+            console.log(data.data);
+        });
    }
 
    $scope.agregarPantalla = function()
@@ -123,6 +143,8 @@ app.controller('ABM', function($scope, $http, $compile, $sce) {
             console.log(data);
          });
    }
+
+   $scope.traerRelaciones();
 
    
 });
