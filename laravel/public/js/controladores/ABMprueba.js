@@ -60,13 +60,14 @@ app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $fi
 
    $scope.traerRelaciones = function(relaciones)
    {  
-
+      var metodito = 'get';
       var abm = $("#tipo_tabla").val();
       if(abm == 'asociados'){
          var urlabm = abm + "/traerDatos";
       }else{
          if(abm == 'productos'){
             var urlabm = abm + "/TraerProductos";
+            metodito = 'post';
          }else {
 
          var urlabm = abm + "/traerRelacion" + abm;
@@ -74,7 +75,7 @@ app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $fi
       }
       $http({
             url: urlabm,
-            method: 'get'
+            method: metodito
         }).then(function successCallback(response)
         {
             if(typeof response.data === 'string')

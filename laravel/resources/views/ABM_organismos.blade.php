@@ -92,6 +92,7 @@
 
       </div>
       <button onclick="imprSelec('impr')">Imprimir</button>
+      <button id="exportButton" class="btn btn-lg btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> Export to PDF</button>
       <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
@@ -150,7 +151,12 @@
                                     <!-- END $scope.[model] updates -->
                                     <!-- START TABLE -->
                                     <div>
-                                        <table ng-table="paramsABMS" class="table table-hover table-bordered">
+                                        <table id="exportTable" ng-table="paramsABMS" class="table table-hover table-bordered">
+                                        <thead style="">
+                                        <th>Nombre</th>
+                                        <th>Cuit</th>
+                                        <th>Cuota_Social</th>
+                                        </thead>
                                             <tbody data-ng-repeat="abm in $data" data-ng-switch on="dayDataCollapse[$index]">
                                             <tr class="clickableRow" title="Datos">
                                                 <td title="'Nombre'" sortable="'nombre'">
@@ -266,6 +272,60 @@
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
         <script src="js/datatables/dataTables.scroller.min.js"></script>
 
+
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#exportButton").click(function () {
+            // parse the HTML table element having an id=exportTable
+            var dataSource = shield.DataSource.create({
+                data: "#exportTable",
+                schema: {
+                    type: "table",
+                    fields: {
+                        Nombre: { type: String },
+                        Cuit: { type: Number },
+                        Cuota_Social: { type: String }
+                    }
+                }
+            });
+
+            // when parsing is done, export the data to PDF
+            dataSource.read().then(function (data) {
+                var pdf = new shield.exp.PDFDocument({
+                    author: "PrepBootstrap",
+                    created: new Date()
+                });
+
+                pdf.addPage("a4", "portrait");
+
+                pdf.table(
+                    50,
+                    50,
+                    data,
+                    [
+                        { field: "Nombre", title: "Nombre", width: 200 },
+                        { field: "Cuit", title: "Cuit", width: 50 },
+                        { field: "Cuota_Social", title: "Cuota Social", width: 200 }
+                    ],
+                    {
+                        margins: {
+                            top: 50,
+                            left: 50
+                        }
+                    }
+                );
+
+                pdf.saveAs({
+                    fileName: "PrepBootstrapPDF"
+                });
+            });
+        });
+    });
+</script>
 
 
 
