@@ -53,6 +53,7 @@ abm_productos
 - poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
 - poner sentinel
+- Filtros columnas
 
 
 abm_usuarios
@@ -64,6 +65,7 @@ abm_usuarios
 - la tabla se tiene que actualizar automaticamente al realizar una accion
 - poner las funciones de editar y borrar
 - poner sentinel
+- Filtros columnas
 
 
 abm_roles
@@ -74,6 +76,7 @@ abm_roles
 - poner mensajes cuando se realiza una operacion
 - poner las funciones de editar y borrar
 - poner sentinel
+- Filtros columnas
 
 
 abm_organismos
@@ -83,6 +86,8 @@ abm_organismos
 - poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
 - poder poner numeros con coma
+- Filtros columnas
+- Agregar la columna "Organismo"
 
 
 abm_proovedores
@@ -93,6 +98,7 @@ abm_proovedores
 - poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
 - poder poner numeros con coma
+- Filtros columnas
 
 abm_socios
 
@@ -101,6 +107,7 @@ abm_socios
 - poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
 - poder poner numeros con coma
+- Filtros columnas
 
 Cuentas corrientes
 

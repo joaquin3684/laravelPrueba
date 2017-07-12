@@ -23,7 +23,7 @@
         <div class="" >
          
           <div class="clearfix"></div>
-
+<div id="mensaje"></div>
           <div class="row" >
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
@@ -57,7 +57,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="nombre" placeholder="Ingrese nombre del organismo" type="text">{[{errores.nombre[0]}]}
+                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="nombre" placeholder="Ingrese nombre del Proveedor" type="text">{[{errores.nombre[0]}]}
                       </div>
                     </div>
                     
@@ -65,21 +65,21 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripcion <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="descripcion" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la descripcion del proovedor">{[{errores.descripcion[0]}]}
+                        <input type="text" id="descripcion" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la Descripcion">{[{errores.descripcion[0]}]}
                       </div>
                     </div>
                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="porcentaje_retencion">Porcentaje de Ganancia <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="porcentaje_retencion" name="porcentaje_retencion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.porcentaje_retencion[0]}]}
+                        <input type="number" id="porcentaje_retencion" name="porcentaje_retencion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese % Ganancia">{[{errores.porcentaje_retencion[0]}]}
                       </div>
                     </div>
                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="porcentaje_gastos_administrativos">Porcentaje de Gastos administrtivos <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="porcentaje_gastos_administrativos" name="porcentaje_gastos_administrativos" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.porcentaje_gastos_administrativos[0]}]}
+                        <input type="number" id="porcentaje_gastos_administrativos" name="porcentaje_gastos_administrativos" class="form-control col-md-7 col-xs-12" placeholder="Ingrese % G.A.">{[{errores.porcentaje_gastos_administrativos[0]}]}
                       </div>
                     </div>
                      <div class="item form-group">
@@ -167,6 +167,11 @@
                       </div> -->
 
                                             <div class="x_content">
+                                               <center>
+                     <button id="exportButton1" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
+                     </button>
+                     <button id="exportButton2" class="btn btn-success clearfix"><span class="fa fa-file-excel-o"></span> EXCEL</button>
+                     </center>
                             <div id="pruebaExpandir">
                                 <div class="span12 row-fluid">
                                     <!-- START $scope.[model] updates -->
@@ -278,8 +283,9 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                        <button id="send" type="submit" class="btn btn-success">Enviar</button>
                       </div>
                     </div>
                   </form>

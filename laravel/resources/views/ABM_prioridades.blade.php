@@ -4,6 +4,7 @@
 
 {!! Html::script('js/angular-ui-sortable/src/sortable.js') !!}
 {!! Html::script('js/controladores/prioridades.js') !!}
+
   <!-- CSS TABLAS -->
   {!! Html::style('js/datatables/jquery.dataTables.min.css') !!}
   {!! Html::style('js/datatables/buttons.bootstrap.min.css') !!}
@@ -162,7 +163,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        <button id="send" type="submit" class="btn btn-success">Enviar</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                       </div>
                     </div>

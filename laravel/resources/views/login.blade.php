@@ -34,8 +34,7 @@
                     	</div>
                     	 <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button type="button" onclick="console.log('hola');" class="btn btn-primary">Cancel</button>
-                        <button id="send" type="submit" class="btn btn-success">Alta</button>
+                        <button id="send" type="submit" class="btn btn-success">Ingresar</button>
                       </div>
                     </div>
       				</form>

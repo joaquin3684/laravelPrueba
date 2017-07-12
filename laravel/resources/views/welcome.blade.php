@@ -38,6 +38,7 @@
 {!! Html::script('js/angular-material/angular-material.min.js') !!}
 
 {!! Html::script('js/angular-sanitize/angular-sanitize.min.js') !!}
+{!! Html::script('js/services.js') !!}
 
 
 

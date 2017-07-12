@@ -26,10 +26,11 @@
           <div class="clearfix"></div>
 @if(Sentinel::check()->hasAccess('socios.crear'))
           <div class="row" >
+          <div id="mensaje"></div>
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
                 <div class="x_title">
-                  <h2>Formulario de socios <small>dar de alta un socio</small></h2>
+                  <h2>Formulario de socios <small>Dar de alta un socio</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -58,7 +59,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="nombre" placeholder="Ingrese nombre del organismo" type="text">{[{errores.nombre[0]}]}
+                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="nombre" placeholder="Ingrese nombre del Socio" type="text">{[{errores.nombre[0]}]}
                       </div>
                     </div>
                     
@@ -73,63 +74,63 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cuit">Cuit <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="cuit" name="cuit" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el cuit">{[{errores.cuit[0]}]}
+                        <input type="text" id="cuit" name="cuit" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el Cuit">{[{errores.cuit[0]}]}
                       </div>
                     </div>
                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">DNI <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="dni" name="dni" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.dni[0]}]}
+                        <input type="number" id="dni" name="dni" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el DNI">{[{errores.dni[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="domicilio">Domicilio <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.domicilio[0]}]}
+                        <input type="text" id="domicilio" name="domicilio" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el Domicilio">{[{errores.domicilio[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="localidad">Localidad <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="localidad" name="localidad" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.localidad[0]}]}
+                        <input type="text" id="localidad" name="localidad" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la Localidad">{[{errores.localidad[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="codigo_postal">Codigo Postal <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="codigo_postal" name="codigo_postal" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.codigo_postal[0]}]}
+                        <input type="number" id="codigo_postal" name="codigo_postal" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el Código Postal">{[{errores.codigo_postal[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="telefono" name="telefono" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.telefono[0]}]}
+                        <input type="number" id="telefono" name="telefono" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el Teléfono">{[{errores.telefono[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="legajo">Legajo <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="legajo" name="legajo" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.legajo[0]}]}
+                        <input type="number" id="legajo" name="legajo" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el Legajo">{[{errores.legajo[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha de ingreso <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.fecha_ingreso[0]}]}
+                        <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la fecha de ingreso">{[{errores.fecha_ingreso[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="grupo_familiar">Grupo Familiar <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="grupo_familiar" name="grupo_familiar" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.grupo_familiar[0]}]}
+                        <input type="text" id="grupo_familiar" name="grupo_familiar" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el Grupo Familiar">{[{errores.grupo_familiar[0]}]}
                       </div>
                       </div>
                       <div class="item form-group">
@@ -233,6 +234,11 @@
                       </div> -->
 
                                             <div class="x_content">
+                                             <center>
+                     <button id="exportButton1" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
+                     </button>
+                     <button id="exportButton2" class="btn btn-success clearfix"><span class="fa fa-file-excel-o"></span> EXCEL</button>
+                     </center>
                             <div id="pruebaExpandir">
                                 <div class="span12 row-fluid">
                                     <!-- START $scope.[model] updates -->
@@ -383,7 +389,7 @@
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        <button id="send" type="submit" class="btn btn-success">Enviar</button>
                       </div>
                     </div>
                   </form>

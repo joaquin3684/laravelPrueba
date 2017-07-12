@@ -23,7 +23,7 @@
                     <div class="" >
 
                         <div class="clearfix"></div>
-
+                        <div id="mensaje"></div>
                         <div class="row" >
                             <div class="col-md-12 col-sm-12 col-xs-12" >
                                 <div class="x_panel"  >
@@ -101,7 +101,6 @@
 
                 </div>
 
-<button ng-click="traerRelaciones">hola</button>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
@@ -157,6 +156,11 @@
                         </div> -->
                         
                     <div class="x_content" id="impr">
+                    <center>
+                     <button id="exportButton1" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
+                     </button>
+                     <button id="exportButton2" class="btn btn-success clearfix"><span class="fa fa-file-excel-o"></span> EXCEL</button>
+                     </center>
                             <div id="pruebaExpandir">
                                 <div class="span12 row-fluid">
                                     <!-- START $scope.[model] updates -->
@@ -170,10 +174,10 @@
                                                     {[{abm.nombre}]}
                                                 </td>
                                                 <td title="'Descripcion'" sortable="'descripcion'">
-                                                    {[{abm.cuit}]}
+                                                    {[{abm.descripcion}]}
                                                 </td>
                                                 <td title="'Retencion'" sortable="'retencion'">
-                                                    {[{abm.retencion}]}
+                                                    {[{abm.ganancia}]}
                                                 </td>
                                                 <td title="'Proveedor'" sortable="'proovedor'">
                                                     {[{abm.proovedor}]}
@@ -255,8 +259,10 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button id="send" type="submit" class="btn btn-success">Submit</button>
+                                    
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                    <button id="send" type="submit" class="btn btn-success">Enviar</button>
+                                    
                                 </div>
                             </div>
                         </form>

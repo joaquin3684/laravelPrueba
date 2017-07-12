@@ -2,7 +2,9 @@
 
 @section('contenido')
 
+
 {!! Html::script('js/controladores/ABMprueba.js') !!}
+
   <!-- CSS TABLAS -->
   <link href="js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
   <link href="js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -22,6 +24,7 @@
         <div class="" >
          
           <div class="clearfix"></div>
+          <div id="mensaje"></div>
           <div class="row" >
             <div class="col-md-12 col-sm-12 col-xs-12" >
               <div class="x_panel"  >
@@ -91,8 +94,9 @@
 
 
       </div>
-      <button onclick="imprSelec('impr')">Imprimir</button>
-      <button id="exportButton" class="btn btn-lg btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> Export to PDF</button>
+      
+      
+
       <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
@@ -145,6 +149,11 @@
 
                       </div> -->
                       <div class="x_content">
+                     <center>
+                     <button id="exportButton1" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
+                     </button>
+                     <button id="exportButton2" class="btn btn-success clearfix"><span class="fa fa-file-excel-o"></span> EXCEL</button>
+                     </center>
                             <div id="pruebaExpandir">
                                 <div class="span12 row-fluid">
                                     <!-- START $scope.[model] updates -->
@@ -153,9 +162,10 @@
                                     <div>
                                         <table id="exportTable" ng-table="paramsABMS" class="table table-hover table-bordered">
                                         <thead style="">
-                                        <th style="display: none;">Nombre</th>
-                                        <th style="display: none;">Cuit</th>
-                                        <th style="display: none;">Cuota_Social</th>
+                                        <th style="">Nombre</th>
+                                        <th style="">Cuit</th>
+                                        <th style="">Cuota_Social</th>
+                                        <th></th>
                                         </thead>
                                             <tbody data-ng-repeat="abm in $data" data-ng-switch on="dayDataCollapse[$index]">
                                             <tr class="clickableRow" title="Datos">
@@ -235,8 +245,9 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                        <button id="send" type="submit" class="btn btn-success">Enviar</button>
+                        
                       </div>
                     </div>
                   </form>
@@ -279,16 +290,16 @@
 
 <script type="text/javascript">
     jQuery(function ($) {
-        $("#exportButton").click(function () {
+        $("#exportButton1").click(function () {
             // parse the HTML table element having an id=exportTable
             var dataSource = shield.DataSource.create({
                 data: "#exportTable",
                 schema: {
                     type: "table",
                     fields: {
-                        Nombre: { type: String },
+                        Nombre: { type: "string"},
                         Cuit: { type: Number },
-                        Cuota_Social: { type: String }
+                        Cuota_Social: { type: Number }
                     }
                 }
             });
@@ -296,15 +307,15 @@
             // when parsing is done, export the data to PDF
             dataSource.read().then(function (data) {
                 var pdf = new shield.exp.PDFDocument({
-                    author: "PrepBootstrap",
+                    author: "27deJunio",
                     created: new Date()
                 });
 
                 pdf.addPage("a4", "portrait");
 
                 pdf.table(
-                    50,
-                    50,
+                    10,
+                    10,
                     data,
                     [
                         { field: "Nombre", title: "Nombre", width: 200 },
@@ -314,13 +325,13 @@
                     {
                         margins: {
                             top: 50,
-                            left: 50
+                            left: 1
                         }
                     }
                 );
 
                 pdf.saveAs({
-                    fileName: "PrepBootstrapPDF"
+                    fileName: "Reporte PDF"
                 });
             });
         });

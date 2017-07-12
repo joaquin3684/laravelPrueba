@@ -1,13 +1,45 @@
-var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'ngTable']).config(function($interpolateProvider){
+var app = angular.module('Mutual', ['ngMaterial', 'ngSanitize', 'ngTable', 'Mutual.services']).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
-app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $filter) {
+app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $filter, UserSrv) {
    
   // manda las solicitud http necesarias para manejar los requerimientos de un abm
+
+
+$scope.traerRelaciones = function(relaciones)
+   {  
+      for(x in relaciones)
+      {
+       
+         var url = relaciones[x].tabla + '/traerRelacion'+relaciones[x].tabla;
+         $http({
+            url: url,
+            method: 'get',
+         }).then(function successCallback(response)
+         {
+          
+          console.log(response);
+            $.each(response.data, function(val, text) {
+               console.log(relaciones[x].select);
+               $(relaciones[x].select).append($("<option />").val(text.id).text(text.nombre));
+               $(relaciones[x].select+'_Editar').append($("<option />").val(text.id).text(text.nombre));
+            });
+         }, function errorCallback(data)
+         {
+            console.log(data);
+         });
+      }
+   }
+
+
+
+
+
    $scope.enviarFormulario = function(tipoSolicitud, id = '')
    {
          var form = '';
          var abm = $("#tipo_tabla").val();
+         console.log('el id es: ' + id);
          switch(tipoSolicitud)
          {
             case 'Editar':
@@ -31,7 +63,7 @@ app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $fi
          }
          
          var url = id == '' ? abm : abm+'/'+id;
-         
+         console.log(url);
          $http({
             url: url,
             method: metodo,
@@ -47,9 +79,10 @@ app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $fi
                   } 
                $scope.mensaje = response;
                $('#formulario')[0].reset();
+               if(tipoSolicitud != 'Mostrar'){UserSrv.MostrarMensaje("OK","Operación ejecutada correctamente.","OK"); $('#editar').modal('hide');}
                $scope.errores = '';
                console.log(response.data);
-               $scope.traerRelaciones();
+               $scope.traerElementos();
             }, function errorCallback(data)
             {
                console.log(data);
@@ -58,7 +91,7 @@ app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $fi
         
    }
 
-   $scope.traerRelaciones = function(relaciones)
+   $scope.traerElementos = function(relaciones)
    {  
       var metodito = 'get';
       var abm = $("#tipo_tabla").val();
@@ -136,7 +169,7 @@ app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $fi
          });
    }
 
-   $scope.traerRelaciones();
+   $scope.traerElementos();
 
    
 });
