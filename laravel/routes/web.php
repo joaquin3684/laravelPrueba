@@ -177,7 +177,7 @@ Route::resource('organismos', 'ABM_organismos');
 //--------------- SOCIOS -----------------------
 
 Route::get('asociados/traerDatos', 'ABM_asociados@traerDatos');
-Route::get('socios/traerElementos', 'ABM_asociados@traerElementos');
+Route::get('asociados/traerElementos', 'ABM_asociados@traerElementos');
 Route::resource('asociados', 'ABM_asociados');
 
 //---------------- PROVEEDORES ------------------------
