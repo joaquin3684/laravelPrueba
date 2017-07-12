@@ -62,17 +62,8 @@ app.controller('ABM', function($scope, $http, $compile, $sce, NgTableParams, $fi
    {  
       var metodito = 'get';
       var abm = $("#tipo_tabla").val();
-      if(abm == 'asociados'){
-         var urlabm = abm + "/traerDatos";
-      }else{
-         if(abm == 'productos'){
-            var urlabm = abm + "/TraerProductos";
-            metodito = 'post';
-         }else {
-
-         var urlabm = abm + "/traerRelacion" + abm;
-         }
-      }
+      var urlabm = abm + "/traerElementos";
+      
       $http({
             url: urlabm,
             method: metodito

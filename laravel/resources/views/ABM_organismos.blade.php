@@ -153,9 +153,9 @@
                                     <div>
                                         <table id="exportTable" ng-table="paramsABMS" class="table table-hover table-bordered">
                                         <thead style="">
-                                        <th>Nombre</th>
-                                        <th>Cuit</th>
-                                        <th>Cuota_Social</th>
+                                        <th style="display: none;">Nombre</th>
+                                        <th style="display: none;">Cuit</th>
+                                        <th style="display: none;">Cuota_Social</th>
                                         </thead>
                                             <tbody data-ng-repeat="abm in $data" data-ng-switch on="dayDataCollapse[$index]">
                                             <tr class="clickableRow" title="Datos">
