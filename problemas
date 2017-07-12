@@ -52,9 +52,7 @@ abm_productos
 - poner para imprimir
 - poner para pasar a pdf, excel
 - poner mensajes cuando se realiza una operacion
-- la tabla se tiene que actualizar automaticamente al realizar una accion
 - poner sentinel
-- poder poner numeros con coma
 
 
 abm_usuarios

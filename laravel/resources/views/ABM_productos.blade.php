@@ -28,7 +28,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12" >
                                 <div class="x_panel"  >
                                     <div class="x_title">
-                                        <h2>Formulario de proovedores <small>Dar de alta un proovedor</small></h2>
+                                        <h2>Formulario de Productos <small>Dar de alta un Producto</small></h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -51,7 +51,7 @@
                                         <form class="form-horizontal form-label-left" ng-submit="enviarFormulario('Alta')" id="formulario" >
                                             {{ csrf_field() }}
 
-                                            <span class="section">Datos de proovedor</span>
+                                            <span class="section">Datos del Producto</span>
 
                                             <div class="item form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span>
@@ -101,12 +101,12 @@
 
                 </div>
 
-
+<button ng-click="traerRelaciones">hola</button>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Proovedores <small>Todos los proovedores disponibles</small></h2>
+                            <h2>Productos <small>Todos los productos disponibles</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -124,7 +124,7 @@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content">
+<!--                         <div class="x_content">
 
                             <table id="datatable-responsive" cellspacing="0" class="table table-striped table-bordered dt-responsive nowrap order-colum compact" cellspacing="0" width="100%">
                                 <thead>
@@ -153,6 +153,41 @@
                                 @endforeach
                                 </tbody>
                             </table>
+
+                        </div> -->
+                        
+                    <div class="x_content" id="impr">
+                            <div id="pruebaExpandir">
+                                <div class="span12 row-fluid">
+                                    <!-- START $scope.[model] updates -->
+                                    <!-- END $scope.[model] updates -->
+                                    <!-- START TABLE -->
+                                    <div>
+                                        <table ng-table="paramsABMS" class="table table-hover table-bordered">
+                                            <tbody data-ng-repeat="abm in $data" data-ng-switch on="dayDataCollapse[$index]">
+                                            <tr class="clickableRow" title="Datos">
+                                                <td title="'Nombre'" sortable="'nombre'">
+                                                    {[{abm.nombre}]}
+                                                </td>
+                                                <td title="'Descripcion'" sortable="'descripcion'">
+                                                    {[{abm.cuit}]}
+                                                </td>
+                                                <td title="'Retencion'" sortable="'retencion'">
+                                                    {[{abm.retencion}]}
+                                                </td>
+                                                <td title="'Proveedor'" sortable="'proovedor'">
+                                                    {[{abm.proovedor}]}
+                                                </td>
+                                                <td>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', abm.id)"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', abm.id)"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- END TABLE -->
+                                </div>
+                            </div>
 
                         </div>
                     </div>
