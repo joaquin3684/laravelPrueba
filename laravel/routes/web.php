@@ -177,27 +177,27 @@ Route::resource('organismos', 'ABM_organismos');
 //--------------- SOCIOS -----------------------
 
 Route::get('asociados/traerDatos', 'ABM_asociados@traerDatos');
-Route::get('socios/traerElementos', 'ABM_organismos@traerElementos');
+Route::get('socios/traerElementos', 'ABM_asociados@traerElementos');
 Route::resource('asociados', 'ABM_asociados');
 
 //---------------- PROVEEDORES ------------------------
 
 Route::get('proovedores/datos', 'ABM_proovedores@datos');
-Route::get('proovedores/traerElementos', 'ABM_organismos@traerElementos');
+Route::get('proovedores/traerElementos', 'ABM_proovedores@traerElementos');
 Route::get('proovedores/traerRelacionproovedores', 'ABM_proovedores@traerRelacion');
 Route::resource('proovedores', 'ABM_proovedores');
 
 //---------------- PRODUCTOS ----------------
 
 Route::post('productos/TraerProductos', 'ABM_productos@traerProductos');
-Route::get('productos/traerElementos', 'ABM_organismos@traerElementos');
+Route::get('productos/traerElementos', 'ABM_productos@traerElementos');
 Route::resource('productos', 'ABM_productos');
 
 //---------------- PRIORIDADES -------------
 
 Route::get('prioridades/traerRelacionprioridades', 'ABM_prioridades@traerRelacion');
 Route::get('prioridades/datos', 'ABM_prioridades@datos');
-Route::get('prioridades/traerElementos', 'ABM_organismos@traerElementos');
+Route::get('prioridades/traerElementos', 'ABM_prioridades@traerElementos');
 Route::post('prioridades/guardarConfiguracion', 'ABM_prioridades@guardarConfiguracion');
 Route::resource('prioridades', 'ABM_prioridades');
 
