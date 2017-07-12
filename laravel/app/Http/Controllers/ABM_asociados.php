@@ -28,8 +28,7 @@ class ABM_asociados extends Controller
 
     public function show($id)
     {
-        $this->socio->find($id);
-
+        return $this->socio->find($id);
     }
 
     public function traerElementos()
