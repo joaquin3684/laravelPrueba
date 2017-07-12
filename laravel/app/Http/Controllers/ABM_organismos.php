@@ -22,7 +22,11 @@ class ABM_organismos extends Controller
         
     }
 
- 
+    public function traerElementos()
+    {
+        return $this->organismo->all();
+    }
+
     public function store(ValidacionABMorganismos $request)
     {
         $this->organismo->create($request->all());

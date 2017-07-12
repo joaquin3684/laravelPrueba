@@ -27,6 +27,10 @@ class ABM_productos extends Controller
         return view('ABM_productos', compact('registros'));
     }
 
+    public function traerElementos()
+    {
+        return $this->producto->all();
+    }
 
     public function store(Request $request)
     {
