@@ -1,6 +1,7 @@
 # language: es
 Característica: ABM Organismos
 
+
   Escenario: Mostrar Pantalla
     Dado estoy en login
     Cuando relleno usuario con 1

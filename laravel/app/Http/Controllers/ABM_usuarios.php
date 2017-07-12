@@ -31,6 +31,8 @@ class ABM_usuarios extends Controller
        
     }
 
+
+
     public function update(ValidacionABMproovedores $request, $id)
     {
         $registro = Proovedores::find($id);

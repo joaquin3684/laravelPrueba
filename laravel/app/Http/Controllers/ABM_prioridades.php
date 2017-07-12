@@ -59,6 +59,10 @@ class ABM_prioridades extends Controller
         }
     }
 
+    public function traerElementos()
+    {
+        return $this->prioridad->all();
+    }
 
     public function update(Request $request, $id)
     {

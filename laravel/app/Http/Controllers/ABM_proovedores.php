@@ -23,6 +23,11 @@ class ABM_proovedores extends Controller
         return ['created' => true];
     }
 
+    public function traerElementos()
+    {
+        return Proovedores::all();
+    }
+
     public function show($id)
     {
         $registro = Proovedores::find($id);
