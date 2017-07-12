@@ -73,7 +73,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cuota_social">Cuota Social <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="cuota_social" name="cuota_social" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.cuota_social[0]}]}
+                        <input type="number" step="0.01" id="cuota_social" name="cuota_social" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.cuota_social[0]}]}
                       </div>
                     </div>
                     <div class="ln_solid"></div>

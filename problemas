@@ -5,7 +5,6 @@ hay entidades que tienen son ellas las que hacen sus creditos, entonces tiene qu
 ---------------FRONTEND---------------
 
 Cobro
-- pasar todo a ng-table
 - ponerle mensajes al realizar acciones
 - ponerle ajax (al realizar el cobro se tiene que actualizar la tabla)
 - poner en el input de cada registro lo que falta para saldar la deuda automaticamente
@@ -23,15 +22,12 @@ Cobro cuotas sociales
 
 Cuenta corrientes cuotas sociales
 
-- agregar titulo
 - poner filtros
 
 
 dar_servicio
 
-- enviar bien al backend la fecha de vencimiento, tiene que ser "fecha_vencimiento"
-- en plan de pago cuota inicial tiene que arrancar desde el 1
-- sacar el select de tipo
+- sacar el select de tipo ->>> ????? seguro??
 - se tiene que agregar un input automaticamente cuando se selecciona el producto, si el producto es un credito tiene que aparecer dos input uno que sea el nro de credito y el otro monto Total otorgado, si es un producto normal tiene que aparecer un input que se llame observacion, ACLARACION el el valor del input montoTotalOtorgado y observacion son el mismo campo
 - si selecciono un proovedor y un producto y luego borro el proovedor deberia borrarse el producto y deshabilitarse el input del producto
 - emitir orden de descuento para imprimir
@@ -40,29 +36,23 @@ dar_servicio
 - cambiar titulo y subtiutlo
 - poner mensajes cuando se realiza una operacion
 - vaciar los campos caundos e da de alta
-- poder poner numeros con coma
 - poner sentinel
 - no funciona el vto
-- nro de credito se tiene que generar automaticamente
+- nro de credito se tiene que generar automaticamente ---> y cual tiene que ser?
 
 
 abm_productos
 
-- poner mostrar todos en la paginacion
 - poner para imprimir
 - poner para pasar a pdf, excel
-- poner mensajes cuando se realiza una operacion
 - poner sentinel
 - Filtros columnas
 
 
 abm_usuarios
 
-- poner mostrar todos en la paginacion
 - poner para imprimir
 - poner para pasar a pdf, excel
-- poner mensajes cuando se realiza una operacion
-- la tabla se tiene que actualizar automaticamente al realizar una accion
 - poner las funciones de editar y borrar
 - poner sentinel
 - Filtros columnas
@@ -70,10 +60,8 @@ abm_usuarios
 
 abm_roles
 
-- poner mostrar todos en la paginacion
 - poner para imprimir
 - poner para pasar a pdf, excel
-- poner mensajes cuando se realiza una operacion
 - poner las funciones de editar y borrar
 - poner sentinel
 - Filtros columnas
@@ -81,11 +69,8 @@ abm_roles
 
 abm_organismos
 
-- poner mostrar todos en la paginacion
 - poner para imprimir
 - poner para pasar a pdf, excel
-- poner mensajes cuando se realiza una operacion
-- poder poner numeros con coma
 - Filtros columnas
 - Agregar la columna "Organismo"
 
@@ -102,11 +87,8 @@ abm_proovedores
 
 abm_socios
 
-- poner mostrar todos en la paginacion
 - poner para imprimir
 - poner para pasar a pdf, excel
-- poner mensajes cuando se realiza una operacion
-- poder poner numeros con coma
 - Filtros columnas
 
 Cuentas corrientes
@@ -125,7 +107,7 @@ Cuentas corrientes
 Cobranza
 
 - pantalla para hacer la cobranza
-- se tiene que poder exportar a los modelos locos
+- se tiene que poder exportar a los modelos locos --> (QUE CARAJO SON LOS MODELOS LOCOS??)
 
 Pago proovedores
 
