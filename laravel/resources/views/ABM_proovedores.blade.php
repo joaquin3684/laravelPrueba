@@ -68,7 +68,7 @@
                         <input type="text" id="descripcion" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la Descripcion">{[{errores.descripcion[0]}]}
                       </div>
                     </div>
-                    <div class="item form-group">
+<!--                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="porcentaje_retencion">Porcentaje de Ganancia <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
@@ -81,7 +81,7 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="number" id="porcentaje_gastos_administrativos" name="porcentaje_gastos_administrativos" class="form-control col-md-7 col-xs-12" placeholder="Ingrese % G.A.">{[{errores.porcentaje_gastos_administrativos[0]}]}
                       </div>
-                    </div>
+                    </div> -->
                      <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">Prioridad <span class="required">*</span>
                       </label>
@@ -187,15 +187,16 @@
                                                 <td title="'Descripcion'" sortable="'descripcion'">
                                                     {[{abm.descripcion}]}
                                                 </td>
-                                                <td title="'$ de Ganancia'" sortable="'porcentaje_retencion'">
+<!--                                                 <td title="'$ de Ganancia'" sortable="'porcentaje_retencion'">
                                                     {[{abm.porcentaje_retencion}]}
                                                 </td>
                                                 
                                                 <td title="'$ Gastos Administrativos'" sortable="'porcentaje_gastos_administrativos'">
                                                     {[{abm.porcentaje_gastos_administrativos}]}
-                                                </td>
+                                                </td> -->
                                                 <td title="'Prioridad'" sortable="'prioridad.nombre'">
-                                                    {[{abm.prioridad.nombre}]}
+                                                    <span ng-if="abm.id_prioridad == 1">Alta</span>
+                                                    <span ng-if="abm.id_prioridad == 2">Baja</span>
                                                 </td>
 
                                                 <td>
@@ -257,7 +258,7 @@
                         <input type="text" id="descripcion" name="descripcion" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la descripcion del proovedor">{[{errores.descripcion[0]}]}
                       </div>
                     </div>
-                    <div class="item form-group">
+<!--                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="porcentaje_retencion">Porcentaje de Ganancia <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
@@ -270,7 +271,7 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="number" id="porcentaje_gastos_administrativos" name="porcentaje_gastos_administrativos" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la cuota social">{[{errores.porcentaje_gastos_administrativos[0]}]}
                       </div>
-                    </div>
+                    </div> -->
                    <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">Prioridad <span class="required">*</span>
                       </label>

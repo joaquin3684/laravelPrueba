@@ -56,21 +56,21 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="usuario">Usuario <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="usuario" class="form-control col-md-7 col-xs-12" name="usuario" placeholder="Ingrese usuario del organismo" type="text">{[{errores.usuario[0]}]}
+                        <input id="usuario" class="form-control col-md-7 col-xs-12" name="usuario" placeholder="Ingrese usuario" type="text">{[{errores.usuario[0]}]}
                       </div>
                     </div>
                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="email" class="form-control col-md-7 col-xs-12" name="email" placeholder="Ingrese email del organismo" type="text">{[{errores.email[0]}]}
+                        <input id="email" class="form-control col-md-7 col-xs-12" name="email" placeholder="Ingrese email del usuario" type="text">{[{errores.email[0]}]}
                       </div>
                     </div>
                       <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Contraseña <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="password" name="password" class="form-control col-md-7 col-xs-12" placeholder="Ingrese el password">{[{errores.password[0]}]}
+                        <input type="text" id="password" name="password" class="form-control col-md-7 col-xs-12" placeholder="Ingrese la contraseña">{[{errores.password[0]}]}
                       </div>
                     </div>
                     <div class="item form-group">
@@ -101,6 +101,69 @@
        
 
       </div>
+<!-- 
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>Proovedores <small>Todos los proovedores disponibles</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                          </li>
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#">Settings 1</a>
+                              </li>
+                              <li><a href="#">Settings 2</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a href="#"><i class="fa fa-close"></i></a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+
+                                            <div class="x_content">
+                                               <center>
+                     <button id="exportButton1" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
+                     </button>
+                     <button id="exportButton2" class="btn btn-success clearfix"><span class="fa fa-file-excel-o"></span> EXCEL</button>
+                     </center>
+                            <div id="pruebaExpandir">
+                                <div class="span12 row-fluid">
+                                    <!-- START $scope.[model] updates -->
+                                    <!-- END $scope.[model] updates -->
+                                    <!-- START TABLE -->
+                                    <div>
+                                        <table ng-table="paramsABMS" class="table table-hover table-bordered">
+                                            <tbody data-ng-repeat="abm in $data" data-ng-switch on="dayDataCollapse[$index]">
+                                            <tr class="clickableRow" title="Datos">
+                                                <td title="'Nombre'" sortable="'nombre'">
+                                                    {[{abm.nombre}]}
+                                                </td>
+                                                <td title="'Descripcion'" sortable="'descripcion'">
+                                                    {[{abm.descripcion}]}
+                                                </td>
+                                                <td title="'Prioridad'" sortable="'prioridad.nombre'">
+                                                    <span ng-if="abm.id_prioridad == 1">Alta</span>
+                                                    <span ng-if="abm.id_prioridad == 2">Baja</span>
+                                                </td>
+
+                                                <td>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', abm.id)"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', abm.id)"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- END TABLE -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                  </div> -->
       
       <!-- /page content -->
     </div>
@@ -158,7 +221,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        <button id="send" type="submit" class="btn btn-success">Enviar</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                       </div>
                     </div>

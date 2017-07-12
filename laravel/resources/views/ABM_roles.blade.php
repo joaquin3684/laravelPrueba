@@ -56,7 +56,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="name" ng-model="name" placeholder="Ingrese nombre del organismo" type="text">{[{errores.name[0]}]}
+                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="name" ng-model="name" placeholder="Ingrese nombre del Rol" type="text">{[{errores.name[0]}]}
                       </div>
                     </div>
                     <input type="hidden" name="slug" value="{[{name}]}">
@@ -76,7 +76,6 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <button type="button" onclick="console.log('hola');" class="btn btn-primary">Cancel</button>
                         <button id="send" type="submit" class="btn btn-success">Alta</button>
                       </div>
                     </div>
