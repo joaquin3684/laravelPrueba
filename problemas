@@ -94,7 +94,6 @@ abm_socios
 Cuentas corrientes
 
 - agregar en la abstraccion de socio el legajo y el dni --> ¿De dónde saco esos datos? No están en el json que recibo.
-- poner en rojo el highlight 
 - modificar los filtros para los distintos niveles de abstraccion, y agregar filtro de que se pago y que no --> Esto lo hago mas adelante porque voy a cambiarles el diseño, así son muy grandes y quedan mal. Y con respecto al filtro de que se pago y que no, yo pondría un filtro del estado de
 - poner graficos -> ???? 
 - poner la opcion de mostrar todos los registros --> Demorado hasta que encuentre como.

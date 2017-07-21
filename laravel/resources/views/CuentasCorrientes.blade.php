@@ -428,7 +428,9 @@
                                                 </td>
 
                                                 <td title="'Importe'" sortable="'totalACobrar'">
-                                                    {[{cuota.importe}]}
+                                                    <span style="color: red" ng-if="(cuota.fecha_vencimiento < ActualDate) && (cuota.cobrado < cuota.importe)">{[{cuota.importe}]}</span>
+                                                    <span style="" ng-if="cuota.fecha_vencimiento >= ActualDate">{[{cuota.importe}]}</span>
+                                                    <span style="" ng-if="(cuota.fecha_vencimiento < ActualDate) && (cuota.cobrado >= cuota.importe)">{[{cuota.importe}]}</span>
                                                 </td>
                                                 <td title="'Cobrado'" sortable="'totalCobrado'">
                                                     {[{cuota.cobrado}]}
