@@ -32,7 +32,7 @@ $scope.traerRelaciones = function(relaciones)
    }
 
 
-
+   $scope.ExportarPDF = function(pantalla) {UserSrv.ExportPDF(pantalla);}
 
 
    $scope.enviarFormulario = function(tipoSolicitud, id = '')

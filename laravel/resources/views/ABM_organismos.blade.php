@@ -150,7 +150,7 @@
                       </div> -->
                       <div class="x_content">
                      <center>
-                     <button id="exportButton1" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
+                     <button id="exportButton1" ng-click="ExportarPDF('organismos')" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
                      </button>
                      <button id="exportButton2" class="btn btn-success clearfix"><span class="fa fa-file-excel-o"></span> EXCEL</button>
                      </center>
@@ -289,53 +289,7 @@
 <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
 
 <script type="text/javascript">
-    jQuery(function ($) {
-        $("#exportButton1").click(function () {
-            // parse the HTML table element having an id=exportTable
-            var dataSource = shield.DataSource.create({
-                data: "#exportTable",
-                schema: {
-                    type: "table",
-                    fields: {
-                        Nombre: { type: "string"},
-                        Cuit: { type: Number },
-                        Cuota_Social: { type: Number }
-                    }
-                }
-            });
-
-            // when parsing is done, export the data to PDF
-            dataSource.read().then(function (data) {
-                var pdf = new shield.exp.PDFDocument({
-                    author: "27deJunio",
-                    created: new Date()
-                });
-
-                pdf.addPage("a4", "portrait");
-
-                pdf.table(
-                    10,
-                    10,
-                    data,
-                    [
-                        { field: "Nombre", title: "Nombre", width: 200 },
-                        { field: "Cuit", title: "Cuit", width: 50 },
-                        { field: "Cuota_Social", title: "Cuota Social", width: 200 }
-                    ],
-                    {
-                        margins: {
-                            top: 50,
-                            left: 1
-                        }
-                    }
-                );
-
-                pdf.saveAs({
-                    fileName: "Reporte PDF"
-                });
-            });
-        });
-    });
+    
 </script>
 
 

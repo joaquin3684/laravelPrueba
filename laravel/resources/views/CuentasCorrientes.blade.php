@@ -126,7 +126,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="row" style="margin-top:20px;" id="filterCuota">
+                                        <div class="row" style="margin-top:20px;" id="filterCuota" ng-show="vistaactual=='Ventas || Cuotas'">
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
                                                     Minimo importe cuota
@@ -152,10 +152,10 @@
                                                 </input>
                                             </div>
                                         </div>
-                                        <div class="row" id="filterCuota2">
+                                        <div class="row" id="filterCuota2" ng-show="vistaactual=='Ventas || Cuotas'">
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Minimo N�� cuota
+                                                    Minimo Nº cuota
                                                 </label>
                                                 <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" 
                                                  ng-model="minimo_nro_cuota">
@@ -168,7 +168,7 @@
                                             </div>
                                             <div class="item form-group col-sm-5 col-xs-8">
                                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
-                                                    Maximo N�� cuota
+                                                    Maximo Nº cuota
                                                 </label>
                                                 <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" ng-model="maximo_nro_cuota">
                                                 </md-slider>
@@ -179,7 +179,58 @@
                                                 </input>
                                             </div>
                                         </div>
-                                        <div class="row" style="margin-top:20px;" id="filterFecha">
+                                        <div class="row" style="margin-top:20px;" id="filterCuota" ng-show="vistaactual=='Organismos'">
+                                            <div class="item form-group col-sm-5 col-xs-8">
+                                                <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
+                                                    Minimo importe Total a Cobrar
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 col-xs-4">
+                                                <input class="form-control col-md-7 col-xs-12" ng-change="filtrar()"  id="minimo" name="minimo" ng-model="minimo_importe_cuota" type="number">
+                                                    {[{errores.porcentaje_retencion[0]}]}
+                                                </input>
+                                            </div>
+                                            <div class="item form-group col-sm-5 col-xs-8">
+                                                <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
+                                                    Maximo importe Total a Cobrar
+                                                </label>
+                                               <!--  <md-slider aria-label="red" class="md-primary" ng-change="filtrar()"  flex="" id="red-slider" max="255" min="0" ng-model="maximo_importe_cuota">
+                                                </md-slider> -->
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 col-xs-4">
+                                                <input class="form-control col-md-7 col-xs-12" ng-change="filtrar()"  id="minimo" name="minimo" ng-model="maximo_importe_cuota" type="number">
+                                                    {[{errores.porcentaje_retencion[0]}]}
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="filterCuota2" ng-show="vistaactual=='Organismos'">
+                                            <div class="item form-group col-sm-5 col-xs-8">
+                                                <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
+                                                    Minimo importe Total Cobrado
+                                                </label>
+                                                <!-- <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" 
+                                                 ng-model="minimo_nro_cuota">
+                                                </md-slider> -->
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 col-xs-4">
+                                                <input class="form-control col-md-7 col-xs-12" ng-change="filtrar()"  id="minimo" name="minimo" ng-model="minimo_nro_cuota" type="number">
+                                                    {[{errores.porcentaje_retencion[0]}]}
+                                                </input>
+                                            </div>
+                                            <div class="item form-group col-sm-5 col-xs-8">
+                                                <label class="control-label col-md-6 col-sm-6 col-xs-12" for="minimo">
+                                                    Maximo importe Total Cobrado
+                                                </label>
+                                               <!--  <md-slider aria-label="red" flex="" id="red-slider" ng-change="filtrar()"  max="255" min="0" ng-model="maximo_nro_cuota">
+                                                </md-slider> -->
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 col-xs-4">
+                                                <input class="form-control col-md-7 col-xs-12" ng-change="filtrar()"  id="minimo" name="minimo" ng-model="maximo_nro_cuota" type="number">
+                                                    {[{errores.porcentaje_retencion[0]}]}
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:20px;" id="filterFecha" ng-show="vistaactual == 'Ventas'">
                                             <div class="item form-group col-sm-6 col-xs-12">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="desde">
                                                     Desde:
@@ -200,9 +251,10 @@
                                                     </input>
                                                 </div>
                                             </div>
-                                            <input type="submit" ng-click="filtro()" class="btn btn-success" value="Filtrar">
+                                            
                                            
                                         </div>
+                                        <input type="submit" ng-click="filtro()" class="btn btn-success" value="Filtrar">
                                         </form>
                                     </div>
                                 </div>
@@ -278,6 +330,12 @@
 							        <td title="'Diferencia'" sortable="'diferencia'">
 							            {[{organismo.diferencia}]}
                                     </td>
+                                    <td title="'Total a Cobrar'" sortable="'totalACobrar'">
+                                        {[{organismo.totalACobrar}]}
+                                    </td>
+                                    <td title="'Total Cobrado'" sortable="'totalCobrado'">
+                                        {[{organismo.totalCobrado}]}
+                                    </td>
 							   	</tr>
 								</table>
                         </div>
@@ -343,6 +401,9 @@
                                     <td title="'Cobrado'" sortable="'cobrado'">
                                         {[{cuota.cobrado}]}
                                     </td>
+                                    <td title="'Estado'" sortable="'estado'">
+                                        {[{cuota.estado}]}
+                                    </td>
                                 </tr>
                             </table>
                         </div>--}}
@@ -371,6 +432,9 @@
                                                 </td>
                                                 <td title="'Cobrado'" sortable="'totalCobrado'">
                                                     {[{cuota.cobrado}]}
+                                                </td>
+                                                <td title="'Estado'" sortable="'estado'">
+                                                    {[{cuota.estado}]}
                                                 </td>
                                             </tr>
                                             <tr data-ng-switch-when="true">
