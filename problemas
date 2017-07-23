@@ -33,7 +33,7 @@ dar_servicio
 - emitir orden de descuento para imprimir
 - primero se tiene que imprimir la orden de descuento y luego manualmente se tiene que enviar el formulario
 - ajustar pagina para celular
-- cambiar titulo y subtiutlo
+- cambiar titulo y subtiutlo --> Y cual tiene que ser?
 - poner mensajes cuando se realiza una operacion
 - vaciar los campos caundos e da de alta
 - poner sentinel
