@@ -4,7 +4,7 @@ hay entidades que tienen son ellas las que hacen sus creditos, entonces tiene qu
 
 ---------------FRONTEND---------------
 
-Cobro
+Cobro --> HACER
 - ponerle mensajes al realizar acciones
 - ponerle ajax (al realizar el cobro se tiene que actualizar la tabla)
 - poner en el input de cada registro lo que falta para saldar la deuda automaticamente
@@ -12,7 +12,7 @@ Cobro
 - poder poner numeros con coma
 
 
-Cobro cuotas sociales
+Cobro cuotas sociales --> NO
 - hacer pantalla
 - tiene que tener una tabla que muestre por organismo, con lo que se debe
 - al presionar un registro de la tabla organismos se tiene que mostrar una por socio con un input para poder registrar el cobro,
@@ -20,12 +20,12 @@ Cobro cuotas sociales
 - tiene que estar el boton para realizar la accion de cobro
 - poder poner numeros con coma
 
-Cuenta corrientes cuotas sociales
+Cuenta corrientes cuotas sociales --> NO
 
 - poner filtros
 
 
-dar_servicio
+dar_servicio --> NO
 
 - sacar el select de tipo ->>> ????? seguro??
 - se tiene que agregar un input automaticamente cuando se selecciona el producto, si el producto es un credito tiene que aparecer dos input uno que sea el nro de credito y el otro monto Total otorgado, si es un producto normal tiene que aparecer un input que se llame observacion, ACLARACION el el valor del input montoTotalOtorgado y observacion son el mismo campo
@@ -46,7 +46,7 @@ abm_productos
 - poner para imprimir
 - poner para pasar a pdf, excel
 - poner sentinel
-- Filtros columnas
+- Filtros columnas --> Si para todos los abm
 
 
 abm_usuarios
@@ -91,35 +91,108 @@ abm_socios
 - poner para pasar a pdf, excel
 - Filtros columnas
 
-Cuentas corrientes
+Cuentas corrientes --> HACER
 
 - agregar en la abstraccion de socio el legajo y el dni --> ¿De dónde saco esos datos? No están en el json que recibo.
 - modificar los filtros para los distintos niveles de abstraccion, y agregar filtro de que se pago y que no --> Esto lo hago mas adelante porque voy a cambiarles el diseño, así son muy grandes y quedan mal. Y con respecto al filtro de que se pago y que no, yo pondría un filtro del estado de
-- poner graficos -> ???? 
+- poner graficos -> ????
 - poner la opcion de mostrar todos los registros --> Demorado hasta que encuentre como.
 - poder imprimir, pdf, excel
 
-Cobranza
+Cobranza --> NO HACER
 
 - pantalla para hacer la cobranza
 - se tiene que poder exportar a los modelos locos --> (QUE CARAJO SON LOS MODELOS LOCOS??)
 
-Pago proovedores
+Pago proovedores --> NO HACER
 
 -> un boton pagar que pague todo y uno de imprimir por proveedor
 -> pero se tiene que poder ver el detalle
 -> campos de la tabla del detalle (legajo, socio, vto, monto de cuota, nro cuota, id servicio, nro credito, estado cobro
 -> Seleccionar todos.
 
-Aprobacion
+Aprobacion --> NO HACER
 - no aparece el vencimeinto -> Si aparece.. si dice "0000-00-00" es porque lo está mandando asi el back.
 
 
 
-Cancelacion de servicio
+Cancelacion de servicio --> NO HACER
 - tiene que haber una tabla con los servicios para cancelar --> no sería el "Cancelar" de la pantalla aprobacion??
 
 
+ALTA PRESTAMO COMERCIALIZADOR
+
+url para mostrar vista /comercializador
+url para trar solicitudes /comercializador/solicitudes
+url para alta de solicitud /comercializador/altaSolicitud
+
+esta pantalla tiene que tener dos contenedores
+
+contenedor 1 : son los datos del alta
+     - nombre
+     - apellido
+     - cuit
+     - domicilio
+     - telefono de contacto
+     - codigo postal
+        // todos los input mencionados anteriormente son TODOS obligatorios
+        // lo proximo son todos archivos
+     - copia del documento
+     - copia del recibo
+     - comprobante de domicilio
+     - constancia de cbu
+     - certificado de endeudamiento (este puede no ser obligatorio )
+      // despues hay una serie de checkbox los cuales no son obligatorios que complete, hacen referencias  a distintos filtros
+      // estos checkbox no los tengo definidos a un pero se podria poner 3 por default que digan criterio 1, criterio 2, criterio 3
+
+    el boton de alta tiene que pegarle con todo esto a la url /comercializador/altaSolicitud
+
+contenedor 2: este contenedor tiene que tener el listado de las solicitudes hechas con sus respectivos estados
+es una tabla con los campos
+    - los primeros 5 input tienen que estar ( no los voy a copiar todos de vuelta hijo de puta)
+    - los archivos ( fijate como los vas a poner, si uno por campo, o todos juntos,
+        nose, fijate que forma creativa se te ocurre para ponerlos de la manera mas FUNCIONAL posible NO LINDA, FUNCIONAL
+    - estado
+    -boton de contraPropuesta ( este boton solo esta habilitado cuando el estado es "respondido" o algo por el estilo
+        si se te ocurre un nombre mejor para el estado buenisimo, si lo toca le habre un modal con un input con el importe y
+        el nro de cuotas, y dos botones, uno aceptar y el otro modificar, SI SE MODIFICA CUALQUIERA DE LOS DOS INPUT, EL BOTON
+        MODIFICAR SE TIENE QUE DESBLOQUEAR Y EL BOTON ACEPTAR SE TIENE QUE BLOQUEAR)
+        boton aceptar url /comercializador/aceptarSolicitud, boton modificar url /comercializador/modificarSolicitud
+        cualquiera de estas dos acciones cambia el estado de la solicitud (contrapropuestado o aceptado nose pensate uno vos la concha de tu madre hijo de mil puta)
+    - una vez todo aprobado tiene que tener un boton para imprimir un formulario que tiene que firmar el afiliado
+    - se presiona el boton de enviar formulario (pero no envia nada, es una simple notificacion para el comercializador)
+
+
+
+PANTALLA INVERSIONISTA SOLICITUDES
+
+esta pantalla tiene un solo contenedor con una tabla que le muestra las solicitudes que le fueron asignadas
+
+    -los datos de esta tabla son
+             - nombre
+             - apellido
+             - cuit
+             - domicilio
+             - telefono de contacto
+             - codigo postal
+                // todos los input mencionados anteriormente son TODOS obligatorios
+                // lo proximo son todos archivos
+             - copia del documento
+             - copia del recibo
+             - comprobante de domicilio
+             - constancia de cbu
+             - certificado de endeudamiento (este puede no ser obligatorio )
+             - cupo ( esto es un numero )
+             - estado
+             - boton enviar propuesta ( este boton tiene que abrir un modal con dos input, capital total y nro cuotas , y un boton
+                que diga enviar ( url: /inverionista/enviarPropuesta  los datos que me tiene que mandar son por ej
+                 {capital:5, cuotas: 3, id_solicitud: 2} )
+
+             Si el estado de la propuesta es el resultado de la aceptacion del comercializador ( te digo esto porque nose cual va a ser el nombre del estado pedazo de cornudo)
+             entonces se le habilita el boton de (nose aprobar algo que se yo fijate un nombre, )
+
+            si el estado es el resultado de lo que envio el comer osea el envio del formulario entonces se habilita el boton de
+            "otro nombre que no voy a pensar yo la concha de tu madre", para registrarlo en la contabilidad
 
 ---------------- FIN -----------------------
 
@@ -265,4 +338,3 @@ no hace nada
 despues de otorgar el credito
 
 se comunica con el organismo para cobrar lo que corresponde , se queda con un porcentaje de lo cobrado y le da el resto al gestor de prestamo
-
