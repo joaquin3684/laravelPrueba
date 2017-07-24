@@ -109,15 +109,15 @@ Pago proovedores
 -> un boton pagar que pague todo y uno de imprimir por proveedor
 -> pero se tiene que poder ver el detalle
 -> campos de la tabla del detalle (legajo, socio, vto, monto de cuota, nro cuota, id servicio, nro credito, estado cobro
+-> Seleccionar todos.
 
 Aprobacion
-- no aparece el vencimeinto
-- observacion tiene que ser un select con distintos criterios (para creditos tiene determinados criterios y para productos otros criterios)
+- no aparece el vencimeinto -> Si aparece.. si dice "0000-00-00" es porque lo está mandando asi el back.
 
 
 
 Cancelacion de servicio
-- tiene que haber una tabla con los servicios para cancelar
+- tiene que haber una tabla con los servicios para cancelar --> no sería el "Cancelar" de la pantalla aprobacion??
 
 
 

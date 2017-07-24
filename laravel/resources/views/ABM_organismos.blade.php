@@ -153,14 +153,15 @@
                      <button id="exportButton1" ng-click="ExportarPDF('organismos')" class="btn btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> PDF
                      </button>
                      <button id="exportButton2" class="btn btn-success clearfix"><span class="fa fa-file-excel-o"></span> EXCEL</button>
+                     <button id="exportButton3" ng-click="Impresion()" class="btn btn-primary clearfix"><span class="fa fa-print"></span> IMPRIMIR</button>
                      </center>
                             <div id="pruebaExpandir">
                                 <div class="span12 row-fluid">
                                     <!-- START $scope.[model] updates -->
                                     <!-- END $scope.[model] updates -->
                                     <!-- START TABLE -->
-                                    <div>
-                                        <table id="exportTable" ng-table="paramsABMS" class="table table-hover table-bordered">
+                                    <div id="exportTable">
+                                        <table id="tablita" ng-table="paramsABMS" class="table table-hover table-bordered">
                                         <thead style="">
                                         <th style="">Nombre</th>
                                         <th style="">Cuit</th>
@@ -178,7 +179,7 @@
                                                 <td title="'Cuota Social'" sortable="'cuota_social'">
                                                     {[{abm.cuota_social}]}
                                                 </td>
-                                                <td>
+                                                <td id="botones">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar" ng-click="enviarFormulario('Mostrar', abm.id)"><span class="glyphicon glyphicon-pencil"></span></button>
                                                 <button type="button" class="btn btn-danger" ng-click="enviarFormulario('Borrar', abm.id)"><span class="glyphicon glyphicon-remove"></span></button>
                                                 </td>
