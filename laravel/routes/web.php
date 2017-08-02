@@ -168,6 +168,9 @@ Route::get('creacionAutomatica', function(){
 
 });
 
+
+
+Route::get('comercializador', function(){ return view('comercializador');});
 //-------------- ORGANISMOS -----------
 
 Route::get('organismos/traerRelacionorganismos', 'ABM_organismos@traerRelacionorganismos');
