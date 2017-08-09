@@ -39,13 +39,16 @@ $scope.ArrayAprobar = [];
 
 
     }
+*/
 
-    $scope.AprobarServicio = function (Dato){
+    $scope.AltaComercializador = function (Dato){
+        
+    $scope.Dato = [{'nombre':$scope.nombre,'apellido':$scope.apellido,'cuit':$scope.cuit,'domicilio':$scope.domicilio,'codigo_postal':$scope.codigo_postal,'telefono':$scope.telefono}];
 
         $http({
-            url: 'aprobacion/aprobar',
+            url: 'comercializador/altaSolicitud',
             method: 'post',
-            data: Dato
+            data: $scope.Dato
         }).then(function successCallback(response)
         {
             console.log(response.data.ventas);
@@ -57,7 +60,7 @@ $scope.ArrayAprobar = [];
             {
                 $scope.pullAprobar();
                 $scope.ArrayAprobar = [];
-                console.log('success');
+                console.log('Di el alta');
             }
 
         }, function errorCallback(data)
@@ -68,7 +71,7 @@ $scope.ArrayAprobar = [];
 
 
     }
-
+/*
     var self = this;
     $scope.pullAprobar();
     
